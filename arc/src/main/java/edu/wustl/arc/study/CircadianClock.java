@@ -22,9 +22,6 @@
 */
 package edu.wustl.arc.study;
 
-import edu.wustl.arc.api.models.WakeSleepData;
-import edu.wustl.arc.api.models.WakeSleepSchedule;
-
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
@@ -220,63 +217,5 @@ public class CircadianClock {
             index = rhythms.size()-1;
         }
         return index;
-    }
-
-    public static CircadianClock fromWakeSleepSchedule(WakeSleepSchedule schedule){
-        CircadianClock clock = new CircadianClock();
-        List<WakeSleepData> dataList = schedule.wakeSleepData;
-
-        DateTimeFormatter formatter = new DateTimeFormatterBuilder()
-                .appendPattern("h:mm a")
-                .toFormatter()
-                .withLocale(Locale.US);
-
-        DateTimeFormatter twentyFourHourFormatter = new DateTimeFormatterBuilder()
-                .appendPattern("H:mm")
-                .toFormatter()
-                .withLocale(Locale.US);
-
-        for(WakeSleepData data : dataList){
-
-            // handle any odd period formats the server may send our way
-            data.wake = data.wake
-                    .replace("a.m.","AM")
-                    .replace("p.m.","PM");
-            data.bed = data.bed
-                    .replace("a.m.","AM")
-                    .replace("p.m.","PM");
-            data.wake = data.wake
-                    .replace("a. m.","AM")
-                    .replace("p. m.","PM");
-            data.bed = data.bed
-                    .replace("a. m.","AM")
-                    .replace("p. m.","PM");
-            data.wake = data.wake
-                    .replace("午前","AM")
-                    .replace("午後","PM");
-            data.bed = data.bed
-                    .replace("午前","AM")
-                    .replace("午後","PM");
-
-            LocalTime wake;
-            if (data.wake.toUpperCase().contains("AM") ||
-                data.wake.toUpperCase().contains("PM")) {
-                wake = LocalTime.parse(data.wake,formatter);
-            } else {
-                wake = LocalTime.parse(data.wake, twentyFourHourFormatter);
-            }
-
-            LocalTime bed;
-            if (data.wake.toUpperCase().contains("AM") ||
-                    data.wake.toUpperCase().contains("PM")) {
-                bed = LocalTime.parse(data.bed,formatter);
-            } else {
-                bed = LocalTime.parse(data.bed, twentyFourHourFormatter);
-            }
-
-            clock.getRhythm(data.weekday).setTimes(wake,bed);
-        }
-
-        return clock;
     }
 }

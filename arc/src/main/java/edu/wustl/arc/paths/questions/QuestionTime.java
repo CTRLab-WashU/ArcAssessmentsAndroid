@@ -34,8 +34,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import edu.wustl.arc.core.BaseFragment;
-import edu.wustl.arc.paths.informative.ContactScreen;
-import edu.wustl.arc.paths.informative.HelpScreen;
 import edu.wustl.arc.ui.TimeInput;
 
 import edu.wustl.arc.assessments.R;
@@ -123,9 +121,9 @@ public class QuestionTime extends QuestionTemplate {
 
                 BaseFragment helpScreen;
                 if (USE_HELP_SCREEN) {
-                    helpScreen = new HelpScreen();
+                    helpScreen = Study.getStateMachine().createHelpScreen();
                 } else {
-                    helpScreen = new ContactScreen();
+                    helpScreen = Study.getStateMachine().createContactScreen();
                 }
                 NavigationManager.getInstance().open(helpScreen);
             }
@@ -133,8 +131,6 @@ public class QuestionTime extends QuestionTemplate {
 
         content.setGravity(Gravity.CENTER);
         content.addView(timeInput);
-
-
 
         return view;
     }

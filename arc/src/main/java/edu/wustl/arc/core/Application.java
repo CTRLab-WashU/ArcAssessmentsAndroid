@@ -36,8 +36,6 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import androidx.annotation.Nullable;
-import edu.wustl.arc.notifications.NotificationTypes;
-import edu.wustl.arc.notifications.types.NotificationType;
 import edu.wustl.arc.study.Study;
 import edu.wustl.arc.utilities.CacheManager;
 import edu.wustl.arc.utilities.PreferencesManager;
@@ -83,7 +81,6 @@ public class Application implements LifecycleObserver {
 
     private Context context;  // is the app context\
 
-    private List<NotificationType> notificationTypes;
     private List<Locale> localeOptions;
 
     private boolean checkContext() {
@@ -109,7 +106,6 @@ public class Application implements LifecycleObserver {
         instance = new Application(appContext, provider);
 
         instance.setLocaleOptions(createDefaultLocaleOptions());
-        instance.setNotificationTypes(createDefaultNotificationTypes());
 
         instance.initializeStudy(appContext, provider);
         Study.getInstance().load();
@@ -126,7 +122,6 @@ public class Application implements LifecycleObserver {
         instance = new Application(appContext, provider);
 
         instance.setLocaleOptions(createDefaultLocaleOptions());
-        instance.setNotificationTypes(createDefaultNotificationTypes());
 
         instance.initializeStudyValidationAppOnly(appContext, provider);
 
@@ -165,29 +160,6 @@ public class Application implements LifecycleObserver {
         // Initialize study and assign study-specific components
         Study.initialize(context);
         provider.registerStudyComponents();
-    }
-
-    public void setNotificationTypes(List<NotificationType> types) {
-        notificationTypes = types;
-    }
-
-    // list all notification types offered by the app
-    public List<NotificationType> getNotificationTypes() {
-        return notificationTypes;
-    }
-
-    public static List<NotificationType> createDefaultNotificationTypes() {
-        List<NotificationType> types = new ArrayList<>();
-        types.add(NotificationTypes.TestConfirmed);
-        types.add(NotificationTypes.TestMissed);
-        types.add(NotificationTypes.TestNext);
-        types.add(NotificationTypes.TestTake);
-        if(Config.ENABLE_VIGNETTES) {
-            types.add(NotificationTypes.VisitNextDay);
-            types.add(NotificationTypes.VisitNextWeek);
-            types.add(NotificationTypes.VisitNextMonth);
-        }
-        return types;
     }
 
     public void onConfigurationChanged(Configuration config) {

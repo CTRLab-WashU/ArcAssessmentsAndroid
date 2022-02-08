@@ -22,10 +22,6 @@
 */
 package edu.wustl.arc.study;
 
-import edu.wustl.arc.api.RestClient;
-import edu.wustl.arc.core.Application;
-import edu.wustl.arc.notifications.NotificationUtil;
-import edu.wustl.arc.paths.home.LandingScreen;
 import android.util.Log;
 
 import edu.wustl.arc.core.BaseFragment;
@@ -122,11 +118,6 @@ public class StateMachineAlpha extends StateMachine {
             return;
         }
 
-        if(!NotificationUtil.areNotificationsEnabled(Application.getInstance().getAppContext())){
-            state.currentPath = PATH_NOTIFICATIONS_OVERVIEW;
-            return;
-        }
-
         if(!participant.hasBeenShownBatteryOptimizationOverview()){
             state.currentPath = PATH_BATTERY_OPTIMIZATION_OVERVIEW;
             return;
@@ -153,12 +144,6 @@ public class StateMachineAlpha extends StateMachine {
 
     private void decidePathBaseline(){
         Participant participant = Study.getInstance().getParticipant();
-
-        if(!NotificationUtil.areNotificationsEnabled(Application.getInstance().getAppContext())){
-            Log.i("StateMachine", "notifications are not enabled");
-            state.currentPath = PATH_NOTIFICATIONS_OVERVIEW;
-            return;
-        }
 
         if(participant.getCurrentTestCycle() == null) {
             state.lifecycle = LIFECYCLE_OVER;
@@ -200,12 +185,6 @@ public class StateMachineAlpha extends StateMachine {
 
     private void decidePathArc(){
         Participant participant = Study.getInstance().getParticipant();
-
-        if(!NotificationUtil.areNotificationsEnabled(Application.getInstance().getAppContext())){
-            Log.i("StateMachine", "notifications are not enabled");
-            state.currentPath = PATH_NOTIFICATIONS_OVERVIEW;
-            return;
-        }
 
         if(participant.getCurrentTestCycle() == null) {
             state.lifecycle = LIFECYCLE_OVER;
@@ -286,8 +265,7 @@ public class StateMachineAlpha extends StateMachine {
                 cache.data.clear();
             }
 
-            RestClient client = Study.getRestClient();
-            client.submitTest(participant.getCurrentTestSession());
+            submitTest(participant.getCurrentTestSession());
             participant.moveOnToNextTestSession(true);
 
             if (loadTestDataFromCache) {
@@ -305,11 +283,6 @@ public class StateMachineAlpha extends StateMachine {
 
     private void decidePathIdle() {
         TestCycle cycle = Study.getCurrentTestCycle();
-
-        if(!NotificationUtil.areNotificationsEnabled(Application.getInstance().getAppContext())){
-            state.currentPath = PATH_NOTIFICATIONS_OVERVIEW;
-            return;
-        }
 
         if (cycle.getActualStartDate().isBeforeNow()) {
             state.lifecycle = LIFECYCLE_ARC;
@@ -365,8 +338,7 @@ public class StateMachineAlpha extends StateMachine {
                         }
                         loadTestDataFromCache();
 
-                        RestClient client = Study.getRestClient();
-                        client.submitTest(Study.getCurrentTestSession());
+                        submitTest(Study.getCurrentTestSession());
                         save();
 
                         dialog.dismiss();
@@ -418,23 +390,6 @@ public class StateMachineAlpha extends StateMachine {
 //        cache.segments.add(segment);
     }
 
-    public void checkForLandingPage(){
-        if(Config.OPENED_FROM_NOTIFICATION) {
-            Config.OPENED_FROM_NOTIFICATION = false;
-        }
-
-        addTestLandingPage();
-    }
-
-    public void addTestLandingPage(){
-        List<BaseFragment> fragments = new ArrayList<>();
-
-        // Default
-        fragments.add(new LandingScreen());
-        PathSegment segment = new PathSegment(fragments);
-        cache.segments.add(segment);
-    }
-
     public void checkForSignaturePage(boolean allowHelp){
         if(Config.ENABLE_SIGNATURES) {
             addSignaturePage(allowHelp);
@@ -455,7 +410,6 @@ public class StateMachineAlpha extends StateMachine {
     // --------------------------------------------------------------------------
 
     public void setPathFirstOfBaseline(){
-        checkForLandingPage();
         checkForSignaturePage(true);
         addChronotypeSurvey();
         addWakeSurvey();
@@ -466,7 +420,6 @@ public class StateMachineAlpha extends StateMachine {
     }
 
     public void setPathBaselineTest(){
-        checkForLandingPage();
         checkForSignaturePage(true);
         addContextSurvey();
         addTests();
@@ -480,7 +433,6 @@ public class StateMachineAlpha extends StateMachine {
     }
 
     public void setPathTestFirstOfVisit(){
-        checkForLandingPage();
         checkForSignaturePage(true);
         addChronotypeSurvey();
         addWakeSurvey();
@@ -491,7 +443,6 @@ public class StateMachineAlpha extends StateMachine {
     }
 
     public void setPathTestFirstOfDay(){
-        checkForLandingPage();
         checkForSignaturePage(true);
         addWakeSurvey();
         addContextSurvey();
@@ -501,7 +452,6 @@ public class StateMachineAlpha extends StateMachine {
     }
 
     public void setPathTestOther(){
-        checkForLandingPage();
         checkForSignaturePage(true);
         addContextSurvey();
         addTests();

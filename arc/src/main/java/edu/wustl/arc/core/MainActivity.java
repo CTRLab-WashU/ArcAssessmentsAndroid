@@ -29,8 +29,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import edu.wustl.arc.navigation.NavigationManager;
-import edu.wustl.arc.notifications.ProctorDeviation;
-import edu.wustl.arc.paths.battery_optimization.BatteryOptimizationReminder;
 import edu.wustl.arc.paths.questions.QuestionLanguagePreference;
 import edu.wustl.arc.study.AbandonmentJobService;
 import edu.wustl.arc.study.Study;
@@ -132,11 +130,6 @@ public class MainActivity extends AppCompatActivity {
                             dialog.dismiss();
                         }
                     }).show();
-        }
-
-        if(ProctorDeviation.shouldRequestBeMade()){
-            NavigationManager.getInstance().open(new BatteryOptimizationReminder());
-            return;
         }
 
         if(PreferencesManager.getInstance().contains(Locale.TAG_LANGUAGE) || !Config.CHOOSE_LOCALE) {

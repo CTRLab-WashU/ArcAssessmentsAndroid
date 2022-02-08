@@ -40,11 +40,9 @@ import android.widget.TextView;
 
 import android.util.Log;
 import edu.wustl.arc.core.BaseFragment;
-import edu.wustl.arc.paths.informative.ContactScreen;
 import edu.wustl.arc.ui.Button;
 import edu.wustl.arc.font.Fonts;
 import edu.wustl.arc.assessments.R;
-import edu.wustl.arc.paths.informative.HelpScreen;
 import edu.wustl.arc.study.Study;
 import edu.wustl.arc.navigation.NavigationManager;
 import edu.wustl.arc.utilities.ViewUtil;
@@ -145,9 +143,9 @@ public class AltStandardTemplate extends BaseFragment {
             public void onClick(View view) {
                 BaseFragment helpScreen;
                 if (USE_HELP_SCREEN) {
-                    helpScreen = new HelpScreen();
+                    helpScreen = Study.getStateMachine().createHelpScreen();
                 } else {
-                    helpScreen = new ContactScreen();
+                    helpScreen = Study.getStateMachine().createContactScreen();
                 }
                 NavigationManager.getInstance().open(helpScreen);
             }
@@ -208,8 +206,6 @@ public class AltStandardTemplate extends BaseFragment {
         if(allowBack){
             textViewBack.setVisibility(View.VISIBLE);
         }
-
-        setupDebug(view,R.id.textViewHeader);
 
         return view;
     }

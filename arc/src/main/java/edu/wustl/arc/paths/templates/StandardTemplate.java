@@ -28,7 +28,6 @@ import android.os.Handler;
 import androidx.annotation.Nullable;
 import android.text.Html;
 
-import edu.wustl.arc.paths.informative.ContactScreen;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -44,7 +43,6 @@ import edu.wustl.arc.core.BaseFragment;
 import edu.wustl.arc.ui.Button;
 import edu.wustl.arc.font.Fonts;
 import edu.wustl.arc.assessments.R;
-import edu.wustl.arc.paths.informative.HelpScreen;
 import edu.wustl.arc.study.Study;
 import edu.wustl.arc.navigation.NavigationManager;
 import edu.wustl.arc.utilities.ViewUtil;
@@ -134,9 +132,9 @@ public class StandardTemplate extends BaseFragment {
 
                 BaseFragment helpScreen;
                 if (USE_HELP_SCREEN) {
-                    helpScreen = new HelpScreen();
+                    helpScreen = Study.getStateMachine().createHelpScreen();
                 } else {
-                    helpScreen = new ContactScreen();
+                    helpScreen = Study.getStateMachine().createContactScreen();
                 }
                 NavigationManager.getInstance().open(helpScreen);
             }
@@ -197,8 +195,6 @@ public class StandardTemplate extends BaseFragment {
         if(allowBack){
             textViewBack.setVisibility(View.VISIBLE);
         }
-
-        setupDebug(view,R.id.textViewHeader);
 
         return view;
     }

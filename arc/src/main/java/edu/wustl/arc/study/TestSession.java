@@ -22,13 +22,9 @@
 */
 package edu.wustl.arc.study;
 
-import edu.wustl.arc.notifications.NotificationManager;
-import edu.wustl.arc.notifications.NotificationNode;
-import edu.wustl.arc.notifications.NotificationTypes;
 import android.util.Log;
 
 import edu.wustl.arc.api.tests.BaseTest;
-import edu.wustl.arc.utilities.PreferencesManager;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
@@ -36,8 +32,6 @@ import org.joda.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static edu.wustl.arc.notifications.types.TestMissed.TAG_TEST_MISSED_COUNT;
 
 public class TestSession {
 
@@ -159,16 +153,6 @@ public class TestSession {
 
     public void markStarted() {
         this.startTime = DateTime.now();
-
-        // this null check lets unit tests work properly
-        if(PreferencesManager.getInstance()!=null) {
-            int notifyId = NotificationNode.getNotifyId(id, NotificationTypes.TestTake.getId());
-            NotificationManager.getInstance().removeUserNotification(notifyId);
-
-            PreferencesManager.getInstance().putInt(TAG_TEST_MISSED_COUNT, 0);
-        }
-        //Log.i(tag,"markStarted()");
-
     }
 
     public void addTestData(BaseTest data) {

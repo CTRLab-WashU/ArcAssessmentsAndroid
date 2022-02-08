@@ -25,6 +25,7 @@ package edu.wustl.arc.path_data;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import android.util.Log;
+
 import edu.wustl.arc.api.DoubleTypeAdapter;
 import edu.wustl.arc.api.ItemTypeAdapterFactory;
 import edu.wustl.arc.api.tests.data.BaseData;

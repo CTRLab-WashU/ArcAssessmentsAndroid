@@ -124,7 +124,6 @@ public class TwoBtnDialog extends DialogFragment {
                         listener.dismiss();
                     }
                     dismiss();
-                    Study.getInstance().adjustSchedule();
                 }
             });
             buttonBottom.setText(buttonTextBottom);

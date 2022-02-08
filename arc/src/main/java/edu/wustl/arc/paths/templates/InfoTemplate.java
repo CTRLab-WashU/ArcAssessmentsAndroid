@@ -132,8 +132,6 @@ public class InfoTemplate extends BaseFragment {
             textViewBack.setVisibility(View.VISIBLE);
         }
 
-        setupDebug(view,R.id.textViewHeader);
-
         return view;
     }
 

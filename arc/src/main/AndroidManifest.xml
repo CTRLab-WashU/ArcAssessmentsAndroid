@@ -4,52 +4,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
     <application
         android:allowBackup="false" >
-        <service
-            android:name="edu.wustl.arc.notifications.ProctorService"
-            android:enabled="true"
-            android:exported="true"/>
-        <service
-            android:name="edu.wustl.arc.notifications.ProctorWatchdogJob"
-            android:exported="true"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service
-            android:name="edu.wustl.arc.notifications.NotificationNotifyJob"
-            android:exported="true"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service
-            android:name="edu.wustl.arc.heartbeat.HeartbeatJobService"
-            android:exported="true"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service
-            android:name="edu.wustl.arc.study.AbandonmentJobService"
-            android:exported="true"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
 
-        <receiver android:name="edu.wustl.arc.notifications.NotificationAlarmReceiver"/>
-        <receiver android:name="edu.wustl.arc.notifications.NotificationResetReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
-            </intent-filter>
-        </receiver>
-        <receiver android:name="edu.wustl.arc.time.TimeChangeReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.TIME_SET" />
-                <action android:name="android.intent.action.DATE_CHANGED" />
-            </intent-filter>
-        </receiver>
-        <receiver android:name="edu.wustl.arc.study.BootReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>

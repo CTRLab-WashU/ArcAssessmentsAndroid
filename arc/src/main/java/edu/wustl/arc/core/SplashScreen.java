@@ -29,7 +29,6 @@ import android.os.Bundle;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import edu.wustl.arc.hints.Hints;
-import edu.wustl.arc.notifications.Proctor;
 import edu.wustl.arc.study.Study;
 import edu.wustl.arc.study.TestCycle;
 
@@ -96,13 +95,6 @@ public class SplashScreen extends BaseFragment {
         }
 
         Hints.load();
-
-        TestCycle cycle = Study.getCurrentTestCycle();
-        if(cycle != null){
-            if(cycle.getActualStartDate().isBeforeNow() && cycle.getActualEndDate().isAfterNow()){
-                Proctor.startService(getContext());
-            }
-        }
 
         // We need to check to see if we're currently in the middle of a test session.
         // If we are, and if the state machine has valid fragments, we should let it continue

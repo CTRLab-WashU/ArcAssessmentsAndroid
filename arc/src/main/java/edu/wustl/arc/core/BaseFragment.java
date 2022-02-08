@@ -174,23 +174,4 @@ public class BaseFragment extends Fragment {
             this.transitions = transitions;
         }
     }
-
-    // debug ---------------------------------------------------------------------------------------
-
-    public void setupDebug(View view, int id){
-        if(Config.DEBUG_DIALOGS) {
-            final int[] count = {0};
-            view.findViewById(id).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (count[0] <= 0) {
-                        count[0]++;
-                    } else {
-                        count[0] = 0;
-                        DebugDialog.launch();
-                    }
-                }
-            });
-        }
-    }
 }

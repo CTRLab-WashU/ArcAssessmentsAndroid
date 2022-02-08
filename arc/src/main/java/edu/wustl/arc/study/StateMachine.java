@@ -23,31 +23,13 @@
 package edu.wustl.arc.study;
 
 import android.content.res.Resources;
-import android.text.Html;
+import android.graphics.Bitmap;
 import android.util.Log;
 
-import edu.wustl.arc.api.RestClient;
 import edu.wustl.arc.api.tests.CognitiveTest;
 import edu.wustl.arc.core.Config;
 import edu.wustl.arc.core.SplashScreen;
 import edu.wustl.arc.path_data.Grid2TestPathData;
-import edu.wustl.arc.paths.availability.AvailabilityBed;
-import edu.wustl.arc.paths.availability.AvailabilityConfirm;
-import edu.wustl.arc.paths.battery_optimization.BatteryOptimizationOverview;
-import edu.wustl.arc.paths.battery_optimization.BatteryOptimizationPrompt;
-import edu.wustl.arc.paths.informative.DayProgressScreen;
-import edu.wustl.arc.paths.informative.EarningsPostTestLoadingScreen;
-import edu.wustl.arc.paths.informative.FinishedCycleScreen;
-import edu.wustl.arc.paths.informative.FinishedStudyScreen;
-import edu.wustl.arc.paths.informative.FinishedStudyTotalsScreen;
-import edu.wustl.arc.paths.informative.RebukedCommitmentScreen;
-import edu.wustl.arc.paths.notification.NotificationOverview;
-import edu.wustl.arc.paths.notification.NotificationTurnOn;
-import edu.wustl.arc.paths.questions.QuestionNonRemoteStudyCommitment;
-import edu.wustl.arc.paths.questions.QuestionRemoteStudyCommitment;
-import edu.wustl.arc.paths.setup_v2.Setup2Participant;
-import edu.wustl.arc.paths.setup_v2.Setup2ParticipantConfirm;
-import edu.wustl.arc.paths.setup_v2.Setup2Welcome;
 import edu.wustl.arc.paths.templates.StateInfoTemplate;
 import edu.wustl.arc.paths.templates.TestInfoTemplate;
 import edu.wustl.arc.paths.tests.Grid2Letters;
@@ -63,17 +45,12 @@ import edu.wustl.arc.core.BaseFragment;
 import edu.wustl.arc.core.SimplePopupScreen;
 import edu.wustl.arc.assessments.R;
 import edu.wustl.arc.misc.TransitionSet;
-import edu.wustl.arc.path_data.AvailabilityPathData;
 import edu.wustl.arc.path_data.ChronotypePathData;
 import edu.wustl.arc.path_data.ContextPathData;
 import edu.wustl.arc.path_data.GridTestPathData;
 import edu.wustl.arc.path_data.PriceTestPathData;
-import edu.wustl.arc.path_data.SetupPathData;
 import edu.wustl.arc.path_data.SymbolsTestPathData;
 import edu.wustl.arc.path_data.WakePathData;
-import edu.wustl.arc.paths.availability.AvailabilityWake;
-import edu.wustl.arc.paths.questions.QuestionAdjustSchedule;
-import edu.wustl.arc.paths.setup.SetupAuthCode;
 import edu.wustl.arc.paths.questions.QuestionCheckBoxes;
 import edu.wustl.arc.paths.questions.QuestionDuration;
 import edu.wustl.arc.paths.questions.QuestionInteger;
@@ -81,9 +58,6 @@ import edu.wustl.arc.paths.questions.QuestionPolar;
 import edu.wustl.arc.paths.questions.QuestionRadioButtons;
 import edu.wustl.arc.paths.questions.QuestionRating;
 import edu.wustl.arc.paths.questions.QuestionTime;
-import edu.wustl.arc.paths.setup.SetupParticipant;
-import edu.wustl.arc.paths.setup.SetupParticipantConfirm;
-import edu.wustl.arc.paths.setup.SetupWelcome;
 import edu.wustl.arc.paths.tests.GridLetters;
 import edu.wustl.arc.paths.tests.GridStudy;
 import edu.wustl.arc.paths.tests.GridTest;
@@ -211,10 +185,17 @@ public class StateMachine {
         cache.segments.clear();
         cache.data.clear();
 
-        RestClient client = Study.getRestClient();
-        client.submitTest(participant.getCurrentTestSession());
+        submitTest(participant.getCurrentTestSession());
         participant.moveOnToNextTestSession(true);
         save();
+    }
+
+    public void submitTest(TestSession testSession) {
+        throw new IllegalStateException("To be implemented by sub-class");
+    }
+
+    public void submitSignature(Bitmap signature) {
+        throw new IllegalStateException("To be implemented by sub-class");
     }
 
     protected void setupPath(){
@@ -337,168 +318,6 @@ public class StateMachine {
         }
 
         return true;
-    }
-
-    // ---------------------------------------------------------------------------------------------
-
-    public void setPathSetupParticipantV1(int firstDigitCount, int secondDigitCount, int authDigitCount){
-        List<BaseFragment> fragments = new ArrayList<>();
-        fragments.add(new SetupWelcome());
-        fragments.add(new SetupParticipant(firstDigitCount,secondDigitCount));
-
-        if (Config.EXPECTS_2FA_TEXT) {
-            fragments.add(new SetupParticipantConfirm(false,true,firstDigitCount,secondDigitCount));
-            fragments.add(new SetupAuthCode(true, true, authDigitCount, ViewUtil.getString(R.string.login_enter_2FA)));
-        }
-        else {
-            fragments.add(new SetupParticipantConfirm(false,false,firstDigitCount,secondDigitCount));
-            fragments.add(new SetupAuthCode(true, false, authDigitCount, ViewUtil.getString(R.string.login_enter_ARCID)));
-        }
-
-        PathSegment segment = new PathSegment(fragments,SetupPathData.class);
-        enableTransition(segment,false);
-        cache.segments.add(segment);
-    }
-
-    public void setPathSetupParticipantV2(int firstDigitCount, int secondDigitCount){
-        List<BaseFragment> fragments = new ArrayList<>();
-        fragments.add(new Setup2Welcome());
-        fragments.add(new Setup2Participant(firstDigitCount,secondDigitCount));
-        fragments.add(new Setup2ParticipantConfirm(firstDigitCount,secondDigitCount));
-
-        PathSegment segment = new PathSegment(fragments,SetupPathData.class);
-        enableTransition(segment,false);
-        cache.segments.add(segment);
-    }
-
-    public void setPathSetupParticipant(int firstDigitCount, int secondDigitCount, int authDigitCount){
-        if(Config.LOGIN_USE_AUTH_DETAILS){
-            setPathSetupParticipantV2(firstDigitCount,secondDigitCount);
-        } else {
-            setPathSetupParticipantV1(firstDigitCount,secondDigitCount,authDigitCount);
-        }
-    }
-
-    // ---------------------------------------------------------------------------------------------
-
-    public void setPathCommitment(){
-        List<BaseFragment> fragments = new ArrayList<>();
-
-        Resources res = Application.getInstance().getResources();
-
-        if (Config.IS_REMOTE) {
-            fragments.add(new QuestionRemoteStudyCommitment(
-                    false,
-                    res.getString(R.string.onboarding_header),
-                    res.getString(R.string.onboarding_body),
-                    res.getString(R.string.radio_commit),
-                    res.getString(R.string.radio_nocommit)
-            ));
-        }
-        else {
-            List<String> opts = new ArrayList<>();
-            opts.add(res.getString(R.string.radio_commit));
-
-            fragments.add(new QuestionNonRemoteStudyCommitment(
-                false,
-                res.getString(R.string.onboarding_header),
-                res.getString(R.string.onboarding_body),
-                opts,
-                ""
-            ));
-        }
-
-        fragments.add(new StateInfoTemplate(
-                false,
-                Html.fromHtml(res.getString(R.string.onboarding_commit_header)).toString(),
-                null,
-                res.getString(R.string.onboarding_commit_body),
-                res.getString(R.string.button_next)));
-
-        PathSegment segment = new PathSegment(fragments);
-        enableTransition(segment,true);
-        cache.segments.add(segment);
-    }
-
-    public void setPathCommitmentRebuked(){
-        List<BaseFragment> fragments = new ArrayList<>();
-
-        Resources res = Application.getInstance().getResources();
-
-        fragments.add(new RebukedCommitmentScreen(
-                res.getString(R.string.onboarding_nocommit_landing_header),
-                res.getString(R.string.onboarding_nocommit_landing_body),
-                res.getString(R.string.button_next)
-        ));
-
-        fragments.add(new QuestionRemoteStudyCommitment(
-                true,
-                res.getString(R.string.onboarding_header),
-                res.getString(R.string.onboarding_body),
-                res.getString(R.string.radio_commit),
-                res.getString(R.string.radio_nocommit)
-        ));
-
-        fragments.add(new StateInfoTemplate(
-                false,
-                res.getString(R.string.onboarding_commit_header),
-                null,
-                res.getString(R.string.onboarding_commit_body),
-                res.getString(R.string.button_next)));
-
-        PathSegment segment = new PathSegment(fragments);
-        enableTransition(segment,true);
-        cache.segments.add(segment);
-    }
-
-    public void setPathNotificationOverview(){
-        List<BaseFragment> fragments = new ArrayList<>();
-
-        fragments.add(new NotificationOverview());
-        fragments.add(new NotificationTurnOn());
-
-        PathSegment segment = new PathSegment(fragments);
-        enableTransition(segment,true);
-        cache.segments.add(segment);
-    }
-
-    public void setPathBatteryOptimizationOverview(){
-        List<BaseFragment> fragments = new ArrayList<>();
-
-        fragments.add(new BatteryOptimizationOverview());
-        fragments.add(new BatteryOptimizationPrompt());
-
-        PathSegment segment = new PathSegment(fragments);
-        enableTransition(segment,true);
-        cache.segments.add(segment);
-    }
-
-    // ---------------------------------------------------------------------------------------------
-
-    public void setPathSetupAvailability(int minWakeTime, int maxWakeTime, boolean reschedule){
-        List<BaseFragment> fragments = new ArrayList<>();
-
-        Resources res = Application.getInstance().getResources();
-
-        fragments.add(new StateInfoTemplate(
-                false,
-                res.getString(R.string.availability_header),
-                null,
-                res.getString(R.string.availability_body),
-                res.getString(R.string.button_beginsurvey)));
-
-        fragments.add(new AvailabilityWake());
-        fragments.add(new AvailabilityBed(minWakeTime,maxWakeTime));
-        fragments.add(new AvailabilityConfirm(minWakeTime, maxWakeTime, reschedule, true));
-
-        PathSegment segment = new PathSegment(fragments,AvailabilityPathData.class);
-        enableTransition(segment,true);
-        cache.segments.add(segment);
-    }
-
-    // default
-    public void setPathSetupAvailability(){
-        setPathSetupAvailability(4,24,false);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -862,126 +681,6 @@ public class StateMachine {
         cache.segments.add(segment);
     }
 
-//    public void addFinishedPage(){
-//        List<BaseFragment> fragments = new ArrayList<>();
-//
-//        Participant participant = Study.getParticipant();
-//
-//        Resources res = Application.getInstance().getResources();
-//
-//        String header;
-//        String subheader;
-//        String body;
-//
-//        // Default
-//        header = ViewUtil.getHtmlString(R.string.thankyou_header1);
-//        subheader = ViewUtil.getHtmlString(R.string.thankyou_testcomplete_subhead1);
-//        body = ViewUtil.getHtmlString(R.string.thankyou_testcomplete_body1);
-//
-//        // Finished with study
-//        if(!participant.isStudyRunning()){
-//            //at the end of the line
-//            header = ViewUtil.getHtmlString(R.string.thankyou_header3);
-//            subheader = ViewUtil.getHtmlString(R.string.thankyou_finished_subhead3);
-//            body = ViewUtil.getHtmlString(R.string.thankyou_body3);
-//        }
-//        else {
-//            TestCycle cycle = participant.getCurrentTestCycle();
-//
-//            // After the testCycles but before the next session
-//            if (cycle.getNumberOfTestsLeft() == cycle.getNumberOfTests()) {
-//
-//                DateTimeFormatter fmt = DateTimeFormat.forPattern("EEEE, MMMM d").withLocale(Locale.getCurrent());
-//
-//                //String format = ViewUtil.getString(com.healthymedium.arc.library.R.string.format_date);
-//                header = ViewUtil.getHtmlString(R.string.thankyou_header2);
-//                subheader = ViewUtil.getHtmlString(R.string.thankyou_cycle_subhead2);
-//
-//                String body2 = ViewUtil.getHtmlString(R.string.thankyou_cycle_body2);
-//
-//                // String startDate = testCycles.getActualStartDate().toString(format);
-//                // String endDate = testCycles.getActualEndDate().toString(format);
-//
-//                String startDate = fmt.print(cycle.getActualStartDate());
-//                String endDate = fmt.print(cycle.getActualEndDate().minusDays(1));
-//
-//                body2 = body2.replace("{DATE1}", startDate);
-//                body2 = body2.replace("{DATE2}", endDate);
-//
-//                body = body2;
-//            }
-//            // After the 4th test of the day
-//            else if (participant.getCurrentTestDay().getNumberOfTestsLeft() == 0) {
-//                header = ViewUtil.getHtmlString(R.string.thank_you_header1);
-//                subheader = ViewUtil.getHtmlString(R.string.thankyou_alldone_subhead1);
-//                body = ViewUtil.getHtmlString(R.string.thankyou_alldone_body1);
-//            }
-//
-//        }
-//
-//        InfoTemplate info = new InfoTemplate(
-//                false,
-//                header ,
-//                subheader,
-//                body,
-//                ViewUtil.getDrawable(R.drawable.ic_home_active));
-//        fragments.add(info);
-//        PathSegment segment = new PathSegment(fragments);
-//        cache.segments.add(segment);
-//    }
-
-    public void addSchedulePicker() {
-        List<BaseFragment> fragments = new ArrayList<>();
-
-        fragments.add(new QuestionAdjustSchedule(false, true, ViewUtil.getString(R.string.dateshift_picker), ""));
-
-        PathSegment segment = new PathSegment(fragments);
-        cache.segments.add(segment);
-    }
-
-    public void setPathAdjustSchedule() {
-        addSchedulePicker();
-    }
-
-    public void addPostTestProgressAndEarnings(){
-        List<BaseFragment> fragments = new ArrayList<>();
-
-        fragments.add(new DayProgressScreen());
-        fragments.add(new EarningsPostTestLoadingScreen());
-
-        PathSegment segment = new PathSegment(fragments);
-        cache.segments.add(segment);
-    }
-
-    public void addPostTestProgress(){
-        List<BaseFragment> fragments = new ArrayList<>();
-
-        fragments.add(new DayProgressScreen());
-
-        PathSegment segment = new PathSegment(fragments);
-        cache.segments.add(segment);
-    }
-
-    public void addCycleFinishedScreen(){
-        List<BaseFragment> fragments = new ArrayList<>();
-
-        fragments.add(new FinishedCycleScreen());
-
-        PathSegment segment = new PathSegment(fragments);
-        cache.segments.add(segment);
-    }
-
-    public void addStudyFinishedScreen(){
-        List<BaseFragment> fragments = new ArrayList<>();
-
-        fragments.add(new FinishedStudyScreen());
-        fragments.add(new FinishedStudyTotalsScreen());
-
-        PathSegment segment = new PathSegment(fragments);
-        cache.segments.add(segment);
-    }
-
-
     // -----------------------
 
     public String getLifecycleName(int lifecycle){
@@ -1019,5 +718,13 @@ public class StateMachine {
      */
     public boolean shouldShowDetailedContactScreen() {
         return true;
+    }
+
+    public BaseFragment createHelpScreen() {
+        throw new IllegalStateException("Must be implemented by sub-class");
+    }
+
+    public BaseFragment createContactScreen() {
+        throw new IllegalStateException("Must be implemented by sub-class");
     }
 }

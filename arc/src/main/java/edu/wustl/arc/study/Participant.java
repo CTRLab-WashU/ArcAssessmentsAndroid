@@ -24,8 +24,6 @@ package edu.wustl.arc.study;
 
 import android.util.Log;
 
-import edu.wustl.arc.core.Application;
-import edu.wustl.arc.notifications.Proctor;
 import edu.wustl.arc.utilities.PreferencesManager;
 
 import org.joda.time.DateTime;
@@ -201,14 +199,11 @@ public class Participant {
         }
 
         if(getCurrentTestCycle().isOver()){
-            Proctor.stopService(Application.getInstance().getAppContext());
             state.currentTestSession = 0;
             state.currentTestDay = 0;
             state.currentTestCycle++;
             if(state.currentTestCycle >=state.testCycles.size()){
                 state.isStudyRunning = false;
-            } else if(scheduleNotifications){
-                Study.getScheduler().scheduleNotifications(getCurrentTestCycle(), false);
             }
         }
         save();
@@ -250,10 +245,6 @@ public class Participant {
         if(shouldSave) {
             save();
         }
-    }
-
-    public Earnings getEarnings(){
-        return state.earnings;
     }
 
     public DateTime getStartDate() {

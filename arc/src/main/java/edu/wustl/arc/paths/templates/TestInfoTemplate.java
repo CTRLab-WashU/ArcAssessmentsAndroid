@@ -231,8 +231,6 @@ public class TestInfoTemplate extends BaseFragment {
             }
         });
 
-        setupDebug(view,R.id.textViewHeader);
-
         return view;
     }
 

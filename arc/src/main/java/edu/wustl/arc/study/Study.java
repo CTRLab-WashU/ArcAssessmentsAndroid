@@ -24,15 +24,10 @@ package edu.wustl.arc.study;
 
 import android.content.Context;
 
-import edu.wustl.arc.api.RestClient;
 import edu.wustl.arc.core.Application;
 import edu.wustl.arc.core.Config;
-import edu.wustl.arc.heartbeat.HeartbeatManager;
-import edu.wustl.arc.utilities.MigrationUtil;
 import edu.wustl.arc.utilities.PreferencesManager;
 import edu.wustl.arc.utilities.VersionUtil;
-import android.util.Log;
-import java.lang.reflect.InvocationTargetException;
 
 import androidx.annotation.VisibleForTesting;
 
@@ -47,12 +42,8 @@ public class Study{
     protected static boolean valid;
     protected Context context;
 
-    static Scheduler scheduler;
     static StateMachine stateMachine;
     static Participant participant;
-    static RestClient restClient;
-    static MigrationUtil migrationUtil;
-    static PrivacyPolicy privacyPolicy;
 
     public static synchronized void initialize(Context context) {
         if(instance==null) {
@@ -114,75 +105,6 @@ public class Study{
         return true;
     }
 
-    public boolean registerRestApi(Class clientClass) {
-        return registerRestApi(clientClass,false);
-    }
-
-    public boolean registerRestApi(Class clientClass, boolean overwrite){
-        if(restClient!=null && !overwrite){
-            return false;
-        }
-        if(clientClass==null){
-            return false;
-        }
-        if(!RestClient.class.isAssignableFrom(clientClass)){
-            return false;
-        }
-        try {
-            restClient = (RestClient) clientClass.newInstance();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        return true;
-    }
-
-    /**
-     * Set a custom rest client directly without using reflection
-     * Use in case of custom constructor vs a no-arg constructor
-     * @param client to be used for the study
-     * @return true if the client was overwritten, false otherwise
-     */
-    public static boolean setRestClient(RestClient client, boolean overwrite){
-        if(restClient!=null && !overwrite){
-            return false;
-        }
-        if(client == null){
-            return false;
-        }
-        restClient = client;
-        return true;
-    }
-
-    public boolean registerRestApi(Class clientClass, Class apiClass){
-        return registerRestApi(clientClass, apiClass,false);
-    }
-
-    public boolean registerRestApi(Class clientClass, Class apiClass, boolean overwrite){
-        if(restClient!=null && !overwrite){
-            return false;
-        }
-        if(clientClass==null){
-            return false;
-        }
-        if(!RestClient.class.isAssignableFrom(clientClass)){
-            return false;
-        }
-        try {
-            restClient = (RestClient) clientClass.getDeclaredConstructor(Class.class).newInstance(apiClass);
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        }
-        return true;
-    }
-
     public  boolean registerStateMachine(Class tClass) {
         return registerStateMachine(tClass,false);
     }
@@ -209,102 +131,12 @@ public class Study{
         return true;
     }
 
-    public boolean registerScheduler(Class tClass){
-        return registerScheduler(tClass,false);
-    }
-
-    public boolean registerScheduler(Class tClass, boolean overwrite){
-        if(scheduler!=null && !overwrite){
-            return false;
-        }
-        if(tClass==null){
-            return false;
-        }
-        if(!Scheduler.class.isAssignableFrom(tClass)){
-            return false;
-        }
-        try {
-            scheduler = (Scheduler) tClass.newInstance();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-            return false;
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
-
-    public boolean registerMigrationUtil(Class tClass){
-        return registerMigrationUtil(tClass,false);
-    }
-
-    public boolean registerMigrationUtil(Class tClass, boolean overwrite){
-        if(migrationUtil!=null && !overwrite){
-            return false;
-        }
-        if(tClass==null){
-            return false;
-        }
-        if(!MigrationUtil.class.isAssignableFrom(tClass)){
-            return false;
-        }
-        try {
-            migrationUtil = (MigrationUtil) tClass.newInstance();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-            return false;
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
-
-    public boolean registerPrivacyPolicy(Class tClass){
-        return registerPrivacyPolicy(tClass,false);
-    }
-
-    public boolean registerPrivacyPolicy(Class tClass, boolean overwrite){
-        if(privacyPolicy!=null && !overwrite){
-            return false;
-        }
-        if(tClass==null){
-            return false;
-        }
-        if(!PrivacyPolicy.class.isAssignableFrom(tClass)){
-            return false;
-        }
-        try {
-            privacyPolicy = (PrivacyPolicy) tClass.newInstance();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-            return false;
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
-
     public void checkRegistrations(){
         if(participant==null){
             participant = new Participant();
         }
-        if(scheduler==null){
-            scheduler = new Scheduler();
-        }
         if(stateMachine==null){
             stateMachine = new StateMachine();
-        }
-        if(restClient==null){
-            restClient = new RestClient(null);
-        }
-        if(migrationUtil==null){
-            migrationUtil = new MigrationUtil();
-        }
-        if(privacyPolicy==null){
-            privacyPolicy = new PrivacyPolicy();
         }
     }
 
@@ -322,36 +154,11 @@ public class Study{
             stateMachine.initialize();
             stateMachine.save();
 
-            PreferencesManager.getInstance().putLong(MigrationUtil.TAG_VERSION_LIB,VersionUtil.getCoreVersionCode());
-            PreferencesManager.getInstance().putLong(MigrationUtil.TAG_VERSION_APP,VersionUtil.getAppVersionCode());
             PreferencesManager.getInstance().putBoolean(TAG_INITIALIZED,true);
-            HeartbeatManager.getInstance().scheduleHeartbeat();
 
         }  else {
-            migrationUtil.checkForUpdate();
-            migrationUtil = null; // not needed after this
-
             participant.load();
             stateMachine.load();
-
-            if(participant.isScheduleCorrupted()) {
-                boolean fixed = getScheduler().fixCorruptedSchedule(participant);
-                if(fixed) {
-                    participant.save();
-                    if(!getCurrentTestCycle().hasStarted()) {
-                        getScheduler().unscheduleNotifications(getCurrentTestCycle());
-                        getScheduler().scheduleNotifications(getCurrentTestCycle(), false);
-                    }
-                    getRestClient().submitTestSchedule();
-                    Log.w("Schedule Corruption","Found schedule corruption, was able to fix it");
-                } else {
-                    Log.w("Schedule Corruption","Found schedule corruption, was not able to fix it");
-                }
-            }
-        }
-
-        if(Config.ENABLE_EARNINGS){
-            participant.getEarnings().linkAgainstRestClient();
         }
 
         if(Config.REPORT_STUDY_INFO){
@@ -373,19 +180,9 @@ public class Study{
         return participant;
     }
 
-    public static Scheduler getScheduler(){
-        return scheduler;
-    }
-
     public static StateMachine getStateMachine(){
         return stateMachine;
     }
-
-    public static RestClient getRestClient(){
-        return restClient;
-    }
-
-    public static PrivacyPolicy getPrivacyPolicy() { return privacyPolicy; }
 
     // commonly used accessors ---------------------------------------------------------------------
 
@@ -466,24 +263,6 @@ public class Study{
         stateMachine.abandonTest();
         stateMachine.decidePath();
         stateMachine.setupPath();
-        stateMachine.openNext();
-    }
-
-    public static void updateAvailability(int minWakeTime, int maxWakeTime)
-    {
-        stateMachine.setPathSetupAvailability(minWakeTime, maxWakeTime, true);
-        stateMachine.openNext();
-    }
-
-    public static void updateAvailabilityOnboarding(int minWakeTime, int maxWakeTime)
-    {
-        stateMachine.setPathSetupAvailability(minWakeTime, maxWakeTime, false);
-        stateMachine.openNext();
-    }
-
-    public static void adjustSchedule()
-    {
-        stateMachine.setPathAdjustSchedule();
         stateMachine.openNext();
     }
 }
