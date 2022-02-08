@@ -1,0 +1,199 @@
+/*
+  Copyright (c) 2022 Washington University in St. Louis
+
+  Washington University in St. Louis hereby grants to you a non-transferable,
+  non-exclusive, royalty-free license to use and copy the computer code
+  provided here (the "Software").  You agree to include this license and the
+  above copyright notice in all copies of the Software.  The Software may not
+  be distributed, shared, or transferred to any third party.  This license does
+  not grant any rights or licenses to any other patents, copyrights, or other
+  forms of intellectual property owned or controlled by
+  Washington University in St. Louis.
+
+  YOU AGREE THAT THE SOFTWARE PROVIDED HEREUNDER IS EXPERIMENTAL AND IS PROVIDED
+  "AS IS", WITHOUT ANY WARRANTY OF ANY KIND, EXPRESSED OR IMPLIED, INCLUDING
+  WITHOUT LIMITATION WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY PARTICULAR
+  PURPOSE, OR NON-INFRINGEMENT OF ANY THIRD-PARTY PATENT, COPYRIGHT, OR ANY OTHER
+  THIRD-PARTY RIGHT.  IN NO EVENT SHALL THE CREATORS OF THE SOFTWARE OR WASHINGTON
+  UNIVERSITY IN ST LOUIS BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL, OR
+  CONSEQUENTIAL DAMAGES ARISING OUT OF OR IN ANY WAY CONNECTED WITH THE SOFTWARE,
+  THE USE OF THE SOFTWARE, OR THIS AGREEMENT, WHETHER IN BREACH OF CONTRACT, TORT
+  OR OTHERWISE, EVEN IF SUCH PARTY IS ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+*/
+package edu.wustl.arc.paths.setup_v2;
+
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.text.Html;
+import android.text.InputType;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+
+import edu.wustl.arc.api.RestClient;
+import edu.wustl.arc.api.RestResponse;
+import edu.wustl.arc.core.LoadingDialog;
+import edu.wustl.arc.assessments.R;
+import edu.wustl.arc.navigation.NavigationManager;
+import edu.wustl.arc.path_data.SetupPathData;
+import edu.wustl.arc.paths.informative.ContactScreen;
+import edu.wustl.arc.study.PathSegment;
+import edu.wustl.arc.study.Study;
+import edu.wustl.arc.ui.DigitView;
+import edu.wustl.arc.utilities.ViewUtil;
+
+import androidx.annotation.Nullable;
+
+@SuppressLint("ValidFragment")
+public class Setup2LoginVerificationCode extends Setup2Template {
+
+    public static final int DIGIT_COUNT = 9;
+
+    public Setup2LoginVerificationCode() {
+        super(DIGIT_COUNT, 0, ViewUtil.getString(R.string.login_enter_raterID));
+    }
+
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = super.onCreateView(inflater, container, savedInstanceState);
+
+        // We need uppercase, lowercase, number, and special characters
+        editText.setInputType(InputType.TYPE_CLASS_TEXT);
+
+        // Make input layout full width, with a weighted sum
+        ViewGroup.LayoutParams inputLayoutParams = inputLayout.getLayoutParams();
+        inputLayoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        inputLayout.setWeightSum(DIGIT_COUNT);
+        inputLayout.setLayoutParams(inputLayoutParams);
+        inputLayout.setPadding(ViewUtil.dpToPx(16), inputLayout.getPaddingTop(),
+                ViewUtil.dpToPx(16), inputLayout.getPaddingBottom());
+
+        // Make the digit views smaller, as we need to fit [DIGIT_COUNT] in
+        for (int i = 0; i < inputLayout.getChildCount(); i++) {
+            View child = inputLayout.getChildAt(i);
+            if (child instanceof DigitView) {
+                DigitView digitView = (DigitView)child;
+                LinearLayout.LayoutParams params =
+                        (LinearLayout.LayoutParams)digitView.getLayoutParams();
+                params.weight = 1;
+                params.width = 0;  // width will be set by weight
+                digitView.setLayoutParams(params);
+            }
+        }
+
+        return view;
+    }
+
+    @Override
+    public void addSpacer(int widthDp) {
+        // Do nothing, spacers will be added through weight sum gravity
+    }
+
+    @Override
+    protected boolean shouldAutoProceed() {
+        return true;
+    }
+
+    private boolean fragmentExists(PathSegment path, Class tClass) {
+        int last = path.fragments.size()-1;
+        String oldName = path.fragments.get(last).getSimpleTag();
+        String newName = tClass.getSimpleName();
+        return oldName.equals(newName);
+    }
+
+    @Override
+    protected void onNextRequested() {
+        SetupPathData pathData = (SetupPathData)Study.getCurrentSegmentData();
+        pathData.authCode = characterSequence.toString();
+
+        loadingDialog = new LoadingDialog();
+        loadingDialog.show(getFragmentManager(),"LoadingDialog");
+        Study.getRestClient().registerDevice(
+                pathData.id, pathData.authCode, false, registrationListener);
+    }
+
+    protected RestClient.Listener registrationListener = new RestClient.Listener() {
+        @Override
+        public void onSuccess(RestResponse response) {
+            Setup2Template.SetupError error = parseForError(response,false);
+            loadingDialog.dismiss();
+            if(error.string==null) {
+                Study.getParticipant().getState().id =
+                        ((SetupPathData)Study.getCurrentSegmentData()).id;;
+                Study.openNextFragment();
+            } else {
+                showError(error.string);
+            }
+        }
+
+        @Override
+        public void onFailure(RestResponse response) {
+            Setup2Template.SetupError error = parseForError(response,true);
+            showError(error.string);
+            loadingDialog.dismiss();
+        }
+    };
+
+    protected Setup2Template.SetupError parseForError(RestResponse response, boolean failed){
+        Setup2Template.SetupError error = new Setup2Template.SetupError();
+        error.string = parseForErrorString(response,failed);
+        if (error.string != null && response != null && response.errors != null) {
+            if (response.errors.get("errors") != null) {
+                error.string += "<br>" + response.errors.get("errors").getAsString();
+            } else if (response.errors.get("error") != null) {
+                error.string += "<br>" + response.errors.get("error").getAsString();
+            }
+        }
+        return error;
+    }
+
+    protected String parseForErrorString(RestResponse response, boolean failed){
+        int code = response.code;
+        switch (code){
+            case 400:
+                return getResources().getString(R.string.login_error3);
+            case 401:
+                return getResources().getString(R.string.login_error1);
+            case 406:
+                return getResources().getString(R.string.login_error1);
+            case 409:
+                return getResources().getString(R.string.login_error2);
+        }
+        if(response.errors.keySet().size()>0){
+            String key = response.errors.keySet().toArray()[0].toString();
+            return response.errors.get(key).getAsString();
+        }
+        if(!response.successful || failed){
+            return getResources().getString(R.string.login_error3);
+        }
+        return null;
+    }
+
+    public void showError(String error) {
+        textViewError.setVisibility(View.VISIBLE);
+        // Remove the account not found error, as that will be in the base localized error message
+        String errorStr = error.replace("<br>Account not found.", "");
+        textViewError.setText(Html.fromHtml(errorStr));
+
+        // add this for all errors
+        textViewProblems.setText(ViewUtil.getHtmlString(R.string.login_problems_linked));
+        textViewProblems.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ContactScreen contactScreen = new ContactScreen();
+                NavigationManager.getInstance().open(contactScreen);
+            }
+        });
+        textViewProblems.setVisibility(View.VISIBLE);
+    }
+
+    public void hideError(){
+        textViewError.setVisibility(View.INVISIBLE);
+        textViewError.setText("");
+    }
+
+    public boolean isErrorShowing(){
+        return textViewError.getVisibility()==View.VISIBLE;
+    }
+
+}

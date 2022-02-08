@@ -1,9 +1,9 @@
-package com.healthymedium.sample;
+package com.wustl.sample;
 
-import com.healthymedium.arc.core.Config;
-import com.healthymedium.arc.study.Study;
+import com.wustl.arc.core.Config;
+import com.wustl.arc.study.Study;
 
-public class Application extends  com.healthymedium.arc.core.Application{
+public class Application extends  com.wustl.arc.core.Application{
 
     @Override
     public void onCreate() {

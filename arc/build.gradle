@@ -17,7 +17,7 @@ def getVersionName = { ->
 }
 
 def getArtificatId = { ->
-    return "arc-assessments" // Replace with library name ID
+    return "core-library" // Replace with library name ID
 }
 
 android {
@@ -71,7 +71,7 @@ dependencies {
 publishing {
     publications {
         release(MavenPublication) {
-            groupId 'com.healthymedium.arc.library' // Replace with group ID
+            groupId 'edu.wustl.arc.assessments' // Replace with group ID
             artifactId getArtificatId()
             version getVersionName()
             artifact("$buildDir/outputs/aar/arc-release.aar")

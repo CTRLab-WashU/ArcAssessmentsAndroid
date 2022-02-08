@@ -60,7 +60,7 @@
                 tools:text="Keep in mind that it might take a few minutes to receive your security code."
                 />
 
-            <com.healthymedium.arc.ui.Button
+            <edu.wustl.arc.ui.Button
                 android:id="@+id/newCodeButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

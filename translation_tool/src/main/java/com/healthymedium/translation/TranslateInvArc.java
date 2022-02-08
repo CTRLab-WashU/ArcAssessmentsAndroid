@@ -1,9 +1,9 @@
-package com.healthymedium.translation;
+package com.wustl.translation;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.internal.LinkedTreeMap;
-import com.healthymedium.translation.common.LocaleResource;
+import com.wustl.translation.common.LocaleResource;
 import com.opencsv.CSVReader;
 import com.opencsv.ICSVParser;
 

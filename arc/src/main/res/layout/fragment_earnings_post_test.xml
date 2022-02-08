@@ -67,7 +67,7 @@
                         android:textColor="@color/tealSubheader"
                         android:textSize="17dp" />
 
-                    <com.healthymedium.arc.ui.TotalEarningsView
+                    <edu.wustl.arc.ui.TotalEarningsView
                         android:id="@+id/weeklyTotal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -93,7 +93,7 @@
                         android:textColor="@color/tealSubheader"
                         android:textSize="17dp" />
 
-                    <com.healthymedium.arc.ui.TotalEarningsView
+                    <edu.wustl.arc.ui.TotalEarningsView
                         android:id="@+id/studyTotal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -169,7 +169,7 @@
         android:orientation="vertical"
         android:layout_gravity="bottom">
 
-        <com.healthymedium.arc.ui.base.RoundedLinearLayout
+        <edu.wustl.arc.ui.base.RoundedLinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
             app:gradient="linearVertical"
@@ -183,7 +183,7 @@
 
     </LinearLayout>
 
-    <com.healthymedium.arc.ui.Button
+    <edu.wustl.arc.ui.Button
         android:id="@+id/buttonNext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

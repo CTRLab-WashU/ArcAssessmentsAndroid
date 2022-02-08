@@ -87,7 +87,7 @@
                     android:textColor="@color/secondary"
                     android:textSize="17dp" />
 
-                <com.healthymedium.arc.ui.base.RoundedFrameLayout
+                <edu.wustl.arc.ui.base.RoundedFrameLayout
                     android:id="@+id/dayStatusBadge"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -107,7 +107,7 @@
                         android:textColor="@color/secondaryDark"
                         android:textSize="16dp" />
 
-                </com.healthymedium.arc.ui.base.RoundedFrameLayout>
+                </edu.wustl.arc.ui.base.RoundedFrameLayout>
 
             </LinearLayout>
 
@@ -155,7 +155,7 @@
                 android:textColor="@color/secondaryDark"
                 android:textSize="21dp" />
 
-            <com.healthymedium.arc.ui.WeekProgressView
+            <edu.wustl.arc.ui.WeekProgressView
                 android:id="@+id/weekProgressView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -163,7 +163,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="32dp">
 
-            </com.healthymedium.arc.ui.WeekProgressView>
+            </edu.wustl.arc.ui.WeekProgressView>
 
             <TextView
                 android:id="@+id/startDate"
@@ -279,7 +279,7 @@
                     android:text="@string/footnote_symbol"
                     android:textColor="@color/yellow" />
 
-                <com.healthymedium.arc.ui.base.RoundedFrameLayout
+                <edu.wustl.arc.ui.base.RoundedFrameLayout
                     android:id="@+id/studyStatusBadge"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
@@ -299,11 +299,11 @@
                         android:textColor="@color/secondaryDark"
                         android:textSize="16dp" />
 
-                </com.healthymedium.arc.ui.base.RoundedFrameLayout>
+                </edu.wustl.arc.ui.base.RoundedFrameLayout>
 
             </LinearLayout>
 
-            <com.healthymedium.arc.ui.StudyProgressView
+            <edu.wustl.arc.ui.StudyProgressView
                 android:id="@+id/studyProgressView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -312,7 +312,7 @@
                 android:layout_marginRight="32dp"
                 android:layout_marginBottom="16dp">
 
-            </com.healthymedium.arc.ui.StudyProgressView>
+            </edu.wustl.arc.ui.StudyProgressView>
 
             <TextView
                 android:id="@+id/joinedDate"
@@ -423,7 +423,7 @@
                 android:visibility="gone"/>
 
 
-            <com.healthymedium.arc.ui.base.RoundedFrameLayout
+            <edu.wustl.arc.ui.base.RoundedFrameLayout
                 android:id="@+id/nextCycleBadge"
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
@@ -444,9 +444,9 @@
                     android:textColor="@color/secondaryDark"
                     android:textSize="16dp" />
 
-            </com.healthymedium.arc.ui.base.RoundedFrameLayout>
+            </edu.wustl.arc.ui.base.RoundedFrameLayout>
 
-            <com.healthymedium.arc.ui.Button
+            <edu.wustl.arc.ui.Button
                 android:id="@+id/viewFaqButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -456,7 +456,7 @@
                 android:text="@string/button_viewfaq"
                 app:buttonTheme="light">
 
-            </com.healthymedium.arc.ui.Button>
+            </edu.wustl.arc.ui.Button>
 
             <RelativeLayout
                 android:layout_width="match_parent"

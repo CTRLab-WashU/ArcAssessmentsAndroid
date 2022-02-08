@@ -1,0 +1,107 @@
+/*
+  Copyright (c) 2022 Washington University in St. Louis
+
+  Washington University in St. Louis hereby grants to you a non-transferable,
+  non-exclusive, royalty-free license to use and copy the computer code
+  provided here (the "Software").  You agree to include this license and the
+  above copyright notice in all copies of the Software.  The Software may not
+  be distributed, shared, or transferred to any third party.  This license does
+  not grant any rights or licenses to any other patents, copyrights, or other
+  forms of intellectual property owned or controlled by
+  Washington University in St. Louis.
+
+  YOU AGREE THAT THE SOFTWARE PROVIDED HEREUNDER IS EXPERIMENTAL AND IS PROVIDED
+  "AS IS", WITHOUT ANY WARRANTY OF ANY KIND, EXPRESSED OR IMPLIED, INCLUDING
+  WITHOUT LIMITATION WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY PARTICULAR
+  PURPOSE, OR NON-INFRINGEMENT OF ANY THIRD-PARTY PATENT, COPYRIGHT, OR ANY OTHER
+  THIRD-PARTY RIGHT.  IN NO EVENT SHALL THE CREATORS OF THE SOFTWARE OR WASHINGTON
+  UNIVERSITY IN ST LOUIS BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL, OR
+  CONSEQUENTIAL DAMAGES ARISING OUT OF OR IN ANY WAY CONNECTED WITH THE SOFTWARE,
+  THE USE OF THE SOFTWARE, OR THIS AGREEMENT, WHETHER IN BREACH OF CONTRACT, TORT
+  OR OTHERWISE, EVEN IF SUCH PARTY IS ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+*/
+package edu.wustl.arc.notifications;
+
+import android.app.job.JobInfo;
+import android.app.job.JobParameters;
+import android.app.job.JobScheduler;
+import android.app.job.JobService;
+import android.content.ComponentName;
+import android.content.Context;
+import android.os.Build;
+
+import edu.wustl.arc.study.TestCycle;
+import android.util.Log;
+
+import edu.wustl.arc.study.Study;
+
+public class ProctorWatchdogJob extends JobService {
+
+    private static final String tag = "ProctorWatchdogJob";
+    private static final int jobId = 237;
+
+    JobParameters params;
+
+    @Override
+    public boolean onStartJob(JobParameters jobParameters) {
+        this.params = jobParameters;
+        Log.i(tag, "onStartJob");
+
+        TestCycle cycle = Study.getCurrentTestCycle();
+        if (cycle == null) {
+            stop(getApplicationContext());
+            return false;
+        }
+        if (cycle.getActualStartDate().isAfterNow() || cycle.getActualEndDate().isBeforeNow()) {
+            stop(getApplicationContext());
+            return false;
+        }
+
+        Proctor.startService(getApplicationContext());
+        return false;
+    }
+
+    @Override
+    public boolean onStopJob(JobParameters params) {
+        Log.i(tag, "onStopJob");
+        return false;
+    }
+
+    public static void start(Context context) {
+
+        long fifteenMinutes = 15*60*1000;
+        ComponentName serviceComponent = new ComponentName(context, ProctorWatchdogJob.class);
+        JobInfo.Builder builder = new JobInfo.Builder(jobId, serviceComponent);
+        builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
+        builder.setPeriodic(fifteenMinutes);    // fifteen minutes
+        builder.setRequiresDeviceIdle(false);   // device should be idle
+        builder.setRequiresCharging(false);     // we don't care if the device is charging or not
+        builder.setPersisted(true);             // set persistant across reboots
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            builder.setRequiresBatteryNotLow(false);
+            builder.setRequiresStorageNotLow(false);
+        }
+
+        JobScheduler jobScheduler = (JobScheduler)context.getSystemService(context.JOB_SCHEDULER_SERVICE);
+        jobScheduler.schedule(builder.build());
+    }
+
+    public static boolean isScheduled(Context context) {
+        JobScheduler jobScheduler = (JobScheduler)context.getSystemService(context.JOB_SCHEDULER_SERVICE);
+        boolean scheduled = false;
+        for (JobInfo jobInfo : jobScheduler.getAllPendingJobs()) {
+            if (jobInfo.getId() == jobId) {
+                scheduled = true;
+                break;
+            }
+        }
+        return scheduled;
+    }
+
+    public static void stop(Context context) {
+        JobScheduler jobScheduler = (JobScheduler)context.getSystemService(context.JOB_SCHEDULER_SERVICE);
+        jobScheduler.cancel(jobId);
+    }
+
+}

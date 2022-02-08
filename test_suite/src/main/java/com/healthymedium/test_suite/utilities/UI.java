@@ -1,4 +1,4 @@
-package com.healthymedium.test_suite.utilities;
+package com.wustl.test_suite.utilities;
 
 import androidx.annotation.IdRes;
 import androidx.test.espresso.UiController;
@@ -9,13 +9,13 @@ import androidx.test.espresso.matcher.ViewMatchers;
 
 import android.widget.TimePicker;
 
-import com.healthymedium.arc.hints.HintPointer;
+import com.wustl.arc.hints.HintPointer;
 
 import org.hamcrest.Matchers;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
-import static com.healthymedium.test_suite.utilities.Matchers.nthChildOf;
+import static com.wustl.test_suite.utilities.Matchers.nthChildOf;
 
 public class UI {
 

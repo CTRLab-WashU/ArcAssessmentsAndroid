@@ -1,19 +1,19 @@
-package com.healthymedium.test_suite.behaviors.tutorials;
+package com.wustl.test_suite.behaviors.tutorials;
 
 import androidx.test.espresso.action.ViewActions;
 
-import com.healthymedium.arc.core.BaseFragment;
-import com.healthymedium.arc.library.R;
-import com.healthymedium.test_suite.behaviors.Behavior;
-import com.healthymedium.test_suite.utilities.Capture;
-import com.healthymedium.test_suite.utilities.UI;
+import com.wustl.arc.core.BaseFragment;
+import edu.wustl.arc.assessments.R;
+import com.wustl.test_suite.behaviors.Behavior;
+import com.wustl.test_suite.utilities.Capture;
+import com.wustl.test_suite.utilities.UI;
 
 
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static com.healthymedium.test_suite.utilities.Matchers.nthChildOf;
+import static com.wustl.test_suite.utilities.Matchers.nthChildOf;
 
 public class Grid2TutorialSkipMechanicBehavior extends Behavior {
 

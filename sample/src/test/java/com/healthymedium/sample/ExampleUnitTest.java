@@ -1,4 +1,4 @@
-package com.healthymedium.sample;
+package com.wustl.sample;
 
 import org.junit.Test;
 

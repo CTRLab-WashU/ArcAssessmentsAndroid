@@ -482,7 +482,7 @@
 
     </ScrollView>
 
-    <com.healthymedium.arc.ui.Button
+    <edu.wustl.arc.ui.Button
         android:id="@+id/buttonNext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

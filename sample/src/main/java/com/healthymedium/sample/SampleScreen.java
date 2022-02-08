@@ -1,4 +1,4 @@
-package com.healthymedium.sample;
+package com.wustl.sample;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.healthymedium.arc.core.BaseFragment;
-import com.healthymedium.arc.library.BuildConfig;
+import com.wustl.arc.core.BaseFragment;
+import edu.wustl.arc.assessments.BuildConfig;
 
 public class SampleScreen extends BaseFragment {
 

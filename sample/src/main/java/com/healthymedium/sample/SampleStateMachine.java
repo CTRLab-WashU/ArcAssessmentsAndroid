@@ -1,6 +1,6 @@
-package com.healthymedium.sample;
+package com.wustl.sample;
 
-import com.healthymedium.arc.study.StateMachine;
+import com.wustl.arc.study.StateMachine;
 
 public class SampleStateMachine extends StateMachine {
 

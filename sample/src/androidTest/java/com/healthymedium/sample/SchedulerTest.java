@@ -1,13 +1,13 @@
-package com.healthymedium.sample;
+package com.wustl.sample;
 
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.healthymedium.arc.study.CircadianClock;
-import com.healthymedium.arc.study.CircadianRhythm;
-import com.healthymedium.arc.study.Participant;
-import com.healthymedium.arc.study.Scheduler;
-import com.healthymedium.arc.study.Visit;
+import com.wustl.arc.study.CircadianClock;
+import com.wustl.arc.study.CircadianRhythm;
+import com.wustl.arc.study.Participant;
+import com.wustl.arc.study.Scheduler;
+import com.wustl.arc.study.Visit;
 
 import net.danlew.android.joda.JodaTimeAndroid;
 

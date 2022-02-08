@@ -1,4 +1,4 @@
-package com.healthymedium.translation.common;
+package com.wustl.translation.common;
 
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.util.Key;

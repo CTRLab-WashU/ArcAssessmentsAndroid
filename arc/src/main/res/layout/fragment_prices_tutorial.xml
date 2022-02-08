@@ -21,7 +21,7 @@
             android:background="@color/transparent"
             android:foreground="@color/transparent"/>
 
-        <com.healthymedium.arc.ui.base.RoundedRelativeLayout
+        <edu.wustl.arc.ui.base.RoundedRelativeLayout
             android:id="@+id/priceContainer"
             android:layout_width="match_parent"
             android:layout_height="300dp"
@@ -74,21 +74,21 @@
                 android:text="@string/prices_isthisgood"
                 android:textSize="26dp" />
 
-            <com.healthymedium.arc.ui.RadioButton
+            <edu.wustl.arc.ui.RadioButton
                 android:id="@+id/radioButtonNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/radioButtonYes"
                 android:layout_alignParentStart="true" />
 
-            <com.healthymedium.arc.ui.RadioButton
+            <edu.wustl.arc.ui.RadioButton
                 android:id="@+id/radioButtonYes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/textView12" />
 
-        </com.healthymedium.arc.ui.base.RoundedRelativeLayout>
+        </edu.wustl.arc.ui.base.RoundedRelativeLayout>
 
         <FrameLayout
             android:id="@+id/frameHide"
@@ -126,7 +126,7 @@
             android:visibility="gone"
             />
 
-        <com.healthymedium.arc.ui.Button
+        <edu.wustl.arc.ui.Button
             android:id="@+id/endButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -168,7 +168,7 @@
                 android:layout_marginRight="8dp"
                 android:background="@drawable/ic_x_to_close" />
 
-            <com.healthymedium.arc.ui.TutorialProgressView
+            <edu.wustl.arc.ui.TutorialProgressView
                 android:id="@+id/progressView"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"

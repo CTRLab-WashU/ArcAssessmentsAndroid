@@ -1,13 +1,13 @@
-package com.healthymedium.test_suite.behaviors.questions;
+package com.wustl.test_suite.behaviors.questions;
 
 import androidx.test.espresso.ViewAction;
 
-import com.healthymedium.test_suite.behaviors.Behavior;
-import com.healthymedium.test_suite.utilities.Capture;
-import com.healthymedium.test_suite.utilities.UI;
-import com.healthymedium.test_suite.utilities.ViewActions;
-import com.healthymedium.arc.core.BaseFragment;
-import com.healthymedium.arc.library.R;
+import com.wustl.test_suite.behaviors.Behavior;
+import com.wustl.test_suite.utilities.Capture;
+import com.wustl.test_suite.utilities.UI;
+import com.wustl.test_suite.utilities.ViewActions;
+import com.wustl.arc.core.BaseFragment;
+import edu.wustl.arc.assessments.R;
 
 import static androidx.test.espresso.action.ViewActions.click;
 

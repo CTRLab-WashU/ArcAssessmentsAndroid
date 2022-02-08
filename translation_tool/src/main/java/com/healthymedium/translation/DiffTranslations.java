@@ -1,4 +1,4 @@
-package com.healthymedium.translation;
+package com.wustl.translation;
 
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;

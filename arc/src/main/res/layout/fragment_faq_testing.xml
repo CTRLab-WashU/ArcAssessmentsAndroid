@@ -77,7 +77,7 @@
                 android:background="@color/secondary"
                 android:orientation="vertical">
 
-                <com.healthymedium.arc.ui.FaqListItem
+                <edu.wustl.arc.ui.FaqListItem
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:question="@string/faq_testing_q1"
@@ -85,63 +85,63 @@
                     app:enableBorderTop="true"
                     app:enableBorderBottom="true"/>
 
-                <com.healthymedium.arc.ui.FaqListItem
+                <edu.wustl.arc.ui.FaqListItem
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:question="@string/faq_testing_q2"
                 app:answer="@string/faq_testing_a2"
                 app:enableBorderBottom="true"/>
 
-                <com.healthymedium.arc.ui.FaqListItem
+                <edu.wustl.arc.ui.FaqListItem
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:question="@string/faq_testing_q3"
                     app:answer="@string/faq_testing_a3"
                     app:enableBorderBottom="true"/>
 
-                <com.healthymedium.arc.ui.FaqListItem
+                <edu.wustl.arc.ui.FaqListItem
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:question="@string/faq_testing_q4"
                     app:answer="@string/faq_testing_a4"
                     app:enableBorderBottom="true"/>
 
-                <com.healthymedium.arc.ui.FaqListItem
+                <edu.wustl.arc.ui.FaqListItem
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:question="@string/faq_testing_q5"
                     app:answer="@string/faq_testing_a5"
                     app:enableBorderBottom="true"/>
 
-                <com.healthymedium.arc.ui.FaqListItem
+                <edu.wustl.arc.ui.FaqListItem
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:question="@string/faq_testing_q6"
                     app:answer="@string/faq_testing_a6"
                     app:enableBorderBottom="true"/>
 
-                <com.healthymedium.arc.ui.FaqListItem
+                <edu.wustl.arc.ui.FaqListItem
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:question="@string/faq_testing_q7"
                     app:answer="@string/faq_testing_a7"
                     app:enableBorderBottom="true"/>
 
-                <com.healthymedium.arc.ui.FaqListItem
+                <edu.wustl.arc.ui.FaqListItem
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:question="@string/faq_testing_q8"
                     app:answer="@string/faq_testing_a8"
                     app:enableBorderBottom="true"/>
 
-                <com.healthymedium.arc.ui.FaqListItem
+                <edu.wustl.arc.ui.FaqListItem
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:question="@string/faq_testing_q9"
                     app:answer="@string/faq_testing_a9"
                     app:enableBorderBottom="true"/>
 
-                <com.healthymedium.arc.ui.FaqListItem
+                <edu.wustl.arc.ui.FaqListItem
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:question="@string/faq_testing_q10"

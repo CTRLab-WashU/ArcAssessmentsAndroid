@@ -50,7 +50,7 @@
                 android:text="@string/availability_changetime"
                 />
 
-            <com.healthymedium.arc.ui.Button
+            <edu.wustl.arc.ui.Button
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
                 android:text="@string/availability_changedates"
                 />
 
-            <com.healthymedium.arc.ui.Button
+            <edu.wustl.arc.ui.Button
                 android:id="@+id/changeDateButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

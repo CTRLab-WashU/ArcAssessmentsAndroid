@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/grey">
 
-    <com.healthymedium.arc.ui.base.RoundedLinearLayout
+    <edu.wustl.arc.ui.base.RoundedLinearLayout
         android:id="@+id/fragmentPriceTestCompare"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,6 +51,6 @@
             android:textAllCaps="false"
             android:textSize="35dp" />
 
-    </com.healthymedium.arc.ui.base.RoundedLinearLayout>
+    </edu.wustl.arc.ui.base.RoundedLinearLayout>
 
 </RelativeLayout>

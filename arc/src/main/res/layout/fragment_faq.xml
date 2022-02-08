@@ -68,7 +68,7 @@
                 android:background="@color/secondary"
                 android:orientation="vertical">
 
-                <com.healthymedium.arc.ui.FaqListItem
+                <edu.wustl.arc.ui.FaqListItem
                     android:id="@+id/testing"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -76,14 +76,14 @@
                     app:enableBorderTop="true"
                     app:enableBorderBottom="true"/>
 
-                <com.healthymedium.arc.ui.FaqListItem
+                <edu.wustl.arc.ui.FaqListItem
                     android:id="@+id/earnings"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:question="@string/faq_earnings"
                     app:enableBorderBottom="true"/>
 
-                <com.healthymedium.arc.ui.FaqListItem
+                <edu.wustl.arc.ui.FaqListItem
                     android:id="@+id/technology"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
