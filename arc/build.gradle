@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 
 def versionMajor = 3 // max=2000 // bump to mark substantial changes
 def versionMinor = 1 // max=99   // bump for small changes (features, changes in intended behavior, etc)
@@ -7,16 +8,28 @@ def versionBuild = 2 // max=99   // bump for qa builds
 
 def flavor = getGradle().getStartParameter().getTaskRequests().toString().toLowerCase()
 
+def githubProperties = new Properties()
+//Set env variable GPR_USER & GPR_API_KEY if not adding a properties file
+githubProperties.load(new FileInputStream(rootProject.file("github.properties")))
+
+def getVersionName = { ->
+    return "1.0.0"
+}
+
+def getArtificatId = { ->
+    return "arc-assessments" // Replace with library name ID
+}
+
 android {
 
-    compileSdkVersion 30
+    compileSdkVersion 31
     flavorDimensions "default"
 
     defaultConfig {
         minSdkVersion 23
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode versionMajor * 1000000 + versionMinor * 10000 + versionPatch * 100 + versionBuild
-        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+        versionName "${getVersionName}"
         buildConfigField "int", "ARC_VERSION_CODE", versionCode+""
         buildConfigField "String", "ARC_VERSION_NAME", "\""+versionName+"\""
         testInstrumentationRunner "android.support.session.runner.AndroidJUnitRunner"
@@ -30,6 +43,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    lintOptions {
+        abortOnError false
     }
 }
 
@@ -49,5 +66,35 @@ dependencies {
     api 'androidx.legacy:legacy-support-v4:1.0.0'
     api 'androidx.mediarouter:mediarouter:1.1.0'
     api 'com.google.android.material:material:1.3.0'
-
 }
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId 'com.healthymedium.arc.library' // Replace with group ID
+            artifactId getArtificatId()
+            version getVersionName()
+            artifact("$buildDir/outputs/aar/arc-release.aar")
+        }
+    }
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            /** Configure path of your package repository on Github
+             ** Replace GITHUB_USERID with your/organisation Github userID
+             ** and REPOSITORY with the repository name on GitHub
+             */
+            url = uri("https://maven.pkg.github.com/CTRLab-WashU/ArcAssessmentsAndroid")
+            credentials {
+                /** Create github.properties in root project folder file with
+                 ** gpr.usr=GITHUB_USER_ID & gpr.key=PERSONAL_ACCESS_TOKEN
+                 ** Set env variable GPR_USER & GPR_API_KEY if not adding a properties file**/
+
+                username = githubProperties['gpr.usr'] ?: System.getenv("GPR_USER")
+                password = githubProperties['gpr.key'] ?: System.getenv("GPR_TOKEN")
+            }
+        }
+    }
+}
+
