@@ -8,6 +8,7 @@ on:
   push:
     branches:
       - main
+      - DIAN-237	  
       - DIAN-238	  
       - release/*
 
