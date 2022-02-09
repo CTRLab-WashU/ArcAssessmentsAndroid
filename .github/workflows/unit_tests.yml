@@ -7,9 +7,7 @@ on:
   push:
     branches:
       - main
-	  - release/*
-    tags:
-      - 'v*'
+      - release/*
 
 jobs:
   build:
