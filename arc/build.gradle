@@ -1,15 +1,15 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
-def versionMajor = 3 // max=2000 // bump to mark substantial changes
-def versionMinor = 1 // max=99   // bump for small changes (features, changes in intended behavior, etc)
-def versionPatch = 6 // max=99   // bump for fixes (crashes, unintended behavior, etc)
-def versionBuild = 2 // max=99   // bump for qa builds
+def versionMajor = 0 // max=2000 // bump to mark substantial changes
+def versionMinor = 0 // max=99   // bump for small changes (features, changes in intended behavior, etc)
+def versionPatch = 0 // max=99   // bump for fixes (crashes, unintended behavior, etc)
+def versionBuild = 1 // max=99   // bump for qa builds
 
 def flavor = getGradle().getStartParameter().getTaskRequests().toString().toLowerCase()
 
 def getVersionName = { ->
-    return "1.0.0"
+    return "0.0.1"
 }
 
 def getArtificatId = { ->
