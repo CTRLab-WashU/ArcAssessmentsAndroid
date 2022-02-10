@@ -101,7 +101,7 @@ public class MainActivity extends ArcAssessmentActivity
             SampleAppStateMachine sampleAppStateMachine = (SampleAppStateMachine) stateMachine;
             sampleAppStateMachine.listener = null;
         }
-        recyclerView.setVisibility(View.INVISIBLE);
+        recyclerView.setVisibility(View.VISIBLE);
         contentFrame.setVisibility(View.GONE);
     }
 
