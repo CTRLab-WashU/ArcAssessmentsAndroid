@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="arc/src/main/res/layout/custom_signature.xml" value="0.1634963768115942" />
         <entry key="arc/src/main/res/layout/fragment_3rd_party_materials.xml" value="0.16893115942028986" />
         <entry key="arc/src/main/res/layout/fragment_help.xml" value="0.16893115942028986" />
         <entry key="arc/src/main/res/layout/fragment_landing.xml" value="0.16893115942028986" />

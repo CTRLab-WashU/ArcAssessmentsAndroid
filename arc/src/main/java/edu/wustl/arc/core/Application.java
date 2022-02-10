@@ -36,6 +36,9 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import androidx.annotation.Nullable;
+import edu.wustl.arc.font.FontFactory;
+import edu.wustl.arc.font.Fonts;
+import edu.wustl.arc.hints.Hints;
 import edu.wustl.arc.study.Study;
 import edu.wustl.arc.utilities.CacheManager;
 import edu.wustl.arc.utilities.PreferencesManager;
@@ -109,6 +112,20 @@ public class Application implements LifecycleObserver {
 
         instance.initializeStudy(appContext, provider);
         Study.getInstance().load();
+
+        Application.getInstance().updateLocale(appContext);
+
+        if(FontFactory.getInstance()==null) {
+            FontFactory.initialize(appContext);
+        }
+
+        if(!Fonts.areLoaded()) {
+            Fonts.load();
+            FontFactory.getInstance().setDefaultFont(Fonts.roboto);
+            FontFactory.getInstance().setDefaultBoldFont(Fonts.robotoBold);
+        }
+
+        Hints.load();
     }
 
     /**

@@ -194,6 +194,13 @@ public class Study{
         return participant.getCurrentTestSession();
     }
 
+    /**
+     * @param session will be set as the current session for all intents and purposes
+     */
+    public static void setMostRecentTestSession(TestSession session) {
+        participant.setMostRecentTestSession(session);
+    }
+
     public static TestDay getCurrentTestDay() {
         return participant.getCurrentTestDay();
     }

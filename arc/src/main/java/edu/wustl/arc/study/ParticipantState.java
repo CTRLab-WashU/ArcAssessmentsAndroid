@@ -38,6 +38,8 @@ public class ParticipantState {
     public int currentTestCycle;
     public int currentTestDay;
 
+    public TestSession mostRecentTestSession;
+
     public CircadianClock circadianClock;
     public boolean hasValidSchedule;
     public boolean isStudyRunning;
@@ -53,6 +55,7 @@ public class ParticipantState {
         lastPauseTime = new DateTime();
         testCycles = new ArrayList<>();
         hasCommittedToStudy = -1;
+        mostRecentTestSession = new TestSession(0, 0, 0);
     }
 
 }

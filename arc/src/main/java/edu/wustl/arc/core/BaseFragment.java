@@ -74,8 +74,8 @@ public class BaseFragment extends Fragment {
         return tag;
     }
 
-    public MainActivity getMainActivity(){
-        return (MainActivity)getActivity();
+    public ArcAssessmentActivity getMainActivity(){
+        return (ArcAssessmentActivity)getActivity();
     }
 
     // convenience methods for manipulating the keyboard -------------------------------------------

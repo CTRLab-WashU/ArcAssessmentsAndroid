@@ -175,7 +175,15 @@ public class Participant {
         return cycle.getTestDay(state.currentTestDay);
     }
 
-    public TestSession getCurrentTestSession(){
+    public void setMostRecentTestSession(TestSession session) {
+        state.mostRecentTestSession = session;
+        save();
+    }
+
+    public TestSession getCurrentTestSession() {
+        if (state.mostRecentTestSession != null) {
+            return state.mostRecentTestSession;
+        }
         TestDay day = getCurrentTestDay();
         if(day==null){
             return null;

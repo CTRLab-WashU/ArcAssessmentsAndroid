@@ -26,11 +26,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.LayoutRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import edu.wustl.arc.navigation.NavigationManager;
 import edu.wustl.arc.paths.questions.QuestionLanguagePreference;
-import edu.wustl.arc.study.AbandonmentJobService;
 import edu.wustl.arc.study.Study;
 import edu.wustl.arc.utilities.KeyboardWatcher;
 import edu.wustl.arc.utilities.Phrase;
@@ -46,7 +47,7 @@ import edu.wustl.arc.assessments.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class ArcAssessmentActivity extends AppCompatActivity {
 
     boolean paused = false;
     boolean backAllowed = false;
@@ -82,10 +83,23 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         parseIntent(intent);
 
-        setContentView(R.layout.core_activity_main);
+        setContentView(getLayoutId());
         contentView = findViewById(R.id.content_frame);
 
         setup();
+    }
+
+    @LayoutRes
+    public int getLayoutId() {
+        return R.layout.core_activity_main;
+    }
+
+    public boolean showLocalQuestion() {
+        return false;
+    }
+
+    public boolean showSplashScreen() {
+        return false;
     }
 
     @Override
@@ -113,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void setup(){
         NavigationManager.initialize(getSupportFragmentManager());
+        setupKeyboardWatcher();
 
         if(PreferencesManager.getInstance().getBoolean(Application.TAG_RESTART,false)){
             PreferencesManager.getInstance().putBoolean(Application.TAG_RESTART,false);
@@ -132,8 +147,16 @@ public class MainActivity extends AppCompatActivity {
                     }).show();
         }
 
+        if (!showSplashScreen()) {
+            return;
+        }
+
         if(PreferencesManager.getInstance().contains(Locale.TAG_LANGUAGE) || !Config.CHOOSE_LOCALE) {
             Study.getStateMachine().showSplashScreen();
+            return;
+        }
+
+        if (!showLocalQuestion()) {
             return;
         }
 
@@ -168,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
         backInStudy = inStudy;
     }
 
-    public void enableBackPress(boolean enable, boolean inStudy){
+    public void enableBackPress(boolean enable, boolean inStudy) {
         Log.i("MainActivity","enableBackPress(enable="+enable+", inStudy="+inStudy+")");
         backInStudySkips = 0;
         backAllowed = enable;
@@ -200,13 +223,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.i("MainActivity","onResume");
-        if(Study.isValid()){
-            AbandonmentJobService.unscheduleSelf(getApplicationContext());
-            //if we were paused, then we need to call the resume handler.
-            if(paused) {
-                Study.getParticipant().markResumed();
-            }
-        }
         paused = false;
     }
 
@@ -218,9 +234,6 @@ public class MainActivity extends AppCompatActivity {
         if(Study.isValid()){
             Study.getParticipant().markPaused();
             Study.getStateMachine().save(true);
-            if(Study.getParticipant().isCurrentlyInTestSession()) {
-                AbandonmentJobService.scheduleSelf(getApplicationContext());
-            }
         }
     }
 
@@ -237,6 +250,4 @@ public class MainActivity extends AppCompatActivity {
     public View getContentView(){
         return contentView;
     }
-
-
 }

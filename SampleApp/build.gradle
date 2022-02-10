@@ -1,6 +1,16 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
+        maven {
+            url = uri("https://maven.pkg.github.com/CTRLab-WashU/ArcAssessmentsAndroid")
+            credentials {
+                /** Add to gradle.properties in root project folder file with
+                 ** gpr.usr=GITHUB_USER_ID & gpr.key=PERSONAL_ACCESS_TOKEN
+                 ** Set env variable GPR_USER & GPR_API_KEY if not adding a properties file**/
+                username = project.findProperty('gpr.usr') ?: System.getenv("GPR_USER")
+                password = project.findProperty('gpr.key') ?: System.getenv("GPR_TOKEN")
+            }
+        }
         google()
         mavenCentral()
     }

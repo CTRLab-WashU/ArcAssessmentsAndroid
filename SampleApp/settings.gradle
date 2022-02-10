@@ -4,7 +4,17 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon
+        maven {
+            url = uri("https://maven.pkg.github.com/CTRLab-WashU/ArcAssessmentsAndroid")
+            credentials {
+                /** Add to gradle.properties in root project folder file with
+                 ** gpr.usr=GITHUB_USER_ID & gpr.key=PERSONAL_ACCESS_TOKEN
+                 ** Set env variable GPR_USER & GPR_API_KEY if not adding a properties file**/
+                username = System.getenv("GPR_USER")
+                password = System.getenv("GPR_TOKEN")
+            }
+        }
     }
 }
-rootProject.name = "SampleApp"
-include ':app'
+include ':app', ':arc'
+project(':arc').projectDir = new File('../arc')

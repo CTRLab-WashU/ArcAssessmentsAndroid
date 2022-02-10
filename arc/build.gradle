@@ -8,10 +8,6 @@ def versionBuild = 2 // max=99   // bump for qa builds
 
 def flavor = getGradle().getStartParameter().getTaskRequests().toString().toLowerCase()
 
-def githubProperties = new Properties()
-//Set env variable GPR_USER & GPR_API_KEY if not adding a properties file
-githubProperties.load(new FileInputStream(rootProject.file("github.properties")))
-
 def getVersionName = { ->
     return "1.0.0"
 }
@@ -91,8 +87,8 @@ publishing {
                  ** gpr.usr=GITHUB_USER_ID & gpr.key=PERSONAL_ACCESS_TOKEN
                  ** Set env variable GPR_USER & GPR_API_KEY if not adding a properties file**/
 
-                username = githubProperties['gpr.usr'] ?: System.getenv("GPR_USER")
-                password = githubProperties['gpr.key'] ?: System.getenv("GPR_TOKEN")
+                username = project.findProperty('gpr.usr') ?: System.getenv("GPR_USER")
+                password = project.findProperty('gpr.key') ?: System.getenv("GPR_TOKEN")
             }
         }
     }
