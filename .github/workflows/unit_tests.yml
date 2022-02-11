@@ -4,12 +4,13 @@ on:
   pull_request:
     branches:
       - main
+      - release/*	  
   push:
     branches:
       - main
-	  - release/*
-    tags:
-      - 'v*'
+      - DIAN-237	  
+      - DIAN-238	  
+      - release/*
 
 jobs:
   build:

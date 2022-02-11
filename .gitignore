@@ -35,6 +35,7 @@ out/
 # Gradle files
 .gradle/
 build/
+github.properties
 
 # Local configuration file (sdk path, etc)
 local.properties

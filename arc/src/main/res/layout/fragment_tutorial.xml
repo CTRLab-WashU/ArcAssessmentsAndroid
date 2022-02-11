@@ -39,7 +39,7 @@
             android:textSize="26dp"
             android:visibility="gone" />
 
-        <com.healthymedium.arc.ui.Button
+        <edu.wustl.arc.ui.Button
             android:id="@+id/endButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
                 android:layout_marginRight="8dp"
                 android:background="@drawable/ic_x_to_close" />
 
-            <com.healthymedium.arc.ui.TutorialProgressView
+            <edu.wustl.arc.ui.TutorialProgressView
                 android:id="@+id/progressView"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"

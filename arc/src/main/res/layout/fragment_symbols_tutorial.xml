@@ -34,7 +34,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp">
 
-                <com.healthymedium.arc.ui.SymbolView
+                <edu.wustl.arc.ui.SymbolView
                     android:id="@+id/symbolbutton_top1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
                     android:layout_alignTop="@+id/symbolbutton_top2"
                     android:layout_weight="1"/>
 
-                <com.healthymedium.arc.ui.SymbolView
+                <edu.wustl.arc.ui.SymbolView
                     android:id="@+id/symbolbutton_top2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
                     android:layout_marginRight="16dp"
                     android:layout_weight="1"/>
 
-                <com.healthymedium.arc.ui.SymbolView
+                <edu.wustl.arc.ui.SymbolView
                     android:id="@+id/symbolbutton_top3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
             android:orientation="horizontal"
             android:background="@color/white">
 
-            <com.healthymedium.arc.ui.SymbolButton
+            <edu.wustl.arc.ui.SymbolButton
                 android:id="@+id/symbolbutton_bottom1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
                 android:layout_marginRight="8dp"
                 android:text="" />
 
-            <com.healthymedium.arc.ui.SymbolButton
+            <edu.wustl.arc.ui.SymbolButton
                 android:id="@+id/symbolbutton_bottom2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -152,7 +152,7 @@
             android:visibility="gone"
             />
 
-        <com.healthymedium.arc.ui.Button
+        <edu.wustl.arc.ui.Button
             android:id="@+id/endButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -193,7 +193,7 @@
                 android:layout_marginRight="8dp"
                 android:background="@drawable/ic_x_to_close" />
 
-            <com.healthymedium.arc.ui.TutorialProgressView
+            <edu.wustl.arc.ui.TutorialProgressView
                 android:id="@+id/progressView"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"

@@ -16,175 +16,175 @@
         android:columnCount="5"
         android:rowCount="5">
 
-        <com.healthymedium.arc.ui.Grid2BoxView
+        <edu.wustl.arc.ui.Grid2BoxView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
 
-        <com.healthymedium.arc.ui.Grid2BoxView
+        <edu.wustl.arc.ui.Grid2BoxView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
 
-        <com.healthymedium.arc.ui.Grid2BoxView
+        <edu.wustl.arc.ui.Grid2BoxView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
 
-        <com.healthymedium.arc.ui.Grid2BoxView
+        <edu.wustl.arc.ui.Grid2BoxView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
 
-        <com.healthymedium.arc.ui.Grid2BoxView
+        <edu.wustl.arc.ui.Grid2BoxView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
 
-        <com.healthymedium.arc.ui.Grid2BoxView
+        <edu.wustl.arc.ui.Grid2BoxView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
 
-        <com.healthymedium.arc.ui.Grid2BoxView
+        <edu.wustl.arc.ui.Grid2BoxView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
 
-        <com.healthymedium.arc.ui.Grid2BoxView
+        <edu.wustl.arc.ui.Grid2BoxView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
 
-        <com.healthymedium.arc.ui.Grid2BoxView
+        <edu.wustl.arc.ui.Grid2BoxView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
 
-        <com.healthymedium.arc.ui.Grid2BoxView
+        <edu.wustl.arc.ui.Grid2BoxView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
 
-        <com.healthymedium.arc.ui.Grid2BoxView
+        <edu.wustl.arc.ui.Grid2BoxView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
 
-        <com.healthymedium.arc.ui.Grid2BoxView
+        <edu.wustl.arc.ui.Grid2BoxView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
 
-        <com.healthymedium.arc.ui.Grid2BoxView
+        <edu.wustl.arc.ui.Grid2BoxView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
 
-        <com.healthymedium.arc.ui.Grid2BoxView
+        <edu.wustl.arc.ui.Grid2BoxView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
 
-        <com.healthymedium.arc.ui.Grid2BoxView
+        <edu.wustl.arc.ui.Grid2BoxView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
 
-        <com.healthymedium.arc.ui.Grid2BoxView
+        <edu.wustl.arc.ui.Grid2BoxView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
 
-        <com.healthymedium.arc.ui.Grid2BoxView
+        <edu.wustl.arc.ui.Grid2BoxView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
 
-        <com.healthymedium.arc.ui.Grid2BoxView
+        <edu.wustl.arc.ui.Grid2BoxView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
 
-        <com.healthymedium.arc.ui.Grid2BoxView
+        <edu.wustl.arc.ui.Grid2BoxView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
 
-        <com.healthymedium.arc.ui.Grid2BoxView
+        <edu.wustl.arc.ui.Grid2BoxView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
 
-        <com.healthymedium.arc.ui.Grid2BoxView
+        <edu.wustl.arc.ui.Grid2BoxView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
 
-        <com.healthymedium.arc.ui.Grid2BoxView
+        <edu.wustl.arc.ui.Grid2BoxView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
 
-        <com.healthymedium.arc.ui.Grid2BoxView
+        <edu.wustl.arc.ui.Grid2BoxView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
 
-        <com.healthymedium.arc.ui.Grid2BoxView
+        <edu.wustl.arc.ui.Grid2BoxView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1" />
 
-        <com.healthymedium.arc.ui.Grid2BoxView
+        <edu.wustl.arc.ui.Grid2BoxView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="2dp"

@@ -1,16 +1,16 @@
-package com.healthymedium.test_suite.behaviors.nav;
+package com.wustl.test_suite.behaviors.nav;
 
-import com.healthymedium.arc.core.BaseFragment;
-import com.healthymedium.arc.utilities.ViewUtil;
-import com.healthymedium.arc.library.R;
-import com.healthymedium.test_suite.behaviors.Behavior;
-import com.healthymedium.test_suite.utilities.Capture;
-import com.healthymedium.test_suite.utilities.UI;
+import com.wustl.arc.core.BaseFragment;
+import com.wustl.arc.utilities.ViewUtil;
+import edu.wustl.arc.assessments.R;
+import com.wustl.test_suite.behaviors.Behavior;
+import com.wustl.test_suite.utilities.Capture;
+import com.wustl.test_suite.utilities.UI;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static com.healthymedium.test_suite.utilities.Matchers.nthChildOf;
+import static com.wustl.test_suite.utilities.Matchers.nthChildOf;
 
 
 

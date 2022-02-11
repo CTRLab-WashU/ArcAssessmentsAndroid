@@ -1,4 +1,4 @@
-package com.healthymedium.translation.common;
+package com.wustl.translation.common;
 
 import java.io.File;
 import java.io.FileOutputStream;

@@ -1,6 +1,6 @@
-package com.healthymedium.translation;
+package com.wustl.translation;
 
-import com.healthymedium.translation.common.CopyDoc;
+import com.wustl.translation.common.CopyDoc;
 
 public class UpdateCore {
 

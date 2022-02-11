@@ -32,21 +32,21 @@
         android:layout_marginBottom="16dp"
         android:clipChildren="false">
 
-        <com.healthymedium.arc.ui.Grid2ChoiceView
+        <edu.wustl.arc.ui.Grid2ChoiceView
             android:id="@+id/phone"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="80dp"
             android:layout_marginEnd="16dp" />
 
-        <com.healthymedium.arc.ui.Grid2ChoiceView
+        <edu.wustl.arc.ui.Grid2ChoiceView
             android:id="@+id/key"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="80dp"
             android:layout_marginEnd="16dp" />
 
-        <com.healthymedium.arc.ui.Grid2ChoiceView
+        <edu.wustl.arc.ui.Grid2ChoiceView
             android:id="@+id/pen"
             android:layout_weight="1"
             android:layout_width="0dp"

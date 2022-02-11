@@ -117,7 +117,7 @@
         android:textSize="18dp"
         tools:text="Tutorial" />
 
-    <com.healthymedium.arc.ui.Button
+    <edu.wustl.arc.ui.Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

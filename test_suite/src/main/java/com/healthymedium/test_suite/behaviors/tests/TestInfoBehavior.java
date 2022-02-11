@@ -1,12 +1,12 @@
-package com.healthymedium.test_suite.behaviors.tests;
+package com.wustl.test_suite.behaviors.tests;
 
-import com.healthymedium.arc.core.BaseFragment;
-import com.healthymedium.arc.hints.HintPointer;
-import com.healthymedium.arc.library.R;
-import com.healthymedium.arc.utilities.ViewUtil;
-import com.healthymedium.test_suite.behaviors.Behavior;
-import com.healthymedium.test_suite.utilities.Capture;
-import com.healthymedium.test_suite.utilities.UI;
+import com.wustl.arc.core.BaseFragment;
+import com.wustl.arc.hints.HintPointer;
+import edu.wustl.arc.assessments.R;
+import com.wustl.arc.utilities.ViewUtil;
+import com.wustl.test_suite.behaviors.Behavior;
+import com.wustl.test_suite.utilities.Capture;
+import com.wustl.test_suite.utilities.UI;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;

@@ -34,7 +34,7 @@
         android:gravity="center"
         android:textSize="26dp" />
 
-    <com.healthymedium.arc.ui.RadioButton
+    <edu.wustl.arc.ui.RadioButton
         android:id="@+id/buttonTop"
         app:showButton="false"
         app:labelPosition="center"
@@ -45,7 +45,7 @@
         tool:text="$1.51" />
 
 
-    <com.healthymedium.arc.ui.RadioButton
+    <edu.wustl.arc.ui.RadioButton
         android:id="@+id/buttonBottom"
         app:showButton="false"
         app:labelPosition="center"
