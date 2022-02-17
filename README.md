@@ -1,39 +1,42 @@
-# HM_Android_ARC_Core
+# Arc Assessments Android Library
 
+The Dominantly Inherited Alzheimer Network (DIAN) is a research group that focuses on studying early-onset, genetically inherited forms of Alzheimer’s disease and is based in Washington University in St. Louis, MO, USA. This library contains the assessments for Ambulatory research in cognition (ARC), a DIAN study that involves participants completing brief, game-like tests on their smartphones in order to examine levels of cognitive function over time. 
 
-Setting up and Building Projects
-================================
+### Sample App
 
-To the best of knowledge, getting these applications to build should require pretty minimal setup on your part. Once you've got the projects cloned, all that you should need to change are build settings like the Bundle Identifier and Team for iOS, and whatever the equivalent is for Android.
+The Sample App shows how you can launch the assessments and read the results.  There are two classes that you need to include to integrate the ARC library into your existing project. 
 
+### SampleAppStateMachine.java
 
-Cloning Projects
-----------------
+This class controls which screens show after luanching the assessments and in which order.  You can change the way this operates to your desired outcome, but include **SampleAppStateMachine** in your project to start.  The SampleAppStateMachine is injected into the Arc.java class, in the **SampleApplication**
 
-You'll need to clone the application repository and arc_core_android separately. They should both be within the same parent directory, so it should look something like:
+### SampleApplication.java
 
-some parent dir/
-|
-|-- core/
-|
-|-- exr_android/
+This class is your standard Android Application class. In the **onCreate()** function you need to initialize the Arc library and provide your custom StateMachine class to it.  At this point, you can also customize the assessment library based on various config variables.
 
+### Assessment localization
 
-When you open the application project in Android Studio, it expects to find the core project in the 'core' directory.
+The library ships with support for many different languages.  The language the library uses is not the default Android device language, but needs set using:
 
+`
+	PreferencesManager.getInstance().putStringImmediately(Locale.TAG_LANGUAGE, language);
+	PreferencesManager.getInstance().putStringImmediately(Locale.TAG_COUNTRY, country);
+`
 
-Changing Dev/QA/Production Settings
------------------------------
+Then, you must make sure that Android Context is updated to reflect these changes:
 
-The Android projects keep similar settings in an Application class that inherits from `com.healthymedium.arc.core.Application`. Changing between different settings is handled by selecting the Build Variant within the Build Variants window in Android Studio.
+`
+	Locale locale = new Locale(languageCode);
+	Locale.setDefault(locale);
+	Resources resources = activity.getResources();
+	Configuration config = resources.getConfiguration();
+	config.setLocale(locale);
+	resources.updateConfiguration(config, resources.getDisplayMetrics());
+`
 
+Some devices require the app to be restarted for these to take effect.
 
-Application Structure
-=====================
-
-Although they achieve it in very different ways, both iOS and Android projects are built with the same ideas in mind: a core project contains all of the basic functionality, and each application is built by customizing certain core classes. 
-
-I will admit now that I am not as familiar with the Android project as I am iOS, and the same goes for Android development in general. 
+### Application Structure
 
 **com.healthymedium.arc.core.Config**
 
@@ -57,7 +60,3 @@ The `decidePath()` method uses the state's current `lifecycle` and `currentPath`
 The `setupPath()` method is usually called right after `decidePath()`. Based on the current state, it adds the necessary fragments to the `cache`.
 
 The `StateMachine` contains several other methods that handle moving through items within the `cache`, such as `openNext()`, `skipToNextSegment()`, `moveOn()`, etc.
-
-**Scheduler**
-
-The `Scheduler` class handles creating the participant's test schedule. Applications may subclass this class to implement customizations, such as `initializeCycles()` to implement a custom test cycle schedule.

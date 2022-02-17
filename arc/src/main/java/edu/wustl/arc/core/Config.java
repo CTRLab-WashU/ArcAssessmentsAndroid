@@ -30,7 +30,7 @@ public class Config {
     public static String FLAVOR_PROD = "prod";
 
     // Core
-    public static boolean CHOOSE_LOCALE = false;
+    public static boolean CHOOSE_LOCALE = false; // Not needed for anyone using their own lanugage selection, can be true or false
 
     // Rest API
     public static String REST_ENDPOINT = "http://thinkhealthymedium.com/"; // where we send the data
