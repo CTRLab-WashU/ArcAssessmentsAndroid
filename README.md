@@ -2,6 +2,35 @@
 
 The Dominantly Inherited Alzheimer Network (DIAN) is a research group that focuses on studying early-onset, genetically inherited forms of Alzheimer’s disease and is based in Washington University in St. Louis, MO, USA. This library contains the assessments for Ambulatory research in cognition (ARC), a DIAN study that involves participants completing brief, game-like tests on their smartphones in order to examine levels of cognitive function over time. 
 
+## Gradle Import
+
+To import this library into an existing project, you must add the Github Package repository to your project level build.gradle file.  
+
+`
+	repositories {
+	    maven {
+	        url = uri("https://maven.pkg.github.com/CTRLab-WashU/ArcAssessmentsAndroid")
+	        credentials {
+	            /** Add to gradle.properties in root project folder file with
+	             ** gpr.usr=GITHUB_USER_ID & gpr.key=PERSONAL_ACCESS_TOKEN
+	             ** Set env variable GPR_USER & GPR_API_KEY if not adding a properties file**/
+	            username = project.findProperty('gpr.usr') ?: System.getenv("GPR_USER")
+	            password = project.findProperty('gpr.key') ?: System.getenv("GPR_TOKEN")
+	        }
+	    }
+	}
+`
+
+This requires you to put your git username and github personal access token with permission "read packages" either in local.proprties or as an environment variable on your local machine. Not that the syntax of this may vary based on your version of gradle.
+
+Then, you can simple add these two lines to your app's build.gradle.
+
+`
+	// WashU Arc Assessments
+    implementation("com.github.gcacace:signature-pad:1.3.1")
+    implementation("edu.wustl.arc.assessments:core-library:0.0.1")
+`
+
 ### Sample App
 
 The Sample App shows how you can launch the assessments and read the results.  There are two classes that you need to include to integrate the ARC library into your existing project. 
