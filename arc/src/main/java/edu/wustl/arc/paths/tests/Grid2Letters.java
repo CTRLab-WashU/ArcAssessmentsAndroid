@@ -37,7 +37,7 @@ import android.view.WindowManager;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 
-import edu.wustl.arc.core.BaseFragment;
+import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.core.TimedDialog;
 import edu.wustl.arc.core.TimedDialogMultipart;
 import edu.wustl.arc.assessments.R;
@@ -52,7 +52,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class Grid2Letters extends BaseFragment {
+public class Grid2Letters extends ArcBaseFragment {
 
     Grid2TestPathData gridTest;
     Grid2TestPathData.Section section;

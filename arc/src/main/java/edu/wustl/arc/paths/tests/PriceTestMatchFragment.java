@@ -31,7 +31,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import edu.wustl.arc.core.BaseFragment;
+import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.core.Config;
 import edu.wustl.arc.study.StateMachine;
 import edu.wustl.arc.study.TestVariant;
@@ -48,7 +48,7 @@ import java.util.List;
 import java.util.Random;
 
 @SuppressLint("ValidFragment")
-public class PriceTestMatchFragment extends BaseFragment {
+public class PriceTestMatchFragment extends ArcBaseFragment {
 
     List<PriceManager.Item> priceSet;
     PriceTestPathData priceTest;

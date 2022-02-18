@@ -30,7 +30,6 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import edu.wustl.arc.hints.Hints;
 import edu.wustl.arc.study.Study;
-import edu.wustl.arc.study.TestCycle;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,7 +42,7 @@ import edu.wustl.arc.font.Fonts;
 import edu.wustl.arc.assessments.R;
 
 @SuppressLint("ValidFragment")
-public class SplashScreen extends BaseFragment {
+public class SplashScreen extends ArcBaseFragment {
 
     boolean paused = false;
     boolean ready = false;

@@ -32,7 +32,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 @SuppressLint("ValidFragment")
-public class TimedPopupScreen extends BaseFragment {
+public class TimedPopupScreen extends ArcBaseFragment {
 
     String text;
     long duration;

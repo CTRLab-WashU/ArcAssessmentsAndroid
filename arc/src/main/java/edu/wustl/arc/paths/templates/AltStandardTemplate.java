@@ -39,7 +39,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import android.util.Log;
-import edu.wustl.arc.core.BaseFragment;
+import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.ui.Button;
 import edu.wustl.arc.font.Fonts;
 import edu.wustl.arc.assessments.R;
@@ -50,7 +50,7 @@ import edu.wustl.arc.utilities.ViewUtil;
 import static edu.wustl.arc.core.Config.USE_HELP_SCREEN;
 
 @SuppressLint("ValidFragment")
-public class AltStandardTemplate extends BaseFragment {
+public class AltStandardTemplate extends ArcBaseFragment {
 
     TranslateAnimation showAnimation;
     TranslateAnimation hideAnimation;
@@ -141,7 +141,7 @@ public class AltStandardTemplate extends BaseFragment {
         textViewHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BaseFragment helpScreen;
+                ArcBaseFragment helpScreen;
                 if (USE_HELP_SCREEN) {
                     helpScreen = Study.getStateMachine().createHelpScreen();
                 } else {

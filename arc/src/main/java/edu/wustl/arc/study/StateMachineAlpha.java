@@ -24,7 +24,7 @@ package edu.wustl.arc.study;
 
 import android.util.Log;
 
-import edu.wustl.arc.core.BaseFragment;
+import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.core.Config;
 import edu.wustl.arc.core.LoadingDialog;
 import edu.wustl.arc.assessments.R;
@@ -397,7 +397,7 @@ public class StateMachineAlpha extends StateMachine {
     }
 
     public void addSignaturePage(boolean allowHelp){
-        List<BaseFragment> fragments = new ArrayList<>();
+        List<ArcBaseFragment> fragments = new ArrayList<>();
         fragments.add(new QuestionSignature(
                 false,
                 allowHelp,

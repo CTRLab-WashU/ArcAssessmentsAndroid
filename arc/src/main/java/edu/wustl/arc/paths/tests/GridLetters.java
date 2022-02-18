@@ -35,7 +35,7 @@ import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
-import edu.wustl.arc.core.BaseFragment;
+import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.core.TimedDialog;
 import edu.wustl.arc.core.TimedDialogMultipart;
 import edu.wustl.arc.font.Fonts;
@@ -50,7 +50,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class GridLetters extends BaseFragment {
+public class GridLetters extends ArcBaseFragment {
 
     boolean paused;
     GridLayout gridLayout;

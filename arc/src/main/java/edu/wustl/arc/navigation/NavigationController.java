@@ -25,7 +25,7 @@ package edu.wustl.arc.navigation;
 import androidx.annotation.IdRes;
 import androidx.fragment.app.FragmentManager;
 
-import edu.wustl.arc.core.BaseFragment;
+import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.misc.TransitionSet;
 
 public class NavigationController {
@@ -59,7 +59,7 @@ public class NavigationController {
         listener = null;
     }
 
-    public void open(BaseFragment fragment) {
+    public void open(ArcBaseFragment fragment) {
         if (fragmentManager != null) {
             TransitionSet transitions = fragment.getTransitionSet();
             String tag = fragment.getSimpleTag();
@@ -79,7 +79,7 @@ public class NavigationController {
         }
     }
 
-    public void open(BaseFragment fragment, TransitionSet transitions) {
+    public void open(ArcBaseFragment fragment, TransitionSet transitions) {
         if (fragmentManager != null) {
             String tag = fragment.getSimpleTag();
             fragmentManager.beginTransaction()
@@ -122,8 +122,8 @@ public class NavigationController {
         }
     }
 
-    public BaseFragment getCurrentFragment(){
-        return (BaseFragment) fragmentManager.findFragmentById(currentFragmentId);
+    public ArcBaseFragment getCurrentFragment(){
+        return (ArcBaseFragment) fragmentManager.findFragmentById(currentFragmentId);
     }
 
     public interface Listener {

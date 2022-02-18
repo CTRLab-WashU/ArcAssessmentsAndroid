@@ -32,7 +32,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import edu.wustl.arc.core.BaseFragment;
+import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.core.Config;
 import edu.wustl.arc.study.StateMachine;
 import edu.wustl.arc.study.TestVariant;
@@ -47,7 +47,7 @@ import edu.wustl.arc.utilities.ViewUtil;
 import java.util.Random;
 
 @SuppressLint("ValidFragment")
-public class PriceTestCompareFragment extends BaseFragment {
+public class PriceTestCompareFragment extends ArcBaseFragment {
 
     int index;
 

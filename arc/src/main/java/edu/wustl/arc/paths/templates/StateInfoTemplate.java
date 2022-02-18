@@ -33,14 +33,14 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import edu.wustl.arc.core.BaseFragment;
+import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.ui.Button;
 import edu.wustl.arc.font.Fonts;
 import edu.wustl.arc.assessments.R;
 import edu.wustl.arc.study.Study;
 
 @SuppressLint("ValidFragment")
-public class StateInfoTemplate extends BaseFragment {
+public class StateInfoTemplate extends ArcBaseFragment {
 
     String stringHeader;
     String stringSubHeader;

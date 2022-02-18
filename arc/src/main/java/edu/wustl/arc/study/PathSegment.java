@@ -25,7 +25,7 @@ package edu.wustl.arc.study;
 import android.util.Log;
 
 import edu.wustl.arc.api.tests.data.BaseData;
-import edu.wustl.arc.core.BaseFragment;
+import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.navigation.NavigationManager;
 
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ import java.util.List;
 
 public class PathSegment {
 
-    public List<BaseFragment> fragments = new ArrayList<>();
+    public List<ArcBaseFragment> fragments = new ArrayList<>();
     public int currentIndex;
     public PathSegmentData dataObject;
 
@@ -41,7 +41,7 @@ public class PathSegment {
 
     }
 
-    public PathSegment(List<BaseFragment> fragments, Class dataClass){
+    public PathSegment(List<ArcBaseFragment> fragments, Class dataClass){
         this.fragments = fragments;
         this.currentIndex = -1;
         if(PathSegmentData.class.isAssignableFrom(dataClass)){
@@ -58,7 +58,7 @@ public class PathSegment {
 
     }
 
-    public PathSegment(List<BaseFragment> fragments){
+    public PathSegment(List<ArcBaseFragment> fragments){
         this.fragments = fragments;
         this.currentIndex = -1;
         dataObject = new PathSegmentData();
@@ -71,7 +71,7 @@ public class PathSegment {
             NavigationManager.getInstance().open(fragments.get(currentIndex));
             return true;
         } else {
-            NavigationManager.getInstance().open(new BaseFragment());
+            NavigationManager.getInstance().open(new ArcBaseFragment());
         }
         return false;
     }
@@ -87,7 +87,7 @@ public class PathSegment {
             }
             return true;
         } else {
-            BaseFragment fragment = new BaseFragment();
+            ArcBaseFragment fragment = new ArcBaseFragment();
             NavigationManager.getInstance().open(fragment);
         }
         return false;

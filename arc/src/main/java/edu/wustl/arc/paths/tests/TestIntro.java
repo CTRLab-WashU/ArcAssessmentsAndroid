@@ -29,13 +29,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import edu.wustl.arc.core.BaseFragment;
+import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.assessments.R;
 import edu.wustl.arc.study.Study;
 import edu.wustl.arc.ui.Button;
 import edu.wustl.arc.utilities.ViewUtil;
 
-public class TestIntro extends BaseFragment {
+public class TestIntro extends ArcBaseFragment {
 
     TextView header;
     TextView subheader;

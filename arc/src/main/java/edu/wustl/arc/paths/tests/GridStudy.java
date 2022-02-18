@@ -32,7 +32,7 @@ import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 
-import edu.wustl.arc.core.BaseFragment;
+import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.core.TimedDialog;
 import edu.wustl.arc.assessments.R;
 import edu.wustl.arc.path_data.GridTestPathData;
@@ -44,7 +44,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class GridStudy extends BaseFragment {
+public class GridStudy extends ArcBaseFragment {
 
     boolean paused;
 

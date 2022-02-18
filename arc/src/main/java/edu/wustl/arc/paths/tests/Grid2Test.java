@@ -37,7 +37,7 @@ import android.view.WindowManager;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 
-import edu.wustl.arc.core.BaseFragment;
+import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.assessments.R;
 import edu.wustl.arc.path_data.Grid2TestPathData;
 import edu.wustl.arc.study.Study;
@@ -50,7 +50,7 @@ import edu.wustl.arc.utilities.ViewUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Grid2Test extends BaseFragment {
+public class Grid2Test extends ArcBaseFragment {
 
     boolean paused;
 

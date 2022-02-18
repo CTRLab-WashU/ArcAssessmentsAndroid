@@ -32,7 +32,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 @SuppressLint("ValidFragment")
-public class TwoBtnPopupScreen extends BaseFragment {
+public class TwoBtnPopupScreen extends ArcBaseFragment {
 
     boolean paused;
     boolean shouldSkipSegmentIfPaused;

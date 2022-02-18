@@ -33,7 +33,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import edu.wustl.arc.core.BaseFragment;
+import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.ui.TimeInput;
 
 import edu.wustl.arc.assessments.R;
@@ -119,7 +119,7 @@ public class QuestionTime extends QuestionTemplate {
             public void onClick(View view) {
                 dismissPointer();
 
-                BaseFragment helpScreen;
+                ArcBaseFragment helpScreen;
                 if (USE_HELP_SCREEN) {
                     helpScreen = Study.getStateMachine().createHelpScreen();
                 } else {

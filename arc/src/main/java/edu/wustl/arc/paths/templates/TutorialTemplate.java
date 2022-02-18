@@ -40,7 +40,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import android.util.Log;
-import edu.wustl.arc.core.BaseFragment;
+import edu.wustl.arc.core.ArcBaseFragment;
 
 import edu.wustl.arc.assessments.R;
 import edu.wustl.arc.misc.TransitionSet;
@@ -52,7 +52,7 @@ import edu.wustl.arc.utilities.ViewUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class TutorialTemplate extends BaseFragment {
+public abstract class TutorialTemplate extends ArcBaseFragment {
 
     private List<HintHighlighter> hintHighlighters = new ArrayList<>();
     private List<HintPointer> hintPointers = new ArrayList<>();

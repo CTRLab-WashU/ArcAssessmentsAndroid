@@ -31,7 +31,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import edu.wustl.arc.core.BaseFragment;
+import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.ui.Button;
 import edu.wustl.arc.ui.TutorialProgressView;
 import edu.wustl.arc.hints.HintHighlighter;
@@ -41,7 +41,7 @@ import edu.wustl.arc.assessments.R;
 import edu.wustl.arc.navigation.NavigationManager;
 import edu.wustl.arc.utilities.ViewUtil;
 
-public class Tutorial extends BaseFragment {
+public class Tutorial extends ArcBaseFragment {
 
     protected int shortAnimationDuration;
 

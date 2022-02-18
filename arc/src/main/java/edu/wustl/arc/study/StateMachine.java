@@ -41,7 +41,7 @@ import edu.wustl.arc.time.TimeUtil;
 
 import edu.wustl.arc.api.tests.data.BaseData;
 import edu.wustl.arc.core.Application;
-import edu.wustl.arc.core.BaseFragment;
+import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.core.SimplePopupScreen;
 import edu.wustl.arc.assessments.R;
 import edu.wustl.arc.misc.TransitionSet;
@@ -323,7 +323,7 @@ public class StateMachine {
     // ---------------------------------------------------------------------------------------------
 
     public void addChronotypeSurvey(){
-        List<BaseFragment> fragments = new ArrayList<>();
+        List<ArcBaseFragment> fragments = new ArrayList<>();
 
         Resources res = Application.getInstance().getResources();
 
@@ -388,7 +388,7 @@ public class StateMachine {
     }
 
     public void addWakeSurvey(){
-        List<BaseFragment> fragments = new ArrayList<>();
+        List<ArcBaseFragment> fragments = new ArrayList<>();
 
         Resources res = Application.getInstance().getResources();
 
@@ -434,7 +434,7 @@ public class StateMachine {
     }
 
     public void addContextSurvey(){
-        List<BaseFragment> fragments = new ArrayList<>();
+        List<ArcBaseFragment> fragments = new ArrayList<>();
 
         Resources res = Application.getInstance().getResources();
 
@@ -488,7 +488,7 @@ public class StateMachine {
 
     public void addTests(){
 
-        List<BaseFragment> fragments = new ArrayList<>();
+        List<ArcBaseFragment> fragments = new ArrayList<>();
 
         Resources res = Application.getInstance().getResources();
 
@@ -528,7 +528,7 @@ public class StateMachine {
     }
 
     public void addPricesTest(int index){
-        List<BaseFragment> fragments = new ArrayList<>();
+        List<ArcBaseFragment> fragments = new ArrayList<>();
 
         Resources res = Application.getInstance().getResources();
 
@@ -563,7 +563,7 @@ public class StateMachine {
     }
 
     public void addSymbolsTest(int index){
-        List<BaseFragment> fragments = new ArrayList<>();
+        List<ArcBaseFragment> fragments = new ArrayList<>();
 
         Resources res = Application.getInstance().getResources();
 
@@ -597,7 +597,7 @@ public class StateMachine {
     }
 
     public void addGrid1Test(int index){
-        List<BaseFragment> fragments = new ArrayList<>();
+        List<ArcBaseFragment> fragments = new ArrayList<>();
 
         String testNumber = getTestNumberString(index);
 
@@ -625,7 +625,7 @@ public class StateMachine {
     }
 
     public void addGrid2Test(int index){
-        List<BaseFragment> fragments = new ArrayList<>();
+        List<ArcBaseFragment> fragments = new ArrayList<>();
 
         String testNumber = getTestNumberString(index);
 
@@ -675,7 +675,7 @@ public class StateMachine {
 
         Resources res = Application.getInstance().getResources();
 
-        List<BaseFragment> fragments = new ArrayList<>();
+        List<ArcBaseFragment> fragments = new ArrayList<>();
         fragments.add(new QuestionInterrupted(false, ViewUtil.getHtmlString(R.string.testing_interrupted_body),""));
         PathSegment segment = new PathSegment(fragments);
         cache.segments.add(segment);
@@ -720,11 +720,11 @@ public class StateMachine {
         return true;
     }
 
-    public BaseFragment createHelpScreen() {
+    public ArcBaseFragment createHelpScreen() {
         throw new IllegalStateException("Must be implemented by sub-class");
     }
 
-    public BaseFragment createContactScreen() {
+    public ArcBaseFragment createContactScreen() {
         throw new IllegalStateException("Must be implemented by sub-class");
     }
 }

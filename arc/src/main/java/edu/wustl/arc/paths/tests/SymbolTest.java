@@ -31,7 +31,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import edu.wustl.arc.core.BaseFragment;
+import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.study.StateMachine;
 import edu.wustl.arc.ui.SymbolButton;
 import edu.wustl.arc.assessments.R;
@@ -45,7 +45,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class SymbolTest extends BaseFragment {
+public class SymbolTest extends ArcBaseFragment {
 
     public static List<Integer> symbolset = new ArrayList<>(Arrays.asList(
             R.drawable.symbol_0,

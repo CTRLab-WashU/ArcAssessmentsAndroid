@@ -1,30 +1,39 @@
+/*
+  Copyright (c) 2022 Washington University in St. Louis
+
+  Washington University in St. Louis hereby grants to you a non-transferable,
+  non-exclusive, royalty-free license to use and copy the computer code
+  provided here (the "Software").  You agree to include this license and the
+  above copyright notice in all copies of the Software.  The Software may not
+  be distributed, shared, or transferred to any third party.  This license does
+  not grant any rights or licenses to any other patents, copyrights, or other
+  forms of intellectual property owned or controlled by
+  Washington University in St. Louis.
+
+  YOU AGREE THAT THE SOFTWARE PROVIDED HEREUNDER IS EXPERIMENTAL AND IS PROVIDED
+  "AS IS", WITHOUT ANY WARRANTY OF ANY KIND, EXPRESSED OR IMPLIED, INCLUDING
+  WITHOUT LIMITATION WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY PARTICULAR
+  PURPOSE, OR NON-INFRINGEMENT OF ANY THIRD-PARTY PATENT, COPYRIGHT, OR ANY OTHER
+  THIRD-PARTY RIGHT.  IN NO EVENT SHALL THE CREATORS OF THE SOFTWARE OR WASHINGTON
+  UNIVERSITY IN ST LOUIS BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL, OR
+  CONSEQUENTIAL DAMAGES ARISING OUT OF OR IN ANY WAY CONNECTED WITH THE SOFTWARE,
+  THE USE OF THE SOFTWARE, OR THIS AGREEMENT, WHETHER IN BREACH OF CONTRACT, TORT
+  OR OTHERWISE, EVEN IF SUCH PARTY IS ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+*/
 package edu.washu.arc.sampleapp;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.util.Log;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.wustl.arc.core.Application;
-import edu.wustl.arc.core.BaseFragment;
 import edu.wustl.arc.core.LoadingDialog;
 import edu.wustl.arc.core.SplashScreen;
 import edu.wustl.arc.navigation.NavigationManager;
-import edu.wustl.arc.path_data.ContextPathData;
-import edu.wustl.arc.paths.templates.TestInfoTemplate;
-import edu.wustl.arc.paths.tests.SymbolTest;
-import edu.wustl.arc.paths.tests.TestBegin;
-import edu.wustl.arc.study.PathSegment;
 import edu.wustl.arc.study.StateMachineAlpha;
 import edu.wustl.arc.study.Study;
 import edu.wustl.arc.study.TestSession;
-import edu.wustl.arc.ui.Signature;
-import edu.wustl.arc.utilities.ViewUtil;
 
 public class SampleAppStateMachine extends StateMachineAlpha {
 

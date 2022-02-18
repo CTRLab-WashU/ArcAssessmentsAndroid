@@ -38,7 +38,7 @@ import android.view.inputmethod.InputMethodManager;
 
 import edu.wustl.arc.misc.TransitionSet;
 
-public class BaseFragment extends Fragment {
+public class ArcBaseFragment extends Fragment {
 
     TransitionSet transitions = new TransitionSet();
     String tag = getClass().getSimpleName();

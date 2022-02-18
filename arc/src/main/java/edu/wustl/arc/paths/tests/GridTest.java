@@ -32,7 +32,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 
-import edu.wustl.arc.core.BaseFragment;
+import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.assessments.R;
 import edu.wustl.arc.path_data.GridTestPathData;
 import edu.wustl.arc.study.Study;
@@ -40,7 +40,7 @@ import edu.wustl.arc.study.Study;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GridTest extends BaseFragment {
+public class GridTest extends ArcBaseFragment {
 
     boolean paused;
     int selectedCount = 0;

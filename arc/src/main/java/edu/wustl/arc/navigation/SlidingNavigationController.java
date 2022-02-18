@@ -25,7 +25,7 @@ package edu.wustl.arc.navigation;
 import androidx.annotation.IdRes;
 import androidx.fragment.app.FragmentManager;
 
-import edu.wustl.arc.core.BaseFragment;
+import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.assessments.R;
 import edu.wustl.arc.misc.TransitionSet;
 
@@ -34,23 +34,23 @@ import java.util.List;
 
 public class SlidingNavigationController extends NavigationController {
 
-    List<BaseFragment> fragments = new ArrayList<>();
+    List<ArcBaseFragment> fragments = new ArrayList<>();
     int currentIndex;
 
     public SlidingNavigationController(FragmentManager fragmentManager, @IdRes int containerViewId) {
         super(fragmentManager,containerViewId);
     }
 
-    public void setFragmentSet(List<BaseFragment> fragments) {
+    public void setFragmentSet(List<ArcBaseFragment> fragments) {
         this.fragments = fragments;
     }
 
-    public void addFragmentToSet(BaseFragment fragment) {
+    public void addFragmentToSet(ArcBaseFragment fragment) {
         this.fragments.add(fragment);
     }
 
     @Override
-    public void open(BaseFragment fragment) {
+    public void open(ArcBaseFragment fragment) {
         if(!fragments.contains(fragment)) {
             fragments.add(fragment);
         }
@@ -63,7 +63,7 @@ public class SlidingNavigationController extends NavigationController {
         currentIndex = index;
     }
 
-    private void openLeft(BaseFragment fragment) {
+    private void openLeft(ArcBaseFragment fragment) {
         TransitionSet set = new TransitionSet();
         set.enter = R.anim.slide_in_left;
         set.popEnter =  R.anim.slide_in_right;
@@ -72,7 +72,7 @@ public class SlidingNavigationController extends NavigationController {
         open(fragment,set);
     }
 
-    private void openRight(BaseFragment fragment) {
+    private void openRight(ArcBaseFragment fragment) {
         TransitionSet set = new TransitionSet();
         set.enter = R.anim.slide_in_right;
         set.popEnter =  R.anim.slide_in_left;

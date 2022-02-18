@@ -44,7 +44,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import edu.wustl.arc.core.Application;
-import edu.wustl.arc.core.BaseFragment;
+import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.core.Config;
 import edu.wustl.arc.paths.tutorials.Grid2Tutorial;
 import edu.wustl.arc.study.TestVariant;
@@ -61,7 +61,7 @@ import edu.wustl.arc.navigation.NavigationManager;
 import edu.wustl.arc.utilities.ViewUtil;
 
 @SuppressLint("ValidFragment")
-public class TestInfoTemplate extends BaseFragment {
+public class TestInfoTemplate extends ArcBaseFragment {
 
     public static final String HINT_GRID_TUTORIAL = "HINT_GRID_TUTORIAL";
     public static final String HINT_PRICES_TUTORIAL = "HINT_PRICES_TUTORIAL";
@@ -202,7 +202,7 @@ public class TestInfoTemplate extends BaseFragment {
                 if (stringType.equals("grids")) {
                     Hints.markShown(HINT_GRID_TUTORIAL);
 
-                    BaseFragment gridTutorial = null;
+                    ArcBaseFragment gridTutorial = null;
                     switch (Config.TEST_VARIANT_GRID) {
                         case V1:
                             gridTutorial = new GridTutorial();

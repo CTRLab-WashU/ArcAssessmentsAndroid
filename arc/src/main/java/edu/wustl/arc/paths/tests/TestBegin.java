@@ -31,13 +31,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import edu.wustl.arc.core.BaseFragment;
+import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.font.Fonts;
 import edu.wustl.arc.assessments.R;
 import edu.wustl.arc.study.Study;
 import edu.wustl.arc.utilities.ViewUtil;
 
-public class TestBegin extends BaseFragment {
+public class TestBegin extends ArcBaseFragment {
 
     TextView begin;
     TextView number;
