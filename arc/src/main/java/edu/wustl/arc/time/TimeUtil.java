@@ -27,7 +27,7 @@ import android.content.ContentResolver;
 import android.provider.Settings;
 import androidx.annotation.StringRes;
 
-import edu.wustl.arc.core.Application;
+import edu.wustl.arc.core.ArcApplication;
 import edu.wustl.arc.utilities.ViewUtil;
 
 import org.joda.time.DateTime;
@@ -77,7 +77,7 @@ public class TimeUtil {
     }
 
     public static String format(DateTime dateTime, @StringRes int format){
-        return dateTime.toString(ViewUtil.getString(format), Application.getInstance().getLocale());
+        return dateTime.toString(ViewUtil.getString(format), ArcApplication.getInstance().getLocale());
     }
 
     public static String format(DateTime dateTime, @StringRes int format, Locale locale){
@@ -117,7 +117,7 @@ public class TimeUtil {
     }
 
     public static boolean isAutoTimeEnabled(){
-        ContentResolver resolver = Application.getInstance().getContentResolver();
+        ContentResolver resolver = ArcApplication.getInstance().getContentResolver();
         boolean autoTimeEnabled = Settings.Global.getInt(resolver, Settings.Global.AUTO_TIME, 0)==1;
         boolean autoTimeZoneEnabled = Settings.Global.getInt(resolver, Settings.Global.AUTO_TIME_ZONE, 0)==1;
         return autoTimeEnabled && autoTimeZoneEnabled;

@@ -207,7 +207,7 @@
         android:textColor="@color/text"
         android:textSize="18dp" />
 
-    <edu.wustl.arc.ui.Button
+    <edu.wustl.arc.ui.ArcButton
         android:id="@+id/buttonContinue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

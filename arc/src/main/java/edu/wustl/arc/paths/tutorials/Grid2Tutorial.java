@@ -48,7 +48,7 @@ import android.util.Log;
 
 import edu.wustl.arc.assessments.R;
 
-import edu.wustl.arc.ui.Button;
+import edu.wustl.arc.ui.ArcButton;
 import edu.wustl.arc.ui.Grid2BoxView;
 import edu.wustl.arc.ui.Grid2ChoiceDialog;
 import edu.wustl.arc.ui.Grid2LetterView;
@@ -81,7 +81,7 @@ public class Grid2Tutorial extends TutorialTemplate {
     View grids;
     GridLayout gridLayout;
 
-    Button continueButton;
+    ArcButton continueButton;
     TextView gridTextView;
     TextView gridHintTextView;
     View bottomAnchor;

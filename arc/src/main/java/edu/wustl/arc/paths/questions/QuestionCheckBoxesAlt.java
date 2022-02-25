@@ -31,7 +31,7 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 
 import edu.wustl.arc.paths.templates.AltQuestionTemplate;
-import edu.wustl.arc.ui.CheckBox;
+import edu.wustl.arc.ui.ArcCheckBox;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +39,7 @@ import java.util.List;
 @SuppressLint("ValidFragment")
 public class QuestionCheckBoxesAlt extends AltQuestionTemplate {
 
-    List<CheckBox> checkBoxes = new ArrayList<>();
+    List<ArcCheckBox> checkBoxes = new ArrayList<>();
     List<String> options = new ArrayList<>();
     String exclusive;
     int exclusiveIndex = -1;
@@ -71,7 +71,7 @@ public class QuestionCheckBoxesAlt extends AltQuestionTemplate {
 
         int index=0;
         for(final String option : options){
-            CheckBox checkBox = new CheckBox(getContext());
+            ArcCheckBox checkBox = new ArcCheckBox(getContext());
             checkBox.setText(option);
 
             final int checkBoxIndex = index;

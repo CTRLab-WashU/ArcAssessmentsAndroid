@@ -45,7 +45,7 @@ import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.assessments.R;
 import edu.wustl.arc.misc.TransitionSet;
 import edu.wustl.arc.navigation.NavigationManager;
-import edu.wustl.arc.ui.Button;
+import edu.wustl.arc.ui.ArcButton;
 import edu.wustl.arc.ui.TutorialProgressView;
 import edu.wustl.arc.utilities.ViewUtil;
 
@@ -73,7 +73,7 @@ public abstract class TutorialTemplate extends ArcBaseFragment {
 
     protected ImageView checkmark;
     protected TextView textViewComplete;
-    protected Button endButton;
+    protected ArcButton endButton;
 
     protected Handler handler = new Handler();
 

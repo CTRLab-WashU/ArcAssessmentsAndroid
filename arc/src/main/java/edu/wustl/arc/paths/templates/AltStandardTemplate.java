@@ -40,7 +40,7 @@ import android.widget.TextView;
 
 import android.util.Log;
 import edu.wustl.arc.core.ArcBaseFragment;
-import edu.wustl.arc.ui.Button;
+import edu.wustl.arc.ui.ArcButton;
 import edu.wustl.arc.font.Fonts;
 import edu.wustl.arc.assessments.R;
 import edu.wustl.arc.study.Study;
@@ -72,9 +72,9 @@ public class AltStandardTemplate extends ArcBaseFragment {
 
     ScrollView scrollView;
 
-    protected Button buttonNext;
-    Button textViewScroll;
-    Button textViewScrollTop;
+    protected ArcButton buttonNext;
+    ArcButton textViewScroll;
+    ArcButton textViewScrollTop;
 
     boolean allowBack;
     boolean disableScrollBehavior;

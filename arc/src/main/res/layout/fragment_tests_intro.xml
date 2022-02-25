@@ -33,7 +33,7 @@
         android:textStyle="italic"
         android:textColor="@color/grey"/>
 
-    <edu.wustl.arc.ui.Button
+    <edu.wustl.arc.ui.ArcButton
         android:id="@+id/nextButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,5 +45,5 @@
         android:text="@string/button_next"
         app:buttonTheme="light">
 
-    </edu.wustl.arc.ui.Button>
+    </edu.wustl.arc.ui.ArcButton>
 </RelativeLayout>

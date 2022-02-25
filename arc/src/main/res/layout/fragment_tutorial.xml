@@ -39,7 +39,7 @@
             android:textSize="26dp"
             android:visibility="gone" />
 
-        <edu.wustl.arc.ui.Button
+        <edu.wustl.arc.ui.ArcButton
             android:id="@+id/endButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

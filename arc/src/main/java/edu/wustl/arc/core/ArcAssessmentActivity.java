@@ -115,9 +115,9 @@ public class ArcAssessmentActivity extends AppCompatActivity {
         if(intent!=null) {
             Config.OPENED_FROM_NOTIFICATION = intent.getBooleanExtra(Config.INTENT_EXTRA_OPENED_FROM_NOTIFICATION,false);
             Config.OPENED_FROM_VISIT_NOTIFICATION = intent.getBooleanExtra(Config.INTENT_EXTRA_OPENED_FROM_VISIT_NOTIFICATION,false);
-            boolean restart = intent.getBooleanExtra(Application.TAG_RESTART,false);
+            boolean restart = intent.getBooleanExtra(ArcApplication.TAG_RESTART,false);
             if(restart){
-                PreferencesManager.getInstance().putBoolean(Application.TAG_RESTART,true);
+                PreferencesManager.getInstance().putBoolean(ArcApplication.TAG_RESTART,true);
                 Log.i("MainActivity","APPLICATION_RESTART = "+restart);
             }
         }
@@ -129,8 +129,8 @@ public class ArcAssessmentActivity extends AppCompatActivity {
         NavigationManager.initialize(getSupportFragmentManager());
         setupKeyboardWatcher();
 
-        if(PreferencesManager.getInstance().getBoolean(Application.TAG_RESTART,false)){
-            PreferencesManager.getInstance().putBoolean(Application.TAG_RESTART,false);
+        if(PreferencesManager.getInstance().getBoolean(ArcApplication.TAG_RESTART,false)){
+            PreferencesManager.getInstance().putBoolean(ArcApplication.TAG_RESTART,false);
 
             Phrase phrase = new Phrase(R.string.low_memory_restart_dialogue);
             phrase.replace(R.string.token_app_name, R.string.app_name);
@@ -160,7 +160,7 @@ public class ArcAssessmentActivity extends AppCompatActivity {
             return;
         }
 
-        List<Locale> locales = Application.getInstance().getLocaleOptions();
+        List<Locale> locales = ArcApplication.getInstance().getLocaleOptions();
         List<String> options = new ArrayList<>();
         for(Locale locale : locales) {
             options.add(locale.getLabel());

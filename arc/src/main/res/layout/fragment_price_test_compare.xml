@@ -49,14 +49,14 @@
         android:text="@string/prices_isthisgood"
         android:textSize="26dp" />
 
-    <edu.wustl.arc.ui.RadioButton
+    <edu.wustl.arc.ui.ArcRadioButton
         android:id="@+id/radioButtonNo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/radioButtonYes"
         android:layout_alignParentStart="true" />
 
-    <edu.wustl.arc.ui.RadioButton
+    <edu.wustl.arc.ui.ArcRadioButton
         android:id="@+id/radioButtonYes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

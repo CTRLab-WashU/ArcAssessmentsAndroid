@@ -55,7 +55,7 @@ import java.util.List;
  * However, due to the global nature of it's use through the library,
  * It is better to push it to it's own class that is owned by the actual Android Application class
  */
-public class Application implements LifecycleObserver {
+public class ArcApplication implements LifecycleObserver {
 
     public interface StudyComponentProvider {
         public void registerStudyComponents();
@@ -64,7 +64,7 @@ public class Application implements LifecycleObserver {
     private static final String tag = "Application";
     public static final String TAG_RESTART = "TAG_APPLICATION_RESTARTING";
 
-    public static Application getInstance() {
+    public static ArcApplication getInstance() {
         return instance;
     }
 
@@ -80,7 +80,7 @@ public class Application implements LifecycleObserver {
         return context.getContentResolver();
     }
 
-    static Application instance;
+    static ArcApplication instance;
 
     private Context context;  // is the app context\
 
@@ -106,14 +106,14 @@ public class Application implements LifecycleObserver {
             Log.e(tag, "Cannot initialize app twice");
             return;
         }
-        instance = new Application(appContext, provider);
+        instance = new ArcApplication(appContext, provider);
 
         instance.setLocaleOptions(createDefaultLocaleOptions());
 
         instance.initializeStudy(appContext, provider);
         Study.getInstance().load();
 
-        Application.getInstance().updateLocale(appContext);
+        ArcApplication.getInstance().updateLocale(appContext);
 
         if(FontFactory.getInstance()==null) {
             FontFactory.initialize(appContext);
@@ -136,7 +136,7 @@ public class Application implements LifecycleObserver {
     public static synchronized void initializeValidationAppOnly(
             Context appContext, StudyComponentProvider provider) {
 
-        instance = new Application(appContext, provider);
+        instance = new ArcApplication(appContext, provider);
 
         instance.setLocaleOptions(createDefaultLocaleOptions());
 
@@ -158,7 +158,7 @@ public class Application implements LifecycleObserver {
         provider.registerStudyComponents();
     }
 
-    protected Application(Context appContext, StudyComponentProvider provider) {
+    protected ArcApplication(Context appContext, StudyComponentProvider provider) {
         context = appContext;
         if (!checkContext()) {
             return;

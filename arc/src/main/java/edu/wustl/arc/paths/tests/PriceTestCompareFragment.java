@@ -36,7 +36,7 @@ import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.core.Config;
 import edu.wustl.arc.study.StateMachine;
 import edu.wustl.arc.study.TestVariant;
-import edu.wustl.arc.ui.RadioButton;
+import edu.wustl.arc.ui.ArcRadioButton;
 import edu.wustl.arc.font.Fonts;
 import edu.wustl.arc.assessments.R;
 import edu.wustl.arc.path_data.PriceTestPathData;
@@ -58,8 +58,8 @@ public class PriceTestCompareFragment extends ArcBaseFragment {
     String prefix;
     String suffix;
 
-    RadioButton buttonYes;
-    RadioButton buttonNo;
+    ArcRadioButton buttonYes;
+    ArcRadioButton buttonNo;
     TextView textviewFood;
     TextView textviewPrice;
     TextView textviewGoodPrice;

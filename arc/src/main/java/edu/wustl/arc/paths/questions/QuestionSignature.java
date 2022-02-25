@@ -33,7 +33,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import edu.wustl.arc.ui.Signature;
+import edu.wustl.arc.ui.ArcSignatureView;
 import com.github.gcacace.signaturepad.views.SignaturePad;
 import edu.wustl.arc.assessments.R;
 import edu.wustl.arc.paths.templates.QuestionTemplate;
@@ -43,7 +43,7 @@ import edu.wustl.arc.utilities.ViewUtil;
 @SuppressLint("ValidFragment")
 public class QuestionSignature extends QuestionTemplate {
     boolean allowHelp;
-    Signature signature;
+    ArcSignatureView signature;
 
     public QuestionSignature(boolean allowBack, boolean allowHelp, String header, String subheader) {
         super(allowBack,header,subheader, ViewUtil.getString(R.string.button_next));
@@ -68,7 +68,7 @@ public class QuestionSignature extends QuestionTemplate {
         spacer.setVisibility(View.INVISIBLE);
         content.addView(spacer);
         
-        signature = new Signature(getContext());
+        signature = new ArcSignatureView(getContext());
         content.addView(signature);
 
         textViewSubheader.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 17.0f);

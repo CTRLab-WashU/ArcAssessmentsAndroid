@@ -30,7 +30,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 
-import edu.wustl.arc.ui.RadioButton;
+import edu.wustl.arc.ui.ArcRadioButton;
 import edu.wustl.arc.paths.templates.QuestionTemplate;
 
 import java.util.ArrayList;
@@ -39,7 +39,7 @@ import java.util.List;
 @SuppressLint("ValidFragment")
 public class QuestionRadioButtons extends QuestionTemplate {
 
-    List<RadioButton> buttons;
+    List<ArcRadioButton> buttons;
     List<String> options;
     String selection;
     int lastIndex = -1;
@@ -67,7 +67,7 @@ public class QuestionRadioButtons extends QuestionTemplate {
         buttons = new ArrayList<>();
         int index=0;
         for(String option : options){
-            RadioButton radioButton = new RadioButton(getContext());
+            ArcRadioButton radioButton = new ArcRadioButton(getContext());
             radioButton.setText(option);
 
             final int radioButtonIndex = index;

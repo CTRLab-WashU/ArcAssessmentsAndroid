@@ -81,7 +81,7 @@ public class SplashScreen extends ArcBaseFragment {
         Context context = getContext();
         getMainActivity().setupKeyboardWatcher();
 
-        Application.getInstance().updateLocale(getContext());
+        ArcApplication.getInstance().updateLocale(getContext());
 
         if(FontFactory.getInstance()==null) {
             FontFactory.initialize(context);

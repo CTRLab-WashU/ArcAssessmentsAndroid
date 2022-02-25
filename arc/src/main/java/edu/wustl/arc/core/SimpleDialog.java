@@ -26,7 +26,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import androidx.fragment.app.DialogFragment;
-import edu.wustl.arc.ui.Button;
+import edu.wustl.arc.ui.ArcButton;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,7 +50,7 @@ public class SimpleDialog extends DialogFragment {
     Runnable runnableEnable;
 
     TextView textView;
-    Button button;
+    ArcButton button;
     OnDialogDismiss listener;
 
     public SimpleDialog(String bodyText, String buttonText, long delayTime, long maxTime){

@@ -67,7 +67,7 @@ Some devices require the app to be restarted for these to take effect.
 
 ### Application Structure
 
-**com.healthymedium.arc.core.Config**
+**edu.wustl.arc.core.Config**
 
 The `Config` class is a static class that defines many different configuration options. These values are modified based on the needs of the specific application and the current Build Variant.
 
@@ -79,7 +79,7 @@ Each application provides an `Application` subclass, which override the `onCreat
 
 **StateMachine**
 
-Each application contains a subclass of the `com.healthymedium.arc.study.StateMachineAlpha` class (which itself is a subclass of `com.healthymedium.arc.study.StateMachine`). This class manages pretty much the entire application state. 
+Each application contains a subclass of the `edu.wustl.arc.study.StateMachineAlpha` class (which itself is a subclass of `edu.wustl.arc.study.StateMachine`). This class manages pretty much the entire application state.
 
 There are two key properties on the `StateMachine` object:
 - *state*, a `State` object which contains the `lifecycle` and `currentPath` values

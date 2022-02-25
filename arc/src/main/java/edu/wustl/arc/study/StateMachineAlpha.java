@@ -94,7 +94,7 @@ public class StateMachineAlpha extends StateMachine {
         }
     }
 
-    private void decidePathInit(){
+    public void decidePathInit(){
         cache.segments.clear();
         Participant participant = Study.getParticipant();
 
@@ -142,7 +142,7 @@ public class StateMachineAlpha extends StateMachine {
         decidePath();
     }
 
-    private void decidePathBaseline(){
+    public void decidePathBaseline(){
         Participant participant = Study.getInstance().getParticipant();
 
         if(participant.getCurrentTestCycle() == null) {
@@ -183,7 +183,7 @@ public class StateMachineAlpha extends StateMachine {
         state.currentPath = PATH_TEST_BASELINE;
     }
 
-    private void decidePathArc(){
+    public void decidePathArc(){
         Participant participant = Study.getInstance().getParticipant();
 
         if(participant.getCurrentTestCycle() == null) {
@@ -281,7 +281,7 @@ public class StateMachineAlpha extends StateMachine {
         return false;
     }
 
-    private void decidePathIdle() {
+    public void decidePathIdle() {
         TestCycle cycle = Study.getCurrentTestCycle();
 
         if (cycle.getActualStartDate().isBeforeNow()) {
@@ -292,7 +292,7 @@ public class StateMachineAlpha extends StateMachine {
         }
     }
 
-    private void decidePathOver() {
+    public void decidePathOver() {
         state.currentPath = PATH_STUDY_OVER;
     }
 

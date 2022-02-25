@@ -40,7 +40,7 @@ import edu.wustl.arc.utilities.ViewUtil;
 
     Usage:
         Define in XML:
-            <com.healthymedium.arc.ui.TotalEarningsView
+            <edu.wustl.arc.ui.TotalEarningsView
                 android:id="@+id/totalEarningsView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

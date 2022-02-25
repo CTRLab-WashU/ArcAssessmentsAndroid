@@ -44,7 +44,7 @@ import edu.wustl.arc.font.Fonts;
 
 import edu.wustl.arc.assessments.R;
 import edu.wustl.arc.misc.TransitionSet;
-import edu.wustl.arc.ui.RadioButton;
+import edu.wustl.arc.ui.ArcRadioButton;
 import edu.wustl.arc.ui.base.RoundedRelativeLayout;
 import android.util.Log;
 import edu.wustl.arc.utilities.ViewUtil;
@@ -71,8 +71,8 @@ public class PricesTutorialRevised extends Tutorial {
     RelativeLayout mainContainer;
     RoundedRelativeLayout priceContainer;
 
-    RadioButton buttonYes;
-    RadioButton buttonNo;
+    ArcRadioButton buttonYes;
+    ArcRadioButton buttonNo;
 
     TextView textviewFood;
     TextView textviewPrice;

@@ -28,7 +28,7 @@ import androidx.annotation.StringRes;
 import android.text.Html;
 import android.text.Spanned;
 
-import edu.wustl.arc.core.Application;
+import edu.wustl.arc.core.ArcApplication;
 import edu.wustl.arc.assessments.R;
 
 import org.joda.time.DateTime;
@@ -49,7 +49,7 @@ public class Phrase {
 
     public Phrase(@StringRes int id){
         // TODO: mdephillips 3/18/21 storing a strong ref to app context within a model object like the Phrase class is dangerous design.  We have to re-factor the context out of the Phrase class.
-        this.context = Application.getInstance().getAppContext();
+        this.context = ArcApplication.getInstance().getAppContext();
         phrase = getString(id);
     }
 
@@ -60,7 +60,7 @@ public class Phrase {
 
     public Phrase(String string){
         // TODO: mdephillips 3/18/21 storing a strong ref to app context within a model object like the Phrase class is dangerous design.  We have to re-factor the context out of the Phrase class.
-        this.context = Application.getInstance().getAppContext();
+        this.context = ArcApplication.getInstance().getAppContext();
         phrase = string;
     }
     
@@ -103,12 +103,12 @@ public class Phrase {
     }
 
     public void replaceDate(@StringRes int format, DateTime dateTime){
-        String string = dateTime.toString(getString(format), Application.getInstance().getLocale());
+        String string = dateTime.toString(getString(format), ArcApplication.getInstance().getLocale());
         replaceDate(string);
     }
 
     public void replaceDate(@StringRes int tokenId, @StringRes int format, DateTime dateTime){
-        String string = dateTime.toString(getString(format), Application.getInstance().getLocale());
+        String string = dateTime.toString(getString(format), ArcApplication.getInstance().getLocale());
         replace(tokenId,string);
     }
 
@@ -121,17 +121,17 @@ public class Phrase {
     // time
 
     public void replaceTime(@StringRes int format, DateTime time){
-        String string = time.toString(getString(format), Application.getInstance().getLocale());
+        String string = time.toString(getString(format), ArcApplication.getInstance().getLocale());
         replaceTime(string);
     }
 
     public void replaceTime(@StringRes int format, LocalTime time){
-        String string = time.toString(getString(format), Application.getInstance().getLocale());
+        String string = time.toString(getString(format), ArcApplication.getInstance().getLocale());
         replaceTime(string);
     }
 
     public void replaceTime(@StringRes int tokenId, @StringRes int format, LocalTime time){
-        String string = time.toString(getString(format), Application.getInstance().getLocale());
+        String string = time.toString(getString(format), ArcApplication.getInstance().getLocale());
         replace(tokenId, string);
     }
 
@@ -140,7 +140,7 @@ public class Phrase {
     }
 
     public void replaceTime(@StringRes int tokenId, @StringRes int format, DateTime time){
-        String string = time.toString(getString(format), Application.getInstance().getLocale());
+        String string = time.toString(getString(format), ArcApplication.getInstance().getLocale());
         replace(tokenId, string);
     }
 

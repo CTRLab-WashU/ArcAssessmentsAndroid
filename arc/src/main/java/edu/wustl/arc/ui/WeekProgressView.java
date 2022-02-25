@@ -38,7 +38,7 @@ import org.joda.time.DateTime;
 
     Usage:
         Define in XML:
-            <com.healthymedium.arc.ui.WeekProgressView
+            <edu.wustl.arc.ui.WeekProgressView
                 android:id="@+id/weekProgressView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
