@@ -18,7 +18,6 @@
 
     <string name="format_date_dashed">MM-dd-yy</string>
     <string name="format_date_lo">E, MMMM d</string>
-    <string name="format_date_lo_year">MMMM d yyyy</string>
     <string name="format_date_long">EEEE, MMMM d</string>
     <string name="format_date_longer">MMMM d, yyyy</string>
     <string name="format_date_schedule">EEE, MMM d</string>
