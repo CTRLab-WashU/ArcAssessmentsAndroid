@@ -34,7 +34,7 @@ import edu.wustl.arc.utilities.ViewUtil;
 
 public class ArcSignatureView extends FrameLayout {
 
-    public SignaturePad mSignaturePad;
+    public ArcSignaturePad mSignaturePad;
     public TextView clear;
 
     public ArcSignatureView(Context context) {

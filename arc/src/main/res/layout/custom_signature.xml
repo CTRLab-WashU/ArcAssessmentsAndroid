@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <com.github.gcacace.signaturepad.views.SignaturePad
+            <edu.wustl.arc.ui.ArcSignaturePad
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/signature_pad"

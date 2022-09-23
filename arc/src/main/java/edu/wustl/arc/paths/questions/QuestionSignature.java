@@ -33,6 +33,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import edu.wustl.arc.ui.ArcSignaturePad;
 import edu.wustl.arc.ui.ArcSignatureView;
 import com.github.gcacace.signaturepad.views.SignaturePad;
 import edu.wustl.arc.assessments.R;
@@ -81,7 +82,7 @@ public class QuestionSignature extends QuestionTemplate {
             }
         });
 
-        signature.mSignaturePad.setOnSignedListener(new SignaturePad.OnSignedListener() {
+        signature.mSignaturePad.setOnSignedListener(new ArcSignaturePad.OnSignedListener() {
 
             @Override
             public void onStartSigning() {
