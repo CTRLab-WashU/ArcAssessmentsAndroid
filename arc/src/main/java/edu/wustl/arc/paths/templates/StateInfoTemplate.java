@@ -34,7 +34,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import edu.wustl.arc.core.ArcBaseFragment;
-import edu.wustl.arc.ui.Button;
+import edu.wustl.arc.ui.ArcButton;
 import edu.wustl.arc.font.Fonts;
 import edu.wustl.arc.assessments.R;
 import edu.wustl.arc.study.Study;
@@ -56,7 +56,7 @@ public class StateInfoTemplate extends ArcBaseFragment {
 
     LinearLayout content;
 
-    protected Button button;
+    protected ArcButton button;
     boolean allowBack;
 
     public StateInfoTemplate(boolean allowBack, String header, String subheader, String body, @Nullable String buttonText) {

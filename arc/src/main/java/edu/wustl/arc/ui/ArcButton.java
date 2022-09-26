@@ -38,7 +38,7 @@ import edu.wustl.arc.font.Fonts;
 import edu.wustl.arc.assessments.R;
 import edu.wustl.arc.utilities.ViewUtil;
 
-public class Button extends ChipButton {
+public class ArcButton extends ChipButton {
 
     public static final int THEME_PRIMARY = 0;
     public static final int THEME_WHITE = 1;
@@ -47,19 +47,19 @@ public class Button extends ChipButton {
     TextView textView;
     ImageView imageView;
 
-    public Button(Context context) {
+    public ArcButton(Context context) {
         super(context);
         init(context);
         applyAttributeSet(context,null);
     }
 
-    public Button(Context context, AttributeSet attrs) {
+    public ArcButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
         applyAttributeSet(context, attrs);
     }
 
-    public Button(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ArcButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
         applyAttributeSet(context, attrs);

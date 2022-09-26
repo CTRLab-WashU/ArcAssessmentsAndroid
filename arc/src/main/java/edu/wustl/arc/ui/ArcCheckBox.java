@@ -32,7 +32,7 @@ import android.widget.FrameLayout;
 import edu.wustl.arc.font.Fonts;
 import edu.wustl.arc.assessments.R;
 
-public class CheckBox extends FrameLayout {
+public class ArcCheckBox extends FrameLayout {
 
     String text;
     AppCompatCheckBox checkBox;
@@ -44,17 +44,17 @@ public class CheckBox extends FrameLayout {
     int paddingRight;
     int paddingBottom;
 
-    public CheckBox(Context context) {
+    public ArcCheckBox(Context context) {
         super(context);
         init(context);
     }
 
-    public CheckBox(Context context, AttributeSet attrs) {
+    public ArcCheckBox(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public CheckBox(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ArcCheckBox(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }

@@ -40,7 +40,7 @@ import android.view.Display;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import edu.wustl.arc.core.Application;
+import edu.wustl.arc.core.ArcApplication;
 
 public class ViewUtil {
 
@@ -84,7 +84,7 @@ public class ViewUtil {
     }
 
     public static int getColor(@ColorRes int id){
-        return ContextCompat.getColor(Application.getInstance().getAppContext(),id);
+        return ContextCompat.getColor(ArcApplication.getInstance().getAppContext(),id);
     }
 
     public static Drawable getDrawable(Context context, @DrawableRes int id){
@@ -92,7 +92,7 @@ public class ViewUtil {
     }
 
     public static Drawable getDrawable(@DrawableRes int id){
-        return ContextCompat.getDrawable(Application.getInstance().getAppContext(),id);
+        return ContextCompat.getDrawable(ArcApplication.getInstance().getAppContext(),id);
     }
 
     public static String getString(Context context, @StringRes int id){
@@ -100,17 +100,17 @@ public class ViewUtil {
     }
 
     public static String getHtmlString(@StringRes int id) {
-        return Html.fromHtml(Application.getInstance().getAppContext().getString(id)).toString();
+        return Html.fromHtml(ArcApplication.getInstance().getAppContext().getString(id)).toString();
     }
 
     public static String getString(@StringRes int id){
-        return Application.getInstance().getAppContext().getString(id);
+        return ArcApplication.getInstance().getAppContext().getString(id);
     }
 
     public static String getStringConcat(@StringRes int ... ids){
         String string = new String();
         for(int i=0;i<ids.length;i++){
-            string += Application.getInstance().getAppContext().getString(ids[i]);
+            string += ArcApplication.getInstance().getAppContext().getString(ids[i]);
         }
         return string;
     }
@@ -146,7 +146,7 @@ public class ViewUtil {
 
     public static int getStatusBarHeight() {
         if(statusBarHeight==-1){
-            statusBarHeight = getStatusBarHeight(Application.getInstance().getAppContext());
+            statusBarHeight = getStatusBarHeight(ArcApplication.getInstance().getAppContext());
         }
         return statusBarHeight;
     }
@@ -162,7 +162,7 @@ public class ViewUtil {
 
     public static int getNavBarHeight() {
         if(navBarHeight==-1){
-            navBarHeight = getNavBarHeight(Application.getInstance().getAppContext());
+            navBarHeight = getNavBarHeight(ArcApplication.getInstance().getAppContext());
         }
         return navBarHeight;
     }

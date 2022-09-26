@@ -37,7 +37,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import edu.wustl.arc.ui.RadioButton;
+import edu.wustl.arc.ui.ArcRadioButton;
 import edu.wustl.arc.font.Fonts;
 
 import edu.wustl.arc.assessments.R;
@@ -53,8 +53,8 @@ public class PricesTutorial extends Tutorial {
 
     RelativeLayout priceContainer;
 
-    RadioButton buttonYes;
-    RadioButton buttonNo;
+    ArcRadioButton buttonYes;
+    ArcRadioButton buttonNo;
 
     TextView textviewFood;
     TextView textviewPrice;

@@ -24,6 +24,8 @@ package edu.wustl.arc.ui;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.Gravity;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -33,12 +35,15 @@ import edu.wustl.arc.utilities.ViewUtil;
 
 import org.joda.time.DateTime;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*
     Displays days of week with indicator circle on current day.
 
     Usage:
         Define in XML:
-            <com.healthymedium.arc.ui.WeekProgressView
+            <edu.wustl.arc.ui.WeekProgressView
                 android:id="@+id/weekProgressView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -97,7 +102,31 @@ public class WeekProgressView extends LinearProgressView {
             backgroundLayout.setPadding(padding, 0, padding, 0);
         }
 
+        buildProgressView();
+        super.initOnMeasure();
+    }
+
+    private void buildProgressView() {
+        if (padding == null) {
+            return;
+        }
+
+        String overlaidProgressTag = "OverlaidProgressTag";
         DateTime day = startDate;
+
+        List<View> viewsToReload = new ArrayList<>();
+        for (int i = 0; i < progressLayout.getChildCount(); i++) {
+            View v = progressLayout.getChildAt(i);
+            if (v.getTag() != null && v.getTag() instanceof String) {
+                if (overlaidProgressTag.equals(v.getTag())) {
+                    viewsToReload.add(v);
+                }
+            }
+        }
+        for (View v : viewsToReload) {
+            progressLayout.removeView(v);
+        }
+
         for (int i = 0; i <= currentDay; i++) {
             int dayIndex = getDayIndex(day);
             day = day.plusDays(1);
@@ -105,26 +134,34 @@ public class WeekProgressView extends LinearProgressView {
             int width = backgroundLayout.getChildAt(i).getMeasuredWidth() - padding*2/7;
             LinearLayout.LayoutParams dayTextParams = new LinearLayout.LayoutParams(width, LinearLayout.LayoutParams.WRAP_CONTENT);
             TextView dayTextView = new TextView(getContext());
+            dayTextView.setTag(overlaidProgressTag);
             dayTextView.setLayoutParams(dayTextParams);
             dayTextView.setTypeface(Fonts.robotoBold);
             dayTextView.setTextSize(16);
             dayTextView.setTextColor(ViewUtil.getColor(getContext(), R.color.white));
             dayTextView.setTextAlignment(TEXT_ALIGNMENT_CENTER);
+            dayTextView.setGravity(Gravity.CENTER_HORIZONTAL);
             dayTextView.setText(ViewUtil.getString(days[dayIndex]));
             dayTextView.setPadding(0, ViewUtil.dpToPx(5), 0, ViewUtil.dpToPx(5));
             progressLayout.addView(dayTextView);
         }
-        progressLayout.setPadding(padding, 0, padding, 0);
-
         progressText = ViewUtil.getString(days[getDayIndex(startDate.plusDays(currentDay))]);
-
-        super.initOnMeasure();
+        progressLayout.setPadding(padding, 0, padding, 0);
+        resetProgress(progress);
     }
 
-
     private void buildView() {
+        buildBackgroundView();
+        buildProgressView();
+    }
+
+    private void buildBackgroundView() {
+        if (backgroundLayout.getChildCount() > 2) {
+            return; // already built
+        }
         backgroundLayout.removeAllViews();
-        LinearLayout.LayoutParams dayTextParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams dayTextParams =
+                new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT);
         dayTextParams.weight = 1;
         DateTime day = startDate;
         for(int i=0;i<7;i++) {
@@ -137,6 +174,7 @@ public class WeekProgressView extends LinearProgressView {
             dayTextView.setTextSize(16);
             dayTextView.setTextColor(ViewUtil.getColor(getContext(), R.color.text));
             dayTextView.setTextAlignment(TEXT_ALIGNMENT_CENTER);
+            dayTextView.setGravity(Gravity.CENTER_HORIZONTAL);
             dayTextView.setText(ViewUtil.getString(days[dayIndex]));
             dayTextView.setPadding(0, ViewUtil.dpToPx(5), 0, ViewUtil.dpToPx(5));
             backgroundLayout.addView(dayTextView);

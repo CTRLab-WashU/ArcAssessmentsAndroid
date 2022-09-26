@@ -32,7 +32,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import edu.wustl.arc.core.ArcBaseFragment;
-import edu.wustl.arc.ui.Button;
+import edu.wustl.arc.ui.ArcButton;
 import edu.wustl.arc.ui.TutorialProgressView;
 import edu.wustl.arc.hints.HintHighlighter;
 import edu.wustl.arc.hints.HintPointer;
@@ -60,7 +60,7 @@ public class Tutorial extends ArcBaseFragment {
 
     protected ImageView checkmark;
     protected TextView textViewComplete;
-    protected Button endButton;
+    protected ArcButton endButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

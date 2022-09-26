@@ -41,7 +41,7 @@ import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.assessments.R;
 import edu.wustl.arc.path_data.Grid2TestPathData;
 import edu.wustl.arc.study.Study;
-import edu.wustl.arc.ui.Button;
+import edu.wustl.arc.ui.ArcButton;
 import edu.wustl.arc.ui.Grid2BoxView;
 import edu.wustl.arc.ui.Grid2ChoiceDialog;
 import edu.wustl.arc.ui.base.PointerDrawable;
@@ -62,7 +62,7 @@ public class Grid2Test extends ArcBaseFragment {
     Grid2TestPathData gridTest;
     Grid2TestPathData.Section section;
 
-    Button button;
+    ArcButton button;
     Grid2ChoiceDialog dialog;
 
     Handler handler;

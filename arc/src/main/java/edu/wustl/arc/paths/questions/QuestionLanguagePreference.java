@@ -33,7 +33,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import edu.wustl.arc.core.Application;
+import edu.wustl.arc.core.ArcApplication;
 import edu.wustl.arc.core.Locale;
 import edu.wustl.arc.font.FontFactory;
 import edu.wustl.arc.font.Fonts;
@@ -58,7 +58,7 @@ public class QuestionLanguagePreference extends QuestionRadioButtons {
         super(false, true, "Language:", "", initOptions(), "CONFIRM");
 
         if(FontFactory.getInstance()==null) {
-            FontFactory.initialize(Application.getInstance().getAppContext());
+            FontFactory.initialize(ArcApplication.getInstance().getAppContext());
         }
 
         if(!Fonts.areLoaded()){
@@ -143,7 +143,7 @@ public class QuestionLanguagePreference extends QuestionRadioButtons {
 
     static List<String> initOptions() {
 
-        List<Locale> AllLocales = Application.getInstance().getLocaleOptions();
+        List<Locale> AllLocales = ArcApplication.getInstance().getLocaleOptions();
         List<String> options = new ArrayList<>();
         locales = new ArrayList<>();
 

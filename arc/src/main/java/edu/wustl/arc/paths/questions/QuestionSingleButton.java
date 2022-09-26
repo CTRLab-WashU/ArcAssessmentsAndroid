@@ -30,14 +30,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 
-import edu.wustl.arc.ui.CheckBox;
+import edu.wustl.arc.ui.ArcCheckBox;
 import edu.wustl.arc.paths.templates.AltQuestionTemplate;
 
 // a yes or no question
 @SuppressLint("ValidFragment")
 public class QuestionSingleButton extends AltQuestionTemplate {
 
-    CheckBox box;
+    ArcCheckBox box;
     String buttonText;
     String optionText;
 
@@ -53,7 +53,7 @@ public class QuestionSingleButton extends AltQuestionTemplate {
         View view = super.onCreateView(inflater,container,savedInstanceState);
         setHelpVisible(false);
 
-        box = new CheckBox(getContext());
+        box = new ArcCheckBox(getContext());
         box.setText(optionText);
 
         box.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

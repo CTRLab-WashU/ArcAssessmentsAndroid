@@ -25,6 +25,7 @@ package edu.wustl.arc.ui;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -134,14 +135,32 @@ public class LinearProgressView extends RelativeLayout {
             float centerX = totalWidth * percent;
             centerX -= indicatorWidth * percent;
 
-            FrameLayout.LayoutParams indicatorParams = new FrameLayout.LayoutParams(indicatorWidth, indicatorWidth);
+            FrameLayout.LayoutParams indicatorParams =
+                    new FrameLayout.LayoutParams(indicatorWidth, indicatorWidth);
             indicatorLayout.setLayoutParams(indicatorParams);
             indicatorTextView.setLayoutParams(indicatorParams);
             indicatorTextView.setText(progressText);
+            indicatorTextView.setGravity(Gravity.CENTER);
             indicatorLayout.setX(centerX);
             addView(indicatorLayout);
         }
 
         initialized = true;
+    }
+
+    protected void updateExistingView() {
+        if (totalWidth <= 0) {
+            return;
+        }
+        float percent = ((float)progress/(float)maxValue);
+        float centerX = totalWidth * percent;
+        centerX -= indicatorWidth * percent;
+        indicatorLayout.setX(centerX);
+        indicatorTextView.setText(progressText);
+    }
+
+    public void resetProgress(int newProgress) {
+        progress = newProgress;
+        updateExistingView();
     }
 }

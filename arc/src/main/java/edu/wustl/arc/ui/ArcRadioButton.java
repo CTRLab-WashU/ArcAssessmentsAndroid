@@ -33,7 +33,7 @@ import android.widget.FrameLayout;
 import edu.wustl.arc.font.Fonts;
 import edu.wustl.arc.assessments.R;
 
-public class RadioButton extends FrameLayout {
+public class ArcRadioButton extends FrameLayout {
 
     String text;
     AppCompatRadioButton radioButton;
@@ -45,17 +45,17 @@ public class RadioButton extends FrameLayout {
     int paddingRight;
     int paddingBottom;
 
-    public RadioButton(Context context) {
+    public ArcRadioButton(Context context) {
         super(context);
         init(context, null);
     }
 
-    public RadioButton(Context context, AttributeSet attrs) {
+    public ArcRadioButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
     }
 
-    public RadioButton(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ArcRadioButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs);
     }

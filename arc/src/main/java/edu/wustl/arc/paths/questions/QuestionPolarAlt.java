@@ -30,7 +30,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 
-import edu.wustl.arc.ui.RadioButton;
+import edu.wustl.arc.ui.ArcRadioButton;
 import edu.wustl.arc.assessments.R;
 import edu.wustl.arc.paths.templates.AltQuestionTemplate;
 import edu.wustl.arc.utilities.ViewUtil;
@@ -39,8 +39,8 @@ import edu.wustl.arc.utilities.ViewUtil;
 @SuppressLint("ValidFragment")
 public class QuestionPolarAlt extends AltQuestionTemplate {
 
-    RadioButton yesButton;
-    RadioButton noButton;
+    ArcRadioButton yesButton;
+    ArcRadioButton noButton;
     protected boolean answerIsYes;
     protected boolean answered;
 
@@ -64,7 +64,7 @@ public class QuestionPolarAlt extends AltQuestionTemplate {
         View view = super.onCreateView(inflater,container,savedInstanceState);
         setHelpVisible(false);
 
-        yesButton = new RadioButton(getContext());
+        yesButton = new ArcRadioButton(getContext());
 
         if (yesText == null) {
             yesButton.setText(ViewUtil.getString(R.string.radio_yes));
@@ -90,7 +90,7 @@ public class QuestionPolarAlt extends AltQuestionTemplate {
             }
         });
 
-        noButton = new RadioButton(getContext());
+        noButton = new ArcRadioButton(getContext());
 
         if (noText == null) {
             noButton.setText(ViewUtil.getString(R.string.radio_no));

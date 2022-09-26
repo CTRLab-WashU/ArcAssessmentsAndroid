@@ -446,7 +446,7 @@
 
             </edu.wustl.arc.ui.base.RoundedFrameLayout>
 
-            <edu.wustl.arc.ui.Button
+            <edu.wustl.arc.ui.ArcButton
                 android:id="@+id/viewFaqButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -456,7 +456,7 @@
                 android:text="@string/button_viewfaq"
                 app:buttonTheme="light">
 
-            </edu.wustl.arc.ui.Button>
+            </edu.wustl.arc.ui.ArcButton>
 
             <RelativeLayout
                 android:layout_width="match_parent"

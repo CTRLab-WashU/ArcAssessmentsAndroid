@@ -31,10 +31,6 @@ import android.widget.LinearLayout;
 import edu.wustl.arc.ui.base.RoundedDrawable;
 import edu.wustl.arc.assessments.R;
 import edu.wustl.arc.utilities.ViewUtil;
-import edu.wustl.arc.study.Participant;
-import edu.wustl.arc.study.Study;
-import edu.wustl.arc.study.TestCycle;
-
 
 public class StudyProgressView extends LinearLayout {
 
@@ -61,27 +57,15 @@ public class StudyProgressView extends LinearLayout {
         init(attrs, defStyle);
     }
 
-    private void init(AttributeSet attrs, int defStyle) {
-
-        Context context = getContext();
-        setOrientation(HORIZONTAL);
-        setGravity(Gravity.CENTER_VERTICAL);
-
-        Participant participant = Study.getParticipant();
-        weekCount = participant.getState().testCycles.size();
-
-        int currentWeek = weekCount;
-        boolean isInCycle = false;
-
-        TestCycle cycle = participant.getCurrentTestCycle();
-        if(cycle != null) {
-            isInCycle = (cycle.getActualStartDate().isBeforeNow() && cycle.getActualEndDate().isAfterNow());
-            currentWeek = cycle.getId()+1;
-
-            if(!isInCycle){
-                currentWeek--;
-            }
-        }
+    /**
+     * @param studyBurstNum First study burst is a value of 1
+     * @param studyBurstCount
+     * @param isInStudyBurst
+     */
+    public void setDetails(int studyBurstNum, int studyBurstCount, boolean isInStudyBurst) {
+        removeAllViews();
+        currentWeek = studyBurstNum;
+        weekCount = studyBurstCount;
 
         int dp1 = ViewUtil.dpToPx(1);
         int dp2 = ViewUtil.dpToPx(2);
@@ -103,11 +87,11 @@ public class StudyProgressView extends LinearLayout {
                 drawable.setFillColor(color);
             }
 
-            View view = new View(context);
+            View view = new View(getContext());
             view.setBackground(drawable);
 
             LayoutParams params;
-            if(i==currentWeek-1 && isInCycle){
+            if(i==currentWeek-1 && isInStudyBurst){
                 params = new LayoutParams(dp8,dp42);
             } else {
                 params = new LayoutParams(dp8,dp32);
@@ -124,7 +108,11 @@ public class StudyProgressView extends LinearLayout {
             view.setLayoutParams(params);
             addView(view);
         }
+    }
 
+    private void init(AttributeSet attrs, int defStyle) {
+        setOrientation(HORIZONTAL);
+        setGravity(Gravity.CENTER_VERTICAL);
     }
 
     @Override

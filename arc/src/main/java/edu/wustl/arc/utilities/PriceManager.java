@@ -22,12 +22,10 @@
 */
 package edu.wustl.arc.utilities;
 
-import android.util.Log;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
-import edu.wustl.arc.core.Application;
+import edu.wustl.arc.core.ArcApplication;
 import edu.wustl.arc.core.Config;
 import edu.wustl.arc.assessments.R;
 import edu.wustl.arc.study.ParticipantState;
@@ -67,7 +65,7 @@ public class PriceManager {
     public List<PriceManager.Item> getPriceSet(){
 
         if(priceSets.size()==0) {
-            priceSets = loadJson(Application.getInstance().getResources().openRawResource(R.raw.price_sets));
+            priceSets = loadJson(ArcApplication.getInstance().getResources().openRawResource(R.raw.price_sets));
         }
 
         if(Config.ENABLE_LEGACY_PRICE_SETS)

@@ -43,14 +43,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import edu.wustl.arc.core.Application;
+import edu.wustl.arc.core.ArcApplication;
 import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.core.Config;
 import edu.wustl.arc.paths.tutorials.Grid2Tutorial;
 import edu.wustl.arc.study.TestVariant;
 import edu.wustl.arc.font.Fonts;
 import edu.wustl.arc.paths.tutorials.PricesTutorialRevised;
-import edu.wustl.arc.ui.Button;
+import edu.wustl.arc.ui.ArcButton;
 
 import edu.wustl.arc.assessments.R;
 import edu.wustl.arc.paths.tutorials.GridTutorial;
@@ -85,7 +85,7 @@ public class TestInfoTemplate extends ArcBaseFragment {
 
     LinearLayout content;
 
-    Button button;
+    ArcButton button;
 
     HintPointer tutorialHint;
     HintHighlighter tutorialHintHighlighter;
@@ -135,7 +135,7 @@ public class TestInfoTemplate extends ArcBaseFragment {
         textViewBody.setText(Html.fromHtml(stringBody));
 
         SpannableString styledViewTutorialString =
-                new SpannableString(Html.fromHtml(Application.getInstance().getResources().getString(R.string.testing_tutorial_link)));
+                new SpannableString(Html.fromHtml(ArcApplication.getInstance().getResources().getString(R.string.testing_tutorial_link)));
         styledViewTutorialString.setSpan(new UnderlineSpan(), 0, styledViewTutorialString.length(), 0);
         styledViewTutorialString.setSpan(new StyleSpan(Typeface.BOLD), 0, styledViewTutorialString.length(), 0);
 

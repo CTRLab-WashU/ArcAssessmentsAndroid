@@ -34,7 +34,7 @@
         android:gravity="center"
         android:textSize="26dp" />
 
-    <edu.wustl.arc.ui.RadioButton
+    <edu.wustl.arc.ui.ArcRadioButton
         android:id="@+id/buttonTop"
         app:showButton="false"
         app:labelPosition="center"
@@ -45,7 +45,7 @@
         tool:text="$1.51" />
 
 
-    <edu.wustl.arc.ui.RadioButton
+    <edu.wustl.arc.ui.ArcRadioButton
         android:id="@+id/buttonBottom"
         app:showButton="false"
         app:labelPosition="center"

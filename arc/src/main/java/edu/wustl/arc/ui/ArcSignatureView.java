@@ -32,12 +32,12 @@ import com.github.gcacace.signaturepad.views.SignaturePad;
 import edu.wustl.arc.assessments.R;
 import edu.wustl.arc.utilities.ViewUtil;
 
-public class Signature extends FrameLayout {
+public class ArcSignatureView extends FrameLayout {
 
-    public SignaturePad mSignaturePad;
+    public ArcSignaturePad mSignaturePad;
     public TextView clear;
 
-    public Signature(Context context) {
+    public ArcSignatureView(Context context) {
         super(context);
         init(context);
     }

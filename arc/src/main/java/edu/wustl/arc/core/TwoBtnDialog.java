@@ -32,8 +32,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.fragment.app.DialogFragment;
-import edu.wustl.arc.study.Study;
-import edu.wustl.arc.ui.Button;
+
+import edu.wustl.arc.ui.ArcButton;
 
 import edu.wustl.arc.assessments.R;
 
@@ -52,8 +52,8 @@ public class TwoBtnDialog extends DialogFragment {
 
     TextView textViewHeader;
     TextView textViewBody;
-    Button button;
-    Button buttonBottom;
+    ArcButton button;
+    ArcButton buttonBottom;
     SimpleDialog.OnDialogDismiss listener;
 
     public TwoBtnDialog(String headerText, String bodyText, String buttonText, String buttonTextBottom){

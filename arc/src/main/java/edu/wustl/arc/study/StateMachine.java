@@ -40,7 +40,7 @@ import edu.wustl.arc.paths.tests.TestProgress;
 import edu.wustl.arc.time.TimeUtil;
 
 import edu.wustl.arc.api.tests.data.BaseData;
-import edu.wustl.arc.core.Application;
+import edu.wustl.arc.core.ArcApplication;
 import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.core.SimplePopupScreen;
 import edu.wustl.arc.assessments.R;
@@ -325,7 +325,7 @@ public class StateMachine {
     public void addChronotypeSurvey(){
         List<ArcBaseFragment> fragments = new ArrayList<>();
 
-        Resources res = Application.getInstance().getResources();
+        Resources res = ArcApplication.getInstance().getResources();
 
         fragments.add(new StateInfoTemplate(
                 false,
@@ -390,7 +390,7 @@ public class StateMachine {
     public void addWakeSurvey(){
         List<ArcBaseFragment> fragments = new ArrayList<>();
 
-        Resources res = Application.getInstance().getResources();
+        Resources res = ArcApplication.getInstance().getResources();
 
         fragments.add(new StateInfoTemplate(
                 false,
@@ -436,7 +436,7 @@ public class StateMachine {
     public void addContextSurvey(){
         List<ArcBaseFragment> fragments = new ArrayList<>();
 
-        Resources res = Application.getInstance().getResources();
+        Resources res = ArcApplication.getInstance().getResources();
 
         fragments.add(new StateInfoTemplate(
                 false,
@@ -490,7 +490,7 @@ public class StateMachine {
 
         List<ArcBaseFragment> fragments = new ArrayList<>();
 
-        Resources res = Application.getInstance().getResources();
+        Resources res = ArcApplication.getInstance().getResources();
 
         TestIntro info = new TestIntro();
 //        StateInfoTemplate info = new StateInfoTemplate(
@@ -530,7 +530,7 @@ public class StateMachine {
     public void addPricesTest(int index){
         List<ArcBaseFragment> fragments = new ArrayList<>();
 
-        Resources res = Application.getInstance().getResources();
+        Resources res = ArcApplication.getInstance().getResources();
 
         String testNumber = getTestNumberString(index);
 
@@ -565,7 +565,7 @@ public class StateMachine {
     public void addSymbolsTest(int index){
         List<ArcBaseFragment> fragments = new ArrayList<>();
 
-        Resources res = Application.getInstance().getResources();
+        Resources res = ArcApplication.getInstance().getResources();
 
         String testNumber = getTestNumberString(index);
 
@@ -673,7 +673,7 @@ public class StateMachine {
 
     public void addInterruptedPage(){
 
-        Resources res = Application.getInstance().getResources();
+        Resources res = ArcApplication.getInstance().getResources();
 
         List<ArcBaseFragment> fragments = new ArrayList<>();
         fragments.add(new QuestionInterrupted(false, ViewUtil.getHtmlString(R.string.testing_interrupted_body),""));

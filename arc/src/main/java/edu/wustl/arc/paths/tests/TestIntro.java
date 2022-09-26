@@ -32,14 +32,14 @@ import android.widget.TextView;
 import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.assessments.R;
 import edu.wustl.arc.study.Study;
-import edu.wustl.arc.ui.Button;
+import edu.wustl.arc.ui.ArcButton;
 import edu.wustl.arc.utilities.ViewUtil;
 
 public class TestIntro extends ArcBaseFragment {
 
     TextView header;
     TextView subheader;
-    Button nextButton;
+    ArcButton nextButton;
 
     @Nullable
     @Override
