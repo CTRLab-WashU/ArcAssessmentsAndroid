@@ -65,7 +65,16 @@ public class SymbolTest extends ArcBaseFragment {
     Random random;
     List symbols = new ArrayList();
     int iteration = 0;
+
     boolean paused;
+    long pausedTime;
+
+    public static long ALLOWED_PAUSE_TIME = (1000L * 60 * 5);
+
+    public static boolean isPastAllowedPauseTime(long timeOfPause) {
+        return (System.currentTimeMillis() - timeOfPause) > ALLOWED_PAUSE_TIME;
+    }
+
     Handler handler;
     private Runnable runnable = new Runnable() {
         @Override
@@ -271,9 +280,10 @@ public class SymbolTest extends ArcBaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        if(paused) {
+        if(paused && SymbolTest.isPastAllowedPauseTime(pausedTime)) {
             Study.skipToNextSegment();
         }
+        paused = false;
     }
 
     @Override
@@ -281,6 +291,6 @@ public class SymbolTest extends ArcBaseFragment {
         super.onPause();
         handler.removeCallbacks(runnable);
         paused = true;
+        pausedTime = System.currentTimeMillis();
     }
-
 }

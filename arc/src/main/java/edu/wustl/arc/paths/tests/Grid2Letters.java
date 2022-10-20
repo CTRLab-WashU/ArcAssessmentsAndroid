@@ -64,6 +64,7 @@ public class Grid2Letters extends ArcBaseFragment {
     TimedDialogMultipart dialog;
     Handler handler;
     boolean paused;
+    long pausedTime;
 
     int eCount = 0;
     int fCount = 0;
@@ -217,9 +218,12 @@ public class Grid2Letters extends ArcBaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        if(paused) {
+        if(paused && SymbolTest.isPastAllowedPauseTime(pausedTime)) {
             Study.skipToNextSegment();
+        } else if (paused) {
+            handler.postDelayed(runnable,8000);
         }
+        paused = false;
     }
 
     @Override
@@ -233,6 +237,7 @@ public class Grid2Letters extends ArcBaseFragment {
             }
         }
         paused = true;
+        pausedTime = System.currentTimeMillis();
     }
 
     protected Runnable runnable = new Runnable() {
