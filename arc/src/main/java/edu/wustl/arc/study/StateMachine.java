@@ -554,7 +554,7 @@ public class StateMachine {
                 ViewUtil.getHtmlString(R.string.button_begin),
                 3000,
                 15000,
-                true));
+                false));
 
         fragments.add(new PriceTestMatchFragment());
         fragments.add(new TestProgress(ViewUtil.getString(R.string.prices_complete), index));
