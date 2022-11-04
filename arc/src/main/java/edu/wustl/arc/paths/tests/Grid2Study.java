@@ -54,7 +54,6 @@ import java.util.Random;
 public class Grid2Study extends ArcBaseFragment {
 
     boolean paused;
-    long pausedTime;
 
     GridLayout gridLayout;
     Grid2TestPathData gridTest;
@@ -145,8 +144,6 @@ public class Grid2Study extends ArcBaseFragment {
         if(!paused) {
             gridTest.startNewSection();
             section = gridTest.getCurrentSection();
-        } else if(SymbolTest.isPastAllowedPauseTime(pausedTime)) {
-            Study.skipToNextSegment();
         } else {
             // Restart timer
             handler.postDelayed(runnable,3000);
@@ -164,7 +161,6 @@ public class Grid2Study extends ArcBaseFragment {
         if(handler != null) {
             handler.removeCallbacks(runnable);
         }
-        pausedTime = System.currentTimeMillis();
     }
 
     private void adjustGridLayout(){
