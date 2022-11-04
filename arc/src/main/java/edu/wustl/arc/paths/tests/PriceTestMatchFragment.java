@@ -63,7 +63,6 @@ public class PriceTestMatchFragment extends ArcBaseFragment {
     TextView textViewIsIt;
     int iteration = 0;
     boolean paused;
-    long pausedTime;
 
     public PriceTestMatchFragment() {
         if(StateMachine.AUTOMATED_TESTS_RANDOM_SEED == -1){
@@ -203,17 +202,12 @@ public class PriceTestMatchFragment extends ArcBaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        if(paused && SymbolTest.isPastAllowedPauseTime(pausedTime)) {
-            Study.setCurrentSegmentData(priceTest);
-            Study.skipToNextSegment();
-        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
         paused = true;
-        pausedTime = System.currentTimeMillis();
     }
 
 }

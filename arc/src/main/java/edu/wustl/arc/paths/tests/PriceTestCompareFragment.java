@@ -66,7 +66,6 @@ public class PriceTestCompareFragment extends ArcBaseFragment {
 
     private boolean revised = false;
     boolean paused;
-    long pausedTime;
     Random random;
     Handler handler;
     Runnable runnable = new Runnable() {
@@ -246,10 +245,7 @@ public class PriceTestCompareFragment extends ArcBaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        if(paused && SymbolTest.isPastAllowedPauseTime(pausedTime)) {
-            Study.setCurrentSegmentData(priceTest);
-            Study.skipToNextSegment();
-        } else if (paused) {  // Restart the runnable
+        if (paused) {  // Restart the runnable
             handler.postDelayed(runnable,3000);
         }
         paused = false;
@@ -260,6 +256,5 @@ public class PriceTestCompareFragment extends ArcBaseFragment {
         super.onPause();
         handler.removeCallbacks(runnable);
         paused = true;
-        pausedTime = System.currentTimeMillis();
     }
 }

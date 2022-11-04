@@ -53,7 +53,6 @@ import java.util.List;
 public class Grid2Test extends ArcBaseFragment {
 
     boolean paused;
-    long pausedTime;
 
     boolean phoneSelected = false;
     boolean keySelected = false;
@@ -223,10 +222,6 @@ public class Grid2Test extends ArcBaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        if(paused && SymbolTest.isPastAllowedPauseTime(pausedTime)) {
-            updateSection();
-            Study.skipToNextSegment();
-        }
         paused = false;
     }
 
@@ -236,7 +231,6 @@ public class Grid2Test extends ArcBaseFragment {
         handlerInteraction.removeCallbacks(runnable);
         handler.removeCallbacks(runnable);
         paused = true;
-        pausedTime = System.currentTimeMillis();
     }
 
 
