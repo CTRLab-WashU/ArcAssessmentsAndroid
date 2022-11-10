@@ -358,7 +358,7 @@ public class PricesTutorialRevised extends Tutorial {
         textviewFood.setText(ViewUtil.getString(R.string.prices_tutorial_item1));
         textviewPrice.setText(ViewUtil.getString(R.string.prices_tutorial_price1_match));
 
-        initialViewHint.setText(ViewUtil.getString(R.string.popup_tutorial_price_intro));
+        initialViewHint.setText(ViewUtil.getString(R.string.simplified_popup_tutorial_price_intro));
         highlighter.addTarget(progressBar);
         highlighter.show();
 
@@ -493,7 +493,7 @@ public class PricesTutorialRevised extends Tutorial {
                 firstMatchAnswerHilighter.addTarget(progressBar);
                 firstMatchAnswerHilighter.show();
 
-                firstMatchAnswerPointer.setText(ViewUtil.getString(R.string.popup_tutorial_pricetap));
+                firstMatchAnswerPointer.setText(ViewUtil.getString(R.string.simplified_popup_tutorial_pricetap));
                 firstMatchAnswerPointer.show();
             }
         };
@@ -602,7 +602,7 @@ public class PricesTutorialRevised extends Tutorial {
                 secondMatchAnswerHilighter.addTarget(progressBar);
                 secondMatchAnswerHilighter.show();
 
-                secondMatchAnswerPointer.setText(ViewUtil.getString(R.string.popup_tutorial_pricetap));
+                secondMatchAnswerPointer.setText(ViewUtil.getString(R.string.simplified_popup_tutorial_pricetap));
                 secondMatchAnswerPointer.show();
             }
         };
@@ -706,7 +706,7 @@ public class PricesTutorialRevised extends Tutorial {
                 highlighter.addTarget(progressBar);
 
                 pointer = new HintPointer(getActivity(), buttonYes.findViewById(R.id.frameLayoutRadioButton), true, false);
-                pointer.setText(ViewUtil.getString(R.string.popup_tutorial_pricetap));
+                pointer.setText(ViewUtil.getString(R.string.simplified_popup_tutorial_pricetap));
 
                 highlighter.show();
                 pointer.show();

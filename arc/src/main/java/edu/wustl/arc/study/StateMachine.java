@@ -26,6 +26,8 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.util.Log;
 
+import androidx.annotation.StringRes;
+
 import edu.wustl.arc.api.tests.CognitiveTest;
 import edu.wustl.arc.core.Config;
 import edu.wustl.arc.core.SplashScreen;
@@ -527,7 +529,11 @@ public class StateMachine {
         }
     }
 
-    public void addPricesTest(int index){
+    public void addPricesTest(int index) {
+        addPricesTest(index, R.string.prices_body);
+    }
+
+    public void addPricesTest(int index, @StringRes int pricesBodyStrRes) {
         List<ArcBaseFragment> fragments = new ArrayList<>();
 
         Resources res = ArcApplication.getInstance().getResources();
@@ -537,7 +543,7 @@ public class StateMachine {
         TestInfoTemplate info = new TestInfoTemplate(
                 testNumber,
                 ViewUtil.getHtmlString(R.string.prices_header),
-                ViewUtil.getHtmlString(R.string.prices_body),
+                ViewUtil.getHtmlString(pricesBodyStrRes),
                 "prices",
                 ViewUtil.getHtmlString(R.string.button_begintest));
         fragments.add(info);
