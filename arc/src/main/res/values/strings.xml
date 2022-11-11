@@ -381,6 +381,7 @@
 	<string name="popup_tutorial_welcome"></string>
 	<string name="popup_tutorial_quit">Tap here to quit the tutorial.</string>
 	<string name="popup_tutorial_price_intro">The Prices test has two parts. &lt;b>First, evaluate the price.&lt;/b></string>
+	<string name="simplified_popup_tutorial_price_intro"><b>Memorize the displayed\nitems and their prices.</b>\nYou will have 3 seconds\nper item.</string>
 	<string name="popup_tutorial_price_memorize"></string>
 	<string name="prices_tutorial_item1">Bananas</string>
 	<string name="prices_tutorial_price1">$3.27</string>
@@ -402,6 +403,7 @@
 	<string name="popup_tutorial_tilesbottom">...and &lt;b>two tiles&lt;/b> on the bottom.</string>
 	<string name="popup_tutorial_middle_instructions">Tap the &lt;b>bottom tile that matches&lt;/b> a tile on the top.</string>
 	<string name="popup_tutorial_tiletap">Tap this matching tile.</string>
+	<string name="simplified_popup_tutorial_pricetap">This was the price from part one.</string>
 	<string name="popup_tutorial_pricetap"></string>
 	<string name="popup_tutorial_greatjob">&lt;b>Great job!&lt;/b> \nLet\'s try a couple more for practice.</string>
 	<string name="popup_tutorial_nice">&lt;b>Nice!&lt;/b> \nOne more...</string>
