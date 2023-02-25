@@ -7,9 +7,7 @@ on:
       - release/*	  
   push:
     branches:
-      - main
-      - DIAN-237	  
-      - DIAN-238	  
+      - main	  
       - release/*
 
 jobs:

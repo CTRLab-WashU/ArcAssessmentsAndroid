@@ -38,8 +38,6 @@ allprojects {
             url 'https://maven.google.com/'
         }
         maven { url "https://jitpack.io" }
-        maven { url "https://sagebionetworks.jfrog.io/artifactory/mobile-sdks/" }
-        maven { url "https://sagebionetworks.jfrog.io/" }
         mavenLocal()
     }
 }
