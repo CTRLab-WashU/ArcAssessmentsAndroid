@@ -97,7 +97,7 @@ public class QuestionRating extends QuestionTemplate {
         super.onEnterTransitionEnd(popped);
 
         if(!Hints.hasBeenShown(HINT_QUESTION_RATING)){
-            pointer = new HintPointer(getMainActivity(),rating.getSeekBar(),true,true);
+            pointer = new HintPointer(getActivity(),rating.getSeekBar(),true,true);
             pointer.setText(ViewUtil.getString(R.string.popup_drag));
             pointer.show();
             Hints.markShown(HINT_QUESTION_RATING);

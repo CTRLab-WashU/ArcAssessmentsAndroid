@@ -144,7 +144,7 @@ public class QuestionTime extends QuestionTemplate {
         }
 
         if(!Hints.hasBeenShown(HINT_QUESTION_TIME)){
-            pointer = new HintPointer(getMainActivity(),timeInput.getTimePicker(),true,false);
+            pointer = new HintPointer(getActivity(),timeInput.getTimePicker(),true,false);
             pointer.setText(ViewUtil.getString(R.string.popup_scroll));
             pointer.show();
         }

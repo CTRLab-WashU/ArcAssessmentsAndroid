@@ -190,7 +190,10 @@ public class TestInfoTemplate extends ArcBaseFragment {
         textViewTutorial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getMainActivity().getWindow().setBackgroundDrawableResource(R.color.secondary);
+                if (getActivity() == null) {
+                    return;
+                }
+                getActivity().getWindow().setBackgroundDrawableResource(R.color.secondary);
                 if(tutorialHint!=null) {
                     tutorialHint.dismiss();
                 }
@@ -240,10 +243,10 @@ public class TestInfoTemplate extends ArcBaseFragment {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(getMainActivity()==null){
+                if(getActivity() == null){
                     return;
                 }
-                getMainActivity().getWindow().setBackgroundDrawableResource(R.drawable.core_background);
+                getActivity().getWindow().setBackgroundDrawableResource(R.drawable.core_background);
             }
             }, 1000);
     }

@@ -25,9 +25,13 @@ package edu.wustl.arc.core;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import edu.wustl.arc.navigation.NavigationManager;
+import edu.wustl.arc.study.Study;
 import edu.wustl.arc.utilities.ViewUtil;
 
 import android.util.Log;
@@ -56,7 +60,23 @@ public class ArcBaseFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        getMainActivity().enableBackPress(backAllowed,backInStudy);
+        if (getActivity() instanceof ArcAssessmentActivity) {
+            getMainActivity().enableBackPress(backAllowed, backInStudy);
+        } else {
+            requireActivity().getOnBackPressedDispatcher().addCallback(
+                    new OnBackPressedCallback(!backAllowed) {
+                @Override
+                public void handleOnBackPressed() {
+                    if(backAllowed){
+                        if(Study.isValid() && backInStudy){
+                            Study.openPreviousFragment();
+                        } else {
+                            NavigationManager.getInstance().popBackStack();
+                        }
+                    }
+                }
+            });
+        }
     }
 
     public void allowBackPress(boolean inStudy){
@@ -81,7 +101,10 @@ public class ArcBaseFragment extends Fragment {
     // convenience methods for manipulating the keyboard -------------------------------------------
 
     public void hideKeyboard() {
-        Activity activity = getMainActivity();
+        if (getActivity() == null) {
+            return;
+        }
+        Activity activity = getActivity();
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
         //Find the currently focused view, so we can grab the correct window token from it.
         View view = activity.getCurrentFocus();
@@ -93,7 +116,10 @@ public class ArcBaseFragment extends Fragment {
     }
 
     public void showKeyboard(View view){
-        InputMethodManager imm = (InputMethodManager) getMainActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (getActivity() == null) {
+            return;
+        }
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
     }
 
@@ -111,7 +137,7 @@ public class ArcBaseFragment extends Fragment {
             return null;
         }
 
-        Animation anim = AnimationUtils.loadAnimation(getMainActivity(), nextAnim);
+        Animation anim = AnimationUtils.loadAnimation(getActivity(), nextAnim);
         anim.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {

@@ -79,7 +79,9 @@ public class SplashScreen extends ArcBaseFragment {
 
     private void initializeApp() {
         Context context = getContext();
-        getMainActivity().setupKeyboardWatcher();
+        if (getActivity() instanceof ArcAssessmentActivity) {
+            getMainActivity().setupKeyboardWatcher();
+        }
 
         ArcApplication.getInstance().updateLocale(getContext());
 
@@ -112,7 +114,9 @@ public class SplashScreen extends ArcBaseFragment {
 
         ready = true;
 
-        getMainActivity().getWindow().setBackgroundDrawableResource(R.drawable.core_background);
+        if (getActivity() != null) {
+            getActivity().getWindow().setBackgroundDrawableResource(R.drawable.core_background);
+        }
 
         if(!paused){
             exit();

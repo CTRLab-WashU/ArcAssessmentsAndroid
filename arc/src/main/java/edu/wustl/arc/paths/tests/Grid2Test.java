@@ -112,7 +112,7 @@ public class Grid2Test extends ArcBaseFragment {
                 view.setSelected(true);
 
                 dialog = new Grid2ChoiceDialog(
-                        getMainActivity(),
+                        getActivity(),
                         view,
                         pointerPosition);
 

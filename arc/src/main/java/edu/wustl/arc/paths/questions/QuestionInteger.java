@@ -33,6 +33,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import edu.wustl.arc.core.ArcAssessmentActivity;
 import edu.wustl.arc.ui.IntegerInput;
 import edu.wustl.arc.paths.templates.QuestionTemplate;
 import edu.wustl.arc.utilities.KeyboardWatcher;
@@ -108,13 +109,17 @@ public class QuestionInteger extends QuestionTemplate {
             value = input.getString();
         }
         hideKeyboard();
-        getMainActivity().removeKeyboardListener();
+        if (getActivity() instanceof ArcAssessmentActivity) {
+            getMainActivity().removeKeyboardListener();
+        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        getMainActivity().setKeyboardListener(keyboardToggleListener);
+        if (getActivity() instanceof ArcAssessmentActivity) {
+            getMainActivity().setKeyboardListener(keyboardToggleListener);
+        }
 
     }
 
