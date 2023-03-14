@@ -24,6 +24,7 @@ package edu.washu.arc.sampleapp;
 
 import android.app.Application;
 
+import edu.wustl.arc.core.ArcApplication;
 import edu.wustl.arc.core.Config;
 import edu.wustl.arc.study.Study;
 import edu.wustl.arc.study.TestVariant;
@@ -34,7 +35,7 @@ public class SampleApplication extends Application {
         super.onCreate();
 
         ArcAssessmentsConfig.setupConfig();
-        edu.wustl.arc.core.Application.initialize(this, () -> {
+        ArcApplication.initialize(this, () -> {
             Study.getInstance().registerStateMachine(SampleAppStateMachine.class);
         });
     }
