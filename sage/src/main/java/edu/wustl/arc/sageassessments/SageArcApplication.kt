@@ -1,4 +1,4 @@
-package edu.wustl.arc.assessments.sage
+package edu.wustl.arc.sageassessments
 
 import android.app.Application
 import edu.wustl.arc.core.ArcApplication
@@ -6,6 +6,7 @@ import edu.wustl.arc.core.Config
 import edu.wustl.arc.study.Study
 import edu.wustl.arc.study.TestVariant
 import edu.wustl.arc.ui.BottomNavigationView
+import java.util.*
 
 class SageArcApplication {
     companion object {

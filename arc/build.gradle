@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
+apply plugin: 'kotlin-android'
 
 def versionMajor = 1 // max=2000 // bump to mark substantial changes
 def versionMinor = 0 // max=99   // bump for small changes (features, changes in intended behavior, etc)
@@ -18,6 +19,7 @@ def getArtificatId = { ->
 
 android {
 
+    namespace = "edu.wustl.arc.assessments"
     compileSdkVersion 33
     flavorDimensions "default"
 
@@ -29,6 +31,14 @@ android {
         buildConfigField "int", "ARC_VERSION_CODE", versionCode+""
         buildConfigField "String", "ARC_VERSION_NAME", "\""+versionName+"\""
         testInstrumentationRunner "android.support.session.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 
     buildTypes {
@@ -48,6 +58,8 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+
     implementation 'com.github.gcacace:signature-pad:1.3.1'
 
 //    testImplementation project(':test_data')
@@ -63,34 +75,35 @@ dependencies {
     api 'androidx.mediarouter:mediarouter:1.1.0'
     api 'com.google.android.material:material:1.3.0'
 }
-
-publishing {
-    publications {
-        release(MavenPublication) {
-            groupId 'edu.wustl.arc.assessments' // Replace with group ID
-            artifactId getArtificatId()
-            version getVersionName()
-            artifact("$buildDir/outputs/aar/arc-release.aar")
-        }
-    }
-
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            /** Configure path of your package repository on Github
-             ** Replace GITHUB_USERID with your/organisation Github userID
-             ** and REPOSITORY with the repository name on GitHub
-             */
-            url = uri("https://maven.pkg.github.com/CTRLab-WashU/ArcAssessmentsAndroid")
-            credentials {
-                /** Create github.properties in root project folder file with
-                 ** gpr.usr=GITHUB_USER_ID & gpr.key=PERSONAL_ACCESS_TOKEN
-                 ** Set env variable GPR_USER & GPR_API_KEY if not adding a properties file**/
-
-                username = project.findProperty('gpr.usr') ?: System.getenv("GPR_USER")
-                password = project.findProperty('gpr.key') ?: System.getenv("GPR_TOKEN")
-            }
-        }
-    }
-}
+//
+//
+//publishing {
+//    publications {
+//        release(MavenPublication) {
+//            groupId 'edu.wustl.arc.assessments' // Replace with group ID
+//            artifactId getArtificatId()
+//            version getVersionName()
+//            artifact("$buildDir/outputs/aar/arc-release.aar")
+//        }
+//    }
+//
+//    repositories {
+//        maven {
+//            name = "GitHubPackages"
+//            /** Configure path of your package repository on Github
+//             ** Replace GITHUB_USERID with your/organisation Github userID
+//             ** and REPOSITORY with the repository name on GitHub
+//             */
+//            url = uri("https://maven.pkg.github.com/CTRLab-WashU/ArcAssessmentsAndroid")
+//            credentials {
+//                /** Create github.properties in root project folder file with
+//                 ** gpr.usr=GITHUB_USER_ID & gpr.key=PERSONAL_ACCESS_TOKEN
+//                 ** Set env variable GPR_USER & GPR_API_KEY if not adding a properties file**/
+//
+//                username = project.findProperty('gpr.usr') ?: System.getenv("GPR_USER")
+//                password = project.findProperty('gpr.key') ?: System.getenv("GPR_TOKEN")
+//            }
+//        }
+//    }
+//}
 

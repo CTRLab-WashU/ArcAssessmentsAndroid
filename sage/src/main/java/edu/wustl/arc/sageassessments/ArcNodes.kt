@@ -1,4 +1,4 @@
-package edu.wustl.arc.assessments.sage
+package edu.wustl.arc.sageassessments
 
 import com.google.gson.GsonBuilder
 import edu.wustl.arc.api.models.TestSubmission

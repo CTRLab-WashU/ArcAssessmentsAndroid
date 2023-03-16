@@ -1,4 +1,4 @@
-package edu.wustl.arc.assessments.sage
+package edu.wustl.arc.sageassessments
 
 import android.annotation.SuppressLint
 import android.app.Application
@@ -89,14 +89,18 @@ class ArcAssessmentViewModel(app: Application): AndroidViewModel(app), SessionCo
     // ARC library callback when an ArcAssessment is finished
     override fun onSessionComplete(signatureList: ArrayList<File>, session: TestSession) {
         val startResult = arcResultLiveData.value ?: run {
-            Log.e(ArcAssessmentFragment::class.java.simpleName,
+            Log.e(
+                ArcAssessmentFragment::class.java.simpleName,
                 "currentArcResult must be non-null, did you call startArcSessionResult before this?")
             return
         }
 
         // Convert ARC Test Result model to JSON result
-        arcResultLiveData.value = ArcAssessmentObject
-            .createAssessmentResult(session, startResult, "135133:pqmztc")
+        arcResultLiveData.value = ArcAssessmentObject.createAssessmentResult(
+            session,
+            startResult,
+            "135133:pqmztc"
+        )
             .copy(isComplete = true)
 
         NavigationManager.getInstance().clearBackStack()

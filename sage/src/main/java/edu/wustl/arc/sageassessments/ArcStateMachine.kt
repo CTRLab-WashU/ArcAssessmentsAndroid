@@ -1,4 +1,4 @@
-package edu.wustl.arc.assessments.sage
+package edu.wustl.arc.sageassessments
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -8,6 +8,7 @@ import android.text.Spanned
 import android.util.Log
 import androidx.core.text.HtmlCompat
 import androidx.core.text.toSpanned
+import edu.wustl.arc.assessments.R
 import edu.wustl.arc.core.ArcApplication
 import edu.wustl.arc.core.ArcBaseFragment
 import edu.wustl.arc.core.Config
