@@ -61,6 +61,15 @@ public class TestProgress extends ArcBaseFragment {
     boolean wasPaused = false;
     boolean ready = false;
 
+    // Constructor for single test display
+    public TestProgress(String header) {
+        this.headerText = header;
+        this.testNumber = String.valueOf(0);
+        percentageFrom = 0;
+        percentageTo = 100;
+        subheaderText = ViewUtil.getString(R.string.testing_done);
+    }
+
     public TestProgress(String header, int index) {
         this.headerText = header;
         this.testNumber = String.valueOf(index+1);

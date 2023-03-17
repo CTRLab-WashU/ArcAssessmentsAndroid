@@ -9,33 +9,15 @@ import android.util.Log
 import androidx.core.text.HtmlCompat
 import androidx.core.text.toSpanned
 import edu.wustl.arc.assessments.R
-import edu.wustl.arc.core.ArcApplication
-import edu.wustl.arc.core.ArcBaseFragment
-import edu.wustl.arc.core.Config
-import edu.wustl.arc.core.LoadingDialog
-import edu.wustl.arc.core.SimplePopupScreen
+import edu.wustl.arc.core.*
 import edu.wustl.arc.navigation.NavigationManager
 import edu.wustl.arc.path_data.Grid2TestPathData
 import edu.wustl.arc.path_data.GridTestPathData
 import edu.wustl.arc.path_data.PriceTestPathData
 import edu.wustl.arc.path_data.SymbolsTestPathData
 import edu.wustl.arc.paths.templates.TestInfoTemplate
-import edu.wustl.arc.paths.tests.Grid2Letters
-import edu.wustl.arc.paths.tests.Grid2Study
-import edu.wustl.arc.paths.tests.Grid2Test
-import edu.wustl.arc.paths.tests.GridLetters
-import edu.wustl.arc.paths.tests.GridStudy
-import edu.wustl.arc.paths.tests.GridTest
-import edu.wustl.arc.paths.tests.PriceTestCompareFragment
-import edu.wustl.arc.paths.tests.PriceTestMatchFragment
-import edu.wustl.arc.paths.tests.SymbolTest
-import edu.wustl.arc.paths.tests.TestBegin
-import edu.wustl.arc.paths.tests.TestProgress
-import edu.wustl.arc.study.PathSegment
-import edu.wustl.arc.study.StateMachineAlpha
-import edu.wustl.arc.study.Study
-import edu.wustl.arc.study.TestSession
-import edu.wustl.arc.study.TestVariant
+import edu.wustl.arc.paths.tests.*
+import edu.wustl.arc.study.*
 import edu.wustl.arc.utilities.PriceManager
 import edu.wustl.arc.utilities.ViewUtil
 import java.io.File
@@ -102,6 +84,7 @@ open class ArcStateMachine : StateMachineAlpha() {
             )
         )
         fragments.add(PriceTestMatchFragment())
+        fragments.add(TestProgress(ViewUtil.getString(R.string.prices_complete)))
 
         val segment = PathSegment(
             fragments,
@@ -134,6 +117,7 @@ open class ArcStateMachine : StateMachineAlpha() {
         val gridTestFragment = GridTest()
         gridTestFragment.second = true
         fragments.add(gridTestFragment)
+        fragments.add(TestProgress(ViewUtil.getString(R.string.grids_complete)))
 
         val segment = PathSegment(
             fragments,
@@ -159,6 +143,7 @@ open class ArcStateMachine : StateMachineAlpha() {
         fragments.add(Grid2Study())
         fragments.add(Grid2Letters())
         fragments.add(Grid2Test())
+        fragments.add(TestProgress(ViewUtil.getString(R.string.grids_complete)))
 
         val segment = PathSegment(
             fragments,
@@ -185,6 +170,8 @@ open class ArcStateMachine : StateMachineAlpha() {
         fragments.add(info)
         fragments.add(TestBegin())
         fragments.add(SymbolTest())
+
+        fragments.add(TestProgress(ViewUtil.getString(R.string.symbols_complete)))
 
         val segment = PathSegment(
             fragments,

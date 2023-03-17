@@ -22,18 +22,28 @@
 */
 package edu.washu.arc.sampleapp;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.wustl.arc.core.ArcApplication;
+import edu.wustl.arc.core.ArcBaseFragment;
 import edu.wustl.arc.core.LoadingDialog;
 import edu.wustl.arc.core.SplashScreen;
 import edu.wustl.arc.navigation.NavigationManager;
+import edu.wustl.arc.path_data.SymbolsTestPathData;
+import edu.wustl.arc.paths.templates.TestInfoTemplate;
+import edu.wustl.arc.paths.tests.SymbolTest;
+import edu.wustl.arc.paths.tests.TestBegin;
+import edu.wustl.arc.paths.tests.TestProgress;
+import edu.wustl.arc.study.PathSegment;
 import edu.wustl.arc.study.StateMachineAlpha;
 import edu.wustl.arc.study.Study;
 import edu.wustl.arc.study.TestSession;
+import edu.wustl.arc.utilities.ViewUtil;
 
 public class SampleAppStateMachine extends StateMachineAlpha {
 
@@ -138,7 +148,7 @@ public class SampleAppStateMachine extends StateMachineAlpha {
                 addWakeSurvey();
                 break;
             case SYMBOLS_TEST:
-                addSymbolsTest(2);
+                addSymbolTest2();
                 break;
             case PRICING_TEST:
                 addPricesTest(2);
@@ -155,5 +165,26 @@ public class SampleAppStateMachine extends StateMachineAlpha {
                 break;
         }
         checkForSignaturePage(false);
+    }
+
+    void addSymbolTest2() {
+        List<ArcBaseFragment> fragments = new ArrayList<>();
+
+        Resources res = ArcApplication.getInstance().getResources();
+
+        TestInfoTemplate info = new TestInfoTemplate(
+                "",
+                ViewUtil.getHtmlString(edu.wustl.arc.assessments.R.string.symbols_header),
+                ViewUtil.getHtmlString(edu.wustl.arc.assessments.R.string.symbols_body),
+                "symbols",
+                ViewUtil.getHtmlString(edu.wustl.arc.assessments.R.string.button_begintest));
+        fragments.add(info);
+
+        fragments.add(new TestBegin());
+
+        fragments.add(new SymbolTest());
+        fragments.add(new TestProgress(ViewUtil.getString(edu.wustl.arc.assessments.R.string.symbols_complete)));
+        PathSegment segment = new PathSegment(fragments, SymbolsTestPathData.class);
+        cache.segments.add(segment);
     }
 }
