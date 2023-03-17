@@ -3,12 +3,12 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk 33
 
     defaultConfig {
         applicationId "edu.washu.arc.sampleapp"
         minSdk 23
-        targetSdk 31
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -31,6 +31,7 @@ dependencies {
     // Local projects
     implementation project(':arc')
     implementation project(':sage')
+
     //implementation 'edu.wustl.arc.assessments:core-library:1.0.0'
     implementation 'com.github.gcacace:signature-pad:1.2.1'
     implementation 'com.google.code.gson:gson:2.8.9'

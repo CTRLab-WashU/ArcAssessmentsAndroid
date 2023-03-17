@@ -1,4 +1,4 @@
-package edu.wustl.arc.assessments.sage
+package edu.wustl.arc.sageassessments
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("edu.wustl.arc.assessments.sage.test", appContext.packageName)
+        assertEquals("edu.wustl.arc.sageassessments.test", appContext.packageName)
     }
 }

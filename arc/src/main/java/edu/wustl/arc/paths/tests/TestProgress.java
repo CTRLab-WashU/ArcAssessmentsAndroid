@@ -99,6 +99,10 @@ public class TestProgress extends ArcBaseFragment {
 
         textViewThree = view.findViewById(R.id.textViewThree);
         textViewThree.setTypeface(Fonts.georgia);
+        // Check for single test language
+        if (percentageFrom == 0 && percentageTo == 100) {
+            textViewThree.setText("1");
+        }
 
         textViewHeader = view.findViewById(R.id.textViewHeader);
         textViewHeader.setTypeface(Fonts.robotoBold);

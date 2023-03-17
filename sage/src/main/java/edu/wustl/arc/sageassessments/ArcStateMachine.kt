@@ -134,6 +134,7 @@ open class ArcStateMachine : StateMachineAlpha() {
         val gridTestFragment = GridTest()
         gridTestFragment.second = true
         fragments.add(gridTestFragment)
+
         val segment = PathSegment(
             fragments,
             GridTestPathData::class.java
@@ -158,6 +159,7 @@ open class ArcStateMachine : StateMachineAlpha() {
         fragments.add(Grid2Study())
         fragments.add(Grid2Letters())
         fragments.add(Grid2Test())
+
         val segment = PathSegment(
             fragments,
             Grid2TestPathData::class.java)
@@ -183,7 +185,6 @@ open class ArcStateMachine : StateMachineAlpha() {
         fragments.add(info)
         fragments.add(TestBegin())
         fragments.add(SymbolTest())
-        fragments.add(TestProgress(ViewUtil.getString(R.string.symbols_complete), 0))
 
         val segment = PathSegment(
             fragments,

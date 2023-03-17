@@ -1,4 +1,4 @@
-package edu.wustl.arc.assessments.sage
+package edu.wustl.arc.sageassessments
 
 import org.junit.Test
 

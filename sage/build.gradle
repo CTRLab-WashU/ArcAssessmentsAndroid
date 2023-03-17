@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlinx-serialization'
 
 def versionMajor = 1 // max=2000 // bump to mark substantial changes
 def versionMinor = 0 // max=99   // bump for small changes (features, changes in intended behavior, etc)
@@ -42,6 +43,14 @@ android {
         jvmTarget = "1.8"
     }
 
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.2.0"
+    }
+
     buildTypes {
         debug {
 
@@ -64,8 +73,7 @@ dependencies {
     implementation("org.sagebionetworks.assessmentmodel:presentation:0.10.1")
     implementation("org.sagebionetworks.assessmentmodel:assessmentModel:0.10.1")
 
-    implementation("edu.wustl.arc.assessments:core-library:1.0.0")
-    implementation 'com.github.gcacace:signature-pad:1.3.1'
+    implementation project(':arc')
 
 //    testImplementation project(':test_data')
     testImplementation 'junit:junit:4.13'
