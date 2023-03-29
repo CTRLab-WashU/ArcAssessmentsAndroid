@@ -98,10 +98,8 @@ class ArcAssessmentViewModel(app: Application): AndroidViewModel(app), SessionCo
         // Convert ARC Test Result model to JSON result
         arcResultLiveData.value = ArcAssessmentObject.createAssessmentResult(
             session,
-            startResult,
-            "135133:pqmztc"
-        )
-            .copy(isComplete = true)
+            startResult
+        ).copy(isComplete = true)
 
         NavigationManager.getInstance().clearBackStack()
     }
