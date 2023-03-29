@@ -1,19 +1,17 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
-    ext.kotlin_version = '1.4.31'
+    ext.kotlin_version = '1.7.0'
     ext.dagger_version = '2.21'
 
     repositories {
+        gradlePluginPortal()
         google()
-        jcenter()
         maven{ url 'https://plugins.gradle.org/m2/' }
         mavenCentral()
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
 
-        classpath 'com.android.tools.build:gradle:3.6.1'
+        classpath("com.android.tools.build:gradle:7.2.0")
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
 
         // Kotlin
@@ -34,11 +32,23 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven {
-            url 'https://maven.google.com/'
-        }
+        mavenCentral()
+        maven { url"https://sagebionetworks.jfrog.io/artifactory/mobile-sdks/" }
         maven { url "https://jitpack.io" }
         mavenLocal()
+
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/CTRLab-WashU/ArcAssessmentsAndroid")
+            credentials {
+                /** Create github.properties in root project folder file with
+                 ** gpr.usr=GITHUB_USER_ID & gpr.key=PERSONAL_ACCESS_TOKEN
+                 ** Set env variable GPR_USER & GPR_API_KEY if not adding a properties file**/
+
+                username = project.findProperty('gpr.usr') ?: System.getenv("GPR_USER")
+                password = project.findProperty('gpr.key') ?: System.getenv("GPR_TOKEN")
+            }
+        }
     }
 }
 

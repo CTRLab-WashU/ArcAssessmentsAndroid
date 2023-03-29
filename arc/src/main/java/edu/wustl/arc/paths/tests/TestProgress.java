@@ -61,6 +61,15 @@ public class TestProgress extends ArcBaseFragment {
     boolean wasPaused = false;
     boolean ready = false;
 
+    // Constructor for single test display
+    public TestProgress(String header) {
+        this.headerText = header;
+        this.testNumber = String.valueOf(0);
+        percentageFrom = 0;
+        percentageTo = 100;
+        subheaderText = ViewUtil.getString(R.string.testing_done);
+    }
+
     public TestProgress(String header, int index) {
         this.headerText = header;
         this.testNumber = String.valueOf(index+1);
@@ -99,6 +108,10 @@ public class TestProgress extends ArcBaseFragment {
 
         textViewThree = view.findViewById(R.id.textViewThree);
         textViewThree.setTypeface(Fonts.georgia);
+        // Check for single test language
+        if (percentageFrom == 0 && percentageTo == 100) {
+            textViewThree.setText("1");
+        }
 
         textViewHeader = view.findViewById(R.id.textViewHeader);
         textViewHeader.setTypeface(Fonts.robotoBold);
