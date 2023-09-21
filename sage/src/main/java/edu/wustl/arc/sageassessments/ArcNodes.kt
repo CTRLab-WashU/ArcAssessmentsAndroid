@@ -68,6 +68,14 @@ enum class ArcAssessmentType {
             GRIDS -> "grids"
         }
     }
+
+    fun jsonSchemaUrl(): String {
+        return when(this) {
+            SYMBOLS -> "https://github.com/CTRLab-WashU/ArcAssessmentsiOS/blob/0076b71cf018547c8c5f09946a3e050dbe41aecb/Arc/Resources/example_schema_symbols.json"
+            PRICES -> "https://github.com/CTRLab-WashU/ArcAssessmentsiOS/blob/0076b71cf018547c8c5f09946a3e050dbe41aecb/Arc/Resources/example_schema_prices.json"
+            GRIDS -> "https://github.com/CTRLab-WashU/ArcAssessmentsiOS/blob/0076b71cf018547c8c5f09946a3e050dbe41aecb/Arc/Resources/example_schema_grids.json"
+        }
+    }
 }
 
 @Serializable
@@ -183,8 +191,7 @@ data class ArcAssessmentResultObject(
         return JsonArchivableFile(
             filename = "data.json",
             json = Json.encodeToString(resultJsonStr),
-            // TODO: mdephillips 3/2/23 how do I add ARC JSON schemas to git here?
-            jsonSchema = ""//"https://sage-bionetworks.github.io/mobile-client-json/schemas/v1/TappingResultObject.json"
+            jsonSchema = assessmentType.jsonSchemaUrl()
         )
     }
 }
