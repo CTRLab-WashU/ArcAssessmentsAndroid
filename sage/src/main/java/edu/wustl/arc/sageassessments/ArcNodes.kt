@@ -26,9 +26,14 @@ import org.sagebionetworks.assessmentmodel.JsonArchivableFile
 import org.sagebionetworks.assessmentmodel.JsonFileArchivableResult
 import org.sagebionetworks.assessmentmodel.ModuleInfo
 import org.sagebionetworks.assessmentmodel.Node
+import org.sagebionetworks.assessmentmodel.PathMarker
 import org.sagebionetworks.assessmentmodel.Result
+import org.sagebionetworks.assessmentmodel.UUIDGenerator
+import org.sagebionetworks.assessmentmodel.copyResults
 import org.sagebionetworks.assessmentmodel.navigation.BranchNodeState
 import org.sagebionetworks.assessmentmodel.navigation.Navigator
+import org.sagebionetworks.assessmentmodel.resultId
+import org.sagebionetworks.assessmentmodel.serialization.InstantSerializer
 import org.sagebionetworks.assessmentmodel.serialization.NodeContainerObject
 import org.sagebionetworks.assessmentmodel.serialization.StepObject
 
@@ -82,6 +87,7 @@ enum class ArcAssessmentType {
 @SerialName("arcAssessmentObject")
 data class ArcAssessmentObject(
     override val identifier: String,
+    val arcAssessmentType: ArcAssessmentType,
     override val guid: String? = null,
     override val versionString: String? = null,
     override val schemaIdentifier: String? = null,
@@ -143,7 +149,13 @@ data class ArcAssessmentObject(
         return super.createNavigator(nodeState)
     }
 
-    override fun createResult(): AssessmentResult = super<Assessment>.createResult()
+    override fun createResult(): AssessmentResult = ArcAssessmentResultObject(
+        identifier = resultId(),
+        assessmentIdentifier = identifier,
+        schemaIdentifier = schemaIdentifier,
+        versionString = versionString,
+        assessmentType = arcAssessmentType)
+
     override fun unpack(originalNode: Node?,
                         moduleInfo: ModuleInfo,
                         registryProvider: AssessmentRegistryProvider): ArcAssessmentObject {
@@ -175,17 +187,34 @@ data class ArcTestInfoStepObject(
 @SerialName("arcResult")
 data class ArcAssessmentResultObject(
     override val identifier: String,
+    @SerialName("startDate")
+    @Serializable(with = InstantSerializer::class)
     override var startDateTime: Instant = Clock.System.now(),
+    @SerialName("endDate")
+    @Serializable(with = InstantSerializer::class)
     override var endDateTime: Instant? = null,
     var isComplete: Boolean = false,
     var assessmentType: ArcAssessmentType,
     @Transient
     var resultJsonStr: String? = null,
-) : JsonFileArchivableResult {
 
-    override fun copyResult(identifier: String): ArcAssessmentResultObject {
-        return this.copy()
-    }
+    override val assessmentIdentifier: String? = null,
+    override val schemaIdentifier: String? = null,
+    override val versionString: String? = null,
+    @SerialName("stepHistory")
+    override var pathHistoryResults: MutableList<Result> = mutableListOf(),
+    @SerialName("asyncResults")
+    override var inputResults: MutableSet<Result> = mutableSetOf(),
+    @SerialName("taskRunUUID")
+    override var runUUIDString: String = UUIDGenerator.uuidString(),
+    override val path: MutableList<PathMarker> = mutableListOf(),
+
+) : JsonFileArchivableResult, AssessmentResult {
+
+    override fun copyResult(identifier: String): ArcAssessmentResultObject = this.copy(
+        identifier = identifier,
+        pathHistoryResults = pathHistoryResults.copyResults(),
+        inputResults = inputResults.copyResults())
 
     override fun getJsonArchivableFile(stepPath: String): JsonArchivableFile {
         return JsonArchivableFile(

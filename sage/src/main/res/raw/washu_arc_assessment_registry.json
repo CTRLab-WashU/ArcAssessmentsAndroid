@@ -5,6 +5,7 @@
       {
         "type": "arcAssessmentObject",
         "identifier": "symbol_test",
+        "arcAssessmentType": "symbol_test",
         "title": "Symbol Test",
         "steps": [
           {
@@ -17,6 +18,7 @@
       {
         "type": "arcAssessmentObject",
         "identifier": "price_test",
+        "arcAssessmentType": "price_test",
         "title": "Price Test",
         "steps": [
           {
@@ -29,6 +31,7 @@
       {
         "type": "arcAssessmentObject",
         "identifier": "grid_test",
+        "arcAssessmentType": "grid_test",
         "title": "Grid Test",
         "steps": [
           {

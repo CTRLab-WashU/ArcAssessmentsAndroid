@@ -40,7 +40,12 @@ class ArcAssessmentFragment: AssessmentFragment() {
         arcViewModel = ViewModelProvider(this)[ArcAssessmentViewModel::class.java]
         arcViewModel.arcResultLiveData.observe(viewLifecycleOwner) {
             if (it.isComplete) {
-                viewModel.assessmentNodeState.currentResult.inputResults.add(it)
+                (viewModel.assessmentNodeState.currentResult as ArcAssessmentResultObject).apply {
+                    startDateTime = it.startDateTime
+                    endDateTime = it.endDateTime
+                    isComplete = it.isComplete
+                    resultJsonStr = it.resultJsonStr
+                }
                 viewModel.goForward()
             }
         }
