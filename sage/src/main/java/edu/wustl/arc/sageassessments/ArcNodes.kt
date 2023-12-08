@@ -10,6 +10,7 @@ import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
@@ -190,7 +191,7 @@ data class ArcAssessmentResultObject(
     override fun getJsonArchivableFile(stepPath: String): JsonArchivableFile {
         return JsonArchivableFile(
             filename = "data.json",
-            json = Json.encodeToString(resultJsonStr),
+            json = resultJsonStr?: "",
             jsonSchema = assessmentType.jsonSchemaUrl()
         )
     }
