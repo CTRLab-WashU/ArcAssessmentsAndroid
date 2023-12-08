@@ -11,7 +11,7 @@ def versionBuild = 0 // max=99   // bump for qa builds
 def flavor = getGradle().getStartParameter().getTaskRequests().toString().toLowerCase()
 
 def getVersionName = { ->
-    return "1.2.1"
+    return "1.2.2"
 }
 
 def getArtificatId = { ->
